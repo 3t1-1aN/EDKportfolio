@@ -3,6 +3,9 @@ import path from 'path';
 import { Project } from './data';
 import { mechanicsProjectDescriptions } from './dynamic-project-descriptions';
 
+/** Slugs to temporarily hide from the site (remove from this array to show again) */
+const TEMPORARILY_HIDDEN_MECHANICS_SLUGS = ['kinetic-clock'];
+
 /**
  * Generates project entries for image files and video files in the public/mechanics folder.
  * - Image files are grouped by base name (e.g. arclighter1.jpg, arclighter2.jpg → one card).
@@ -116,7 +119,8 @@ export async function getMechanicsProjects(): Promise<Project[]> {
       };
     });
 
-    return [...imageProjects, ...videoProjects];
+    const allProjects = [...imageProjects, ...videoProjects];
+    return allProjects.filter((p) => !TEMPORARILY_HIDDEN_MECHANICS_SLUGS.includes(p.slug));
   } catch (error) {
     console.error('Error reading mechanics directory:', error);
     return [];
