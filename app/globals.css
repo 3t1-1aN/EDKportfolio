@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #030301;
+  --foreground: #ededed;
+  --grey-50: #f9fafb;
+  --grey-100: #f3f4f6;
+  --grey-200: #e5e7eb;
+  --grey-300: #d1d5db;
+  --grey-400: #9ca3af;
+  --grey-500: #6b7280;
+  --grey-600: #4b5563;
+  --grey-700: #374151;
+  --grey-800: #1f2937;
+  --grey-900: #111827;
+  --grey-950: #0a0a0a;
+  --glass-base: rgba(10, 10, 10, 0.7);
+  --glass-light: rgba(50, 50, 50, 0.8);
+
+  /* Depth Color Shades - 4 shades for layering (warm golden-tinted palette from hero image) */
+  --depth-1: #030301;
+  /* Darkest - background (matches image base) */
+  --depth-2: #0d0d08;
+  /* Dark - cards/containers (warm dark with subtle golden tint) */
+  --depth-3: #1a1a12;
+  /* Medium - elevated elements (warmer, more golden tint) */
+  --depth-4: #25251a;
+  /* Lightest - highlighted/active (warm golden-tinted light) */
+
+  /* Shadow values for depth (warm golden highlights) */
+  --shadow-light-top: rgba(207, 194, 80, 0.15);
+  /* Golden highlight from image */
+  --shadow-dark-bottom: rgba(0, 0, 0, 0.25);
+  --shadow-dark-bottom-strong: rgba(0, 0, 0, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #030301;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  cursor: none;
+  overflow-x: hidden;
+}
+
+/* Hide default cursor on desktop only */
+@media (min-width: 769px) {
+  * {
+    cursor: none !important;
+  }
+
+  a,
+  button,
+  [data-cursor-hover] {
+    cursor: none !important;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(207, 194, 80, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(207, 194, 80, 0.5);
+}
+
+/* Smooth animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Glassmorphism Effects */
+.glass {
+  background: rgba(3, 3, 1, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.glass-card {
+  background: rgba(3, 3, 1, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(3, 3, 1, 0.7);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.glass-nav {
+  background: rgba(3, 3, 1, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* Neumorphic Glass Container */
+.glass-container {
+  background: var(--glass-base);
+  backdrop-filter: blur(64px);
+  -webkit-backdrop-filter: blur(64px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    inset 0 0 15px rgba(255, 255, 255, 0.05),
+    0 0 50px rgba(0, 0, 0, 0.05);
+}
+
+/* Hide scrollbar for glass containers */
+.glass-scrollable {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.glass-scrollable::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+  width: 0;
+}
+
+/* Glassmorphism Form Inputs */
+.glass-input {
+  background: rgba(3, 3, 1, 0.5) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color: var(--foreground) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input:focus {
+  background: rgba(3, 3, 1, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: rgba(237, 237, 237, 0.5);
+}
+
+/* Simple card styles */
+.neumorphic {
+  background: rgba(3, 3, 1, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neumorphic:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.neumorphic:active {
+  transform: scale(0.98);
+}
+
+.neumorphic-inset {
+  background: rgba(3, 3, 1, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neumorphic-card {
+  background: rgba(3, 3, 1, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neumorphic-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.neumorphic-button {
+  background: rgba(3, 3, 1, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--foreground);
+}
+
+.neumorphic-button:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.neumorphic-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.neumorphic-input {
+  background: rgba(3, 3, 1, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: var(--foreground);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neumorphic-input:focus {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  outline: none;
+  background: rgba(3, 3, 1, 0.6);
+}
+
+.neumorphic-input::placeholder {
+  color: rgba(237, 237, 237, 0.4);
+}
+
+.glass-neumorphic {
+  background: rgba(3, 3, 1, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-neumorphic:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Depth System - Based on layered color shades and dual shadows */
+
+/* Depth Layers - Using color shades for visual hierarchy */
+.depth-layer-1 {
+  background: var(--depth-1);
+}
+
+.depth-layer-2 {
+  background: var(--depth-2);
+}
+
+.depth-layer-3 {
+  background: var(--depth-3);
+}
+
+.depth-layer-4 {
+  background: var(--depth-4);
+}
+
+/* Simple shadow system */
+.depth-shadow {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.depth-shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.depth-shadow-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Simple card styles */
+.depth-card {
+  background: var(--depth-2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.depth-card:hover {
+  background: var(--depth-3);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.depth-card-elevated {
+  background: var(--depth-3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.depth-card-elevated:hover {
+  background: var(--depth-4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  transform: translateY(-4px);
+}
+
+/* Simple button styles */
+.depth-button {
+  background: var(--depth-3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.depth-button:hover {
+  background: var(--depth-4);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.depth-button:active {
+  background: var(--depth-2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+}
+
+.depth-active {
+  background: var(--depth-4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
