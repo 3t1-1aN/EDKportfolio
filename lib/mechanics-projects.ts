@@ -5,6 +5,8 @@ import { mechanicsProjectDescriptions } from './dynamic-project-descriptions';
 
 /** Slugs to temporarily hide from the site (remove from this array to show again) */
 const TEMPORARILY_HIDDEN_MECHANICS_SLUGS = ['kinetic-clock'];
+/** Video filenames to hide from the site (e.g. 'kinetic_clock.mp4') */
+const TEMPORARILY_HIDDEN_VIDEO_FILES = ['kinetic_clock.mp4', 'gimbal.mp4'];
 
 /**
  * Generates project entries for image files and video files in the public/mechanics folder.
@@ -91,8 +93,10 @@ export async function getMechanicsProjects(): Promise<Project[]> {
       };
     });
 
-    // Create one project per video file; video plays when card expands
-    const videoProjects: Project[] = videoFiles.map((file) => {
+    // Create one project per video file; video plays when card expands (exclude hidden videos)
+    const hiddenSet = new Set(TEMPORARILY_HIDDEN_VIDEO_FILES.map((f) => f.toLowerCase()));
+    const visibleVideoFiles = videoFiles.filter((file) => !hiddenSet.has(file.toLowerCase()));
+    const videoProjects: Project[] = visibleVideoFiles.map((file) => {
       const slug = file
         .replace(/\.mp4$/i, '')
         .toLowerCase()
