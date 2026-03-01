@@ -5,9 +5,10 @@ interface ContainerProps {
   children: ReactNode;
   className?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  style?: React.CSSProperties;
 }
 
-const Container = ({ children, className, size = 'xl' }: ContainerProps) => {
+const Container = ({ children, className, size = 'xl', style }: ContainerProps) => {
   const sizeClasses = {
     sm: 'max-w-3xl',
     md: 'max-w-5xl',
@@ -17,7 +18,7 @@ const Container = ({ children, className, size = 'xl' }: ContainerProps) => {
   };
 
   return (
-    <div className={cn('mx-auto px-6 sm:px-8 lg:px-12', sizeClasses[size], className)}>
+    <div className={cn('mx-auto px-6 sm:px-8 lg:px-12', sizeClasses[size], className)} style={style}>
       {children}
     </div>
   );

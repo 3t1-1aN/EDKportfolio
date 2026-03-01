@@ -5,27 +5,15 @@ import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ScrollAnimation from '@/components/ScrollAnimation';
-import { projects } from '@/lib/data';
+import type { Project } from '@/lib/data';
 import { ImagesScrollingAnimation } from '@/components/ui/images-scrolling-animation';
 import { BackgroundCells } from '@/components/ui/background-ripple-effect';
 
-const ProjectsSection = () => {
-  // One representative project per category for the scrolling cards (order matches display)
-  const allowedCategories = [
-    'diy-electronics',
-    '3d-design',
-    'music-composition',
-    'workflow-automation',
-    'photography'
-  ] as const;
+interface ProjectsSectionProps {
+  featuredProjects: Project[];
+}
 
-  // Build one card per category so every category (including Digital Music Composition) appears
-  const featuredProjects = allowedCategories
-    .map((categoryId) =>
-      projects.find((p) => p.categoryId === categoryId)
-    )
-    .filter((p): p is NonNullable<typeof p> => p != null);
-
+const ProjectsSection = ({ featuredProjects }: ProjectsSectionProps) => {
   return (
     <Section id="featured-work" variant="default" className="min-h-screen relative bg-slate-950 pt-0 pb-24 sm:pb-32" data-snap-section="projects">
       <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 0, pointerEvents: 'none' }}>

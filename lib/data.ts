@@ -53,17 +53,6 @@ export interface WorkflowStep {
 
 export const projects: Project[] = [
   {
-    id: '2',
-    slug: 'diy-projects',
-    title: 'DIY Electronics & Mechanics',
-    description: 'A collection of creative DIY projects including CPU desk fans, hard drive clocks, plasma lighters, and custom electronics built from curiosity and passion.',
-    client: 'Personal Projects',
-    date: '2020 - Present',
-    image: '/electronics.jpg',
-    categoryId: 'diy-electronics',
-    tags: ['electronics', 'mechanics', 'hardware'],
-  },
-  {
     id: '3',
     slug: '3d-design',
     title: '3D Design & Modeling',
@@ -86,26 +75,15 @@ export const projects: Project[] = [
     tags: ['automation', 'python', 'workflow optimization'],
   },
   {
-    id: '6',
-    slug: 'photography',
-    title: 'Nature & Wildlife Photography',
-    description: 'Capturing the beauty of the outdoors through self-taught photography, focusing on wildlife and natural landscapes.',
+    id: 'software',
+    slug: 'software-projects',
+    title: 'Software Projects',
+    description: 'Web applications, mobile apps, and software solutions built with modern technologies.',
     client: 'Personal Projects',
-    date: '2021 - Present',
-    image: '/photography.jpg',
-    categoryId: 'photography',
-    tags: ['photography', 'wildlife', 'nature'],
-  },
-  {
-    id: '11',
-    slug: 'ambient-soundscape',
-    title: 'Ambient Soundscape Collection',
-    description: 'A series of ambient and atmospheric compositions designed for meditation and focus work.',
-    client: 'EKfeats',
-    date: '2023',
-    image: '/music.jpg',
-    categoryId: 'music-composition',
-    tags: ['ambient music', 'sound design', 'composition'],
+    date: '2020 - Present',
+    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop',
+    categoryId: 'software-projects',
+    tags: ['software', 'web apps', 'development'],
   },
 ];
 

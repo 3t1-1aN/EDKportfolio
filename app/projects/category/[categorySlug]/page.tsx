@@ -12,9 +12,7 @@ import { BlurText } from '@/components/ui/blur-text';
 import CategoryProjectsClient from './CategoryProjectsClient';
 
 interface CategoryPageProps {
-  params: {
-    categorySlug: string;
-  };
+  params: { categorySlug: string };
 }
 
 export function generateStaticParams() {

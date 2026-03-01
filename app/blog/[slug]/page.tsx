@@ -6,9 +6,7 @@ import Link from 'next/link';
 import PageWithDotBackground from '@/components/PageWithDotBackground';
 
 interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 }
 
 export function generateStaticParams() {

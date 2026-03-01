@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
-import { GlassFilter } from '@/components/ui/liquid-glass-button';
+import { GlassFilter, LiquidButton } from '@/components/ui/liquid-glass-button';
 
 const navLinks = [
   { href: '/projects#top', label: 'Projects', path: '/projects' },

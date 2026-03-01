@@ -1,13 +1,10 @@
 /**
  * Custom descriptions for dynamically loaded projects.
- * Edit this file to set your own description for each music, mechanics, and video project.
+ * Edit this file to set your own description for each music and mechanics project. Photography uses photographyProjectMeta (date/location) only.
  *
  * Keys are project slugs (derived from filenames):
  * - Music: from audio filename, e.g. "hills-and-valleys" for "Hills and Valleys.mp3"
  * - Mechanics: from image base name, e.g. "arclighter" for "arclighter1.jpg"; video slugs from .mp4 filename, e.g. "build-timelapse" for "Build Timelapse.mp4"
- * - Photography: from image base name, e.g. "sunset" for "sunset1.jpg"
- * - Video: from video filename, e.g. "my-short-film" for "My Short Film.mp4"
- *
  * Only list entries you want to override; projects not listed keep their auto-generated description.
  */
 
@@ -55,11 +52,3 @@ export const photographyProjectMeta: Record<
   // 'eagle': { date: '2023', location: 'Alaska' },
 };
 
-/** Custom descriptions for video projects (slug -> description). Slug from .mp4 filename, e.g. "my-film" for "My Film.mp4" */
-export const videoProjectDescriptions: Record<string, string> = {
-  'gimbal': 'a mini gimbal that I made completely from scratch with my own things. It is a 3D printed frame, controlled with 3 servo motors, an arduino as the brain, and an MPU-6050 acceleration/gyroscope sensor to get motion and provide stabalization. all the components are hand soldered onto solder board.',
-  'kinetic-clock': 'a mechanical version of a full 4 numbered, 7 segment clock. It uses 28 servo motors to actuate the individual segments in and out to disply the time. It fetches time from a time server, puts it onto the arduinos built in RTC, and the 2 I2C-controlled PWM drivers relay it onto the servo motors to create the time. Alongside that, a custom UI is that is running on the arduinos port is able to send special instructions to the clock to turn it into a stopwatch, a countdown timer, or an alarm.',
-
-
-  // Example: 'my-short-film': 'A short narrative piece about resilience.',
-};
