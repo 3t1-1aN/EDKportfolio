@@ -1,10 +1,11 @@
 /**
  * Custom descriptions for dynamically loaded projects.
- * Edit this file to set your own description for each music and mechanics project. Photography uses photographyProjectMeta (date/location) only.
+ * Edit this file to set your own description for each music, mechanics, and 3D design project. Photography uses photographyProjectMeta (date/location) only.
  *
  * Keys are project slugs (derived from filenames):
  * - Music: from audio filename, e.g. "hills-and-valleys" for "Hills and Valleys.mp3"
- * - Mechanics: from image base name, e.g. "arclighter" for "arclighter1.jpg"; video slugs from .mp4 filename, e.g. "build-timelapse" for "Build Timelapse.mp4"
+ * - Mechanics: from image base name, e.g. "arclighter" for "arclighter1.jpg"; video slugs from .mp4 filename
+ * - 3D Design: from image base name (view suffixes like "back" stripped), e.g. "hovercar" for "hovercar.png" + "hovercar_back.png"; video slugs from filename
  * Only list entries you want to override; projects not listed keep their auto-generated description.
  */
 
@@ -36,6 +37,28 @@ export const mechanicsProjectDescriptions: Record<string, string> = {
 
   // Example: 'arclighter': 'A handheld plasma arc lighter built from reclaimed components.',
   // Add more: use the slug from the image base name (e.g. "cpu-fan" for cpu-fan1.jpg).
+};
+
+/**
+ * Custom descriptions for 3D design projects (slug -> description).
+ * Slugs are prefixed by subfolder: "blender-<name>", "fusion360-<name>", "printed-<name>".
+ * For videos the slug is "<subfolder>-video-<name>".
+ * Only list entries you want to override; unmatched projects keep their auto-generated description.
+ */
+export const threeDesignProjectDescriptions: Record<string, string> = {
+  // ── Blender renders ────────────────────────────────────────────────────────
+  'blender-aston-martin': 'A detailed 3D model of an Aston Martin sports car, rendered from multiple angles to showcase the exterior body work and design language.',
+  'blender-hovercar': 'A futuristic hovercar concept model rendered from both front and rear perspectives, exploring sci-fi vehicle design.',
+  'blender-hotel': 'An architectural visualization of a hotel building across three views, showcasing exterior design, materials, and lighting.',
+  'blender-grass-car': 'A stylized car model set in a natural outdoor environment, combining vehicle design with detailed terrain and grass rendering.',
+  'blender-living-room': 'An interior design render of a modern living room, exploring lighting, materials, and spatial composition.',
+  'blender-video-tranquil-backdrop': 'A 3D animated backdrop scene rendered in motion, used as an environment asset for other projects.',
+
+  // ── Fusion 360 designs ─────────────────────────────────────────────────────
+  // Example: 'fusion360-bracket': 'A custom mounting bracket designed in Fusion 360 for ...',
+
+  // ── 3D Printed models ──────────────────────────────────────────────────────
+  // Example: 'printed-enclosure': 'A custom 3D printed enclosure for ...',
 };
 
 /**

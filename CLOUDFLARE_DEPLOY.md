@@ -21,10 +21,13 @@ This app is set up to deploy as a **dynamic** Next.js site on Cloudflare (SSR, A
 4. **Connect your repo:**  
    Choose your Git provider (e.g. GitHub), authorize Cloudflare, then select the repo and the branch you want to deploy (e.g. `main`).
 
-5. **Set the build settings:**
-   - **Build command:** `npx @cloudflare/next-on-pages`
-   - **Build output directory:** `.vercel/output/static`
-   - **Root directory:** Leave blank if the repo root is your app folder. If your app is in a subfolder (e.g. `portfolio-website`), set **Root directory** to that folder name.
+5. **Set the build settings (must match exactly):**
+   - **Build command:** `npx @cloudflare/next-on-pages`  
+     *(Do not use `npm run build` — that produces the wrong output.)*
+   - **Build output directory:** `.vercel/output/static`  
+     *(Do not use `.next` or `.open-next` — this project uses next-on-pages.)*
+   - **Root directory:** Leave blank if the repo root is your app folder (e.g. `package.json` and `app/` at the top level). If your app is in a subfolder (e.g. `portfolio-website`), set it to that folder name exactly. If the field cannot be left blank, use `.` so Cloudflare uses the clone root as the project root.
+   - **Production branch deploy command** and **Non-production branch deploy command:** Leave **both empty**. Cloudflare Pages deploys the build output automatically. Do not put a path (e.g. `.vercel/output/static`) or a command (e.g. `npx wrangler deploy`) in these fields — that causes "Permission denied" or wrong deploy behavior.
 
 6. **Environment variables (optional):**  
    Under **Build variables and secrets**, add any vars your app needs (e.g. `NODE_VERSION` = `18`).  
@@ -90,6 +93,45 @@ This runs `npx @cloudflare/next-on-pages`, which builds your Next.js app for the
 ## Windows
 
 `@cloudflare/next-on-pages` uses the Vercel CLI and is unreliable on Windows. **Use the Git deployment above** so Cloudflare builds on Linux. If you need to build locally, use **WSL** and run `npm run pages:build` there.
+
+---
+
+## Troubleshooting
+
+### Error: "The entry-point file at '.open-next/worker.js' was not found"
+
+Your Cloudflare project is using the **wrong build and deploy setup**. It’s trying to deploy an OpenNext-style Worker (which expects `.open-next/`) while the build is either plain Next.js or next-on-pages.
+
+**Fix:**
+
+1. In the Cloudflare dashboard, open your Pages project → **Settings** → **Builds & deployments** → **Build configuration**.
+2. Set **Build command** to: `npx @cloudflare/next-on-pages`
+3. Set **Build output directory** to: `.vercel/output/static`
+4. **Remove any custom deploy command** (e.g. `npx wrangler deploy`). Use the default so Pages deploys the build output. If there’s a “Deploy command” or “Build command” that runs `wrangler deploy`, clear it or leave it blank.
+5. Save and trigger a new deployment.
+
+### Error: "Root directory not found"
+
+Cloudflare is looking for a folder path that does not exist in your cloned repo.
+
+**Step 1 — Confirm your repo layout on GitHub**
+
+- Open your repo and the branch Cloudflare builds (e.g. `main`).
+- If you see `package.json`, `app/`, `components/` at the **top level**, the app is at repo root. Root directory in Cloudflare should be **empty** or **`.`**.
+- If you see a single folder (e.g. `portfolio-website/`) and the app is inside it, set Root directory to that folder name exactly (e.g. `portfolio-website`).
+
+**Step 2 — Set Root directory in Cloudflare**
+
+- Dashboard → your Pages project → **Settings** → **Builds & deployments** → **Build configuration**.
+- Find **Root directory** (or "Base directory").
+- **App at repo root:** leave empty or use **`.`** (required if the field cannot be left blank).
+- **App in a subfolder:** set to that folder name only (e.g. `portfolio-website`), no leading slash, correct spelling and case (Linux is case-sensitive).
+- Save and trigger a new deployment.
+
+| Repo layout | Root directory value |
+|-------------|----------------------|
+| App at repo root (`package.json` at top level) | Empty or `.` |
+| App in subfolder (e.g. `portfolio-website/package.json`) | `portfolio-website` |
 
 ## Optional: OpenNext (Next.js 15, recommended by Cloudflare)
 
