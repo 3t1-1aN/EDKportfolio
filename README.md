@@ -4,13 +4,13 @@ A modern, animated portfolio website inspired by the Evolva Framer template. Fea
 
 ## Features
 
-- ✨ **Custom Cursor** - Interactive cursor that changes on hover
-- 🎯 **Smooth Scrolling** - Powered by Lenis for buttery-smooth scroll experience
-- 🎨 **Scroll Animations** - Elements fade in as you scroll using Intersection Observer
-- 📱 **Responsive Design** - Fully responsive across all devices
-- 🌙 **Dark Mode Support** - Automatic dark mode based on system preferences
-- ⚡ **Next.js 14** - Built with the latest Next.js features
-- 🎭 **Framer Motion** - For advanced animations (ready to use)
+- **Custom Cursor** - Interactive cursor that changes on hover
+- **Smooth Scrolling** - Powered by Lenis for buttery-smooth scroll experience
+- **Scroll Animations** - Elements fade in as you scroll using Intersection Observer
+- **Responsive Design** - Fully responsive across all devices
+- **Dark Mode Support** - Automatic dark mode based on system preferences
+- **Next.js 14** - Built with the latest Next.js features
+- **Framer Motion** - For advanced animations (ready to use)
 
 ## Getting Started
 
@@ -100,7 +100,7 @@ The project uses Tailwind CSS. You can customize:
 - Safari (latest)
 - Edge (latest)
 
-## License
+## will soon be setting it up with a proper domain
 
 This project is open source and available for personal and commercial use.
 
