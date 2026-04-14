@@ -100,11 +100,9 @@ The project uses Tailwind CSS. You can customize:
 - Safari (latest)
 - Edge (latest)
 
-## will soon be setting it up with a proper domain
-
-This project is open source and available for personal and commercial use.
-
 ## Credits
 
 Design inspired by the Evolva template from Framer.
+
+##### will soon be setting it up with a proper domain
 
