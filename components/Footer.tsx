@@ -34,7 +34,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
-              {['Home', 'Projects', 'Blog', 'About', 'Contact'].map((item) => (
+              {['Home', 'Projects', 'About', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link href={`#${item.toLowerCase()}`} className="text-sm hover:opacity-70 transition-opacity">
                     {item}

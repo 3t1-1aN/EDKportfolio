@@ -31,16 +31,6 @@ export interface Project {
   softwareVisibility?: 'public' | 'private';
 }
 
-export interface BlogPost {
-  id: string;
-  slug: string;
-  title: string;
-  date: string;
-  readTime: string;
-  image: string;
-  excerpt?: string;
-}
-
 export interface Testimonial {
   id: string;
   text: string;
@@ -68,57 +58,6 @@ export const projects: Project[] = [
     image: categoryImages.threeDPrint,
     categoryId: '3d-design',
     tags: ['3D modeling', 'rendering', 'product design'],
-  },
-];
-
-export const blogPosts: BlogPost[] = [
-  {
-    id: '1',
-    slug: 'design-isn-t-decoration-it-s-direction',
-    title: 'Design Isn\'t Decoration — It\'s Direction',
-    date: 'Sep 21, 2025',
-    readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=600&fit=crop',
-  },
-  {
-    id: '2',
-    slug: 'design-systems-are-more-than-just-components',
-    title: 'Design Systems Are More Than Just Components',
-    date: 'Sep 19, 2025',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-  },
-  {
-    id: '3',
-    slug: 'the-creative-brief-is-broken-here-s-how-to-fix-it',
-    title: 'The Creative Brief Is Broken — Here\'s How to Fix It',
-    date: 'Sep 18, 2025',
-    readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-  },
-  {
-    id: '4',
-    slug: 'should-designers-code-a-practical-perspective',
-    title: 'Should Designers Code? A Practical Perspective',
-    date: 'Sep 15, 2025',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop',
-  },
-  {
-    id: '5',
-    slug: 'crafting-a-portfolio-that-wins-clients-not-just-likes',
-    title: 'Crafting a Portfolio That Wins Clients — Not Just Likes',
-    date: 'Sep 12, 2025',
-    readTime: '6 min read',
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
-  },
-  {
-    id: '6',
-    slug: 'the-future-of-human-ai-collaboration-in-design',
-    title: 'The Future of Human–AI Collaboration in Design',
-    date: 'Sep 7, 2025',
-    readTime: '7 min read',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
   },
 ];
 
