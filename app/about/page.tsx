@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
@@ -5,6 +6,7 @@ import ScrollAnimation from '@/components/ScrollAnimation';
 import Footer from '@/components/Footer';
 import { StarsBackground } from '@/components/ui/stars';
 import { LiquidButton } from '@/components/ui/liquid-glass-button';
+import { categoryImages } from '@/lib/projects/category-images';
 
 export default function AboutPage() {
   return (
@@ -30,14 +32,30 @@ export default function AboutPage() {
             />
           </ScrollAnimation>
 
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="max-w-5xl mx-auto space-y-6">
             <ScrollAnimation delay={200}>
-              <p className="text-lg text-grey-700 dark:text-grey-300 leading-relaxed">
-                I'm Ethan Kunder, a high school junior at Gunderson High School and a student in the Mechatronics program at Silicon Valley Career Technical Education Center (SVCTE), where I'm developing hands-on experience across multiple engineering disciplines. I love exploring the intersection of programming, robotics, AI, and creative engineering, turning small ideas into systems that move, respond, and think.
-              </p>
-              <p className="text-lg text-grey-700 dark:text-grey-300 leading-relaxed mt-4">
-                <strong>EKfeats</strong> is my platform designed to showcase a diverse range of projects spanning music, electronics, coding, mechanics, and 3D software. The site serves as a visual journey through the impressive variety of work I've completed over the past few years, with a focus on innovation and creative problem-solving.
-              </p>
+              <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10 items-start mb-2">
+                <div className="space-y-4">
+                  <p className="text-lg text-grey-700 dark:text-grey-300 leading-relaxed">
+                    I'm Ethan Kunder, a high school junior at Gunderson High School and a student in the Mechatronics program at Silicon Valley Career Technical Education Center (SVCTE), where I'm developing hands-on experience across multiple engineering disciplines. I love exploring the intersection of programming, robotics, AI, and creative engineering, turning small ideas into systems that move, respond, and think.
+                  </p>
+                  <p className="text-lg text-grey-700 dark:text-grey-300 leading-relaxed">
+                    <strong>EKfeats</strong> is my platform designed to showcase a diverse range of projects spanning music, electronics, coding, mechanics, and 3D software. The site serves as a visual journey through the impressive variety of work I've completed over the past few years, with a focus on innovation and creative problem-solving.
+                  </p>
+                </div>
+                <figure className="relative w-full overflow-hidden rounded-2xl glass-light">
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={categoryImages.about}
+                      alt="Ethan Kunder collaborating at a leadership event"
+                      fill
+                      className="object-cover object-[center_35%]"
+                      sizes="(max-width: 1024px) 100vw, 440px"
+                      priority
+                    />
+                  </div>
+                </figure>
+              </div>
             </ScrollAnimation>
 
             <ScrollAnimation delay={300}>

@@ -26,22 +26,15 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.dev.vars
 
 # vercel
 .vercel
 
-# open-next / cloudflare
-.open-next
-.dev.vars
-
-# next-on-pages
-.vercel
-
-# Large media (Cloudflare Pages 25 MiB limit) - host elsewhere and reference by URL
+# Large media - host elsewhere and reference by URL
 public/mechanics/kinetic_clock.mp4
 public/mechanics/gimbal.mp4
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
