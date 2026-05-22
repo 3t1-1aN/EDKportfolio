@@ -33,7 +33,6 @@ portfolio-website/
 │   │   ├── ProjectsSection.tsx
 │   │   └── TrustedBySection.tsx
 │   ├── ui/                        # UI components
-│   │   ├── background-ripple-effect.tsx
 │   │   ├── blur-text.tsx
 │   │   ├── Container.tsx
 │   │   ├── dot-shader-background.tsx

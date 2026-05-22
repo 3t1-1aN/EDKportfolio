@@ -1,3 +1,5 @@
+import { categoryImages } from './projects/category-images';
+
 // Centralized data layer matching Framer structure
 
 export interface Category {
@@ -16,13 +18,17 @@ export interface Project {
   description: string;
   client: string;
   date: string;
-  image: string;
+  /** Omit for text-only cards (e.g. GitHub software list) */
+  image?: string;
   categoryId?: string;
   tags?: string[];
   audio?: string[];
   images?: string[]; // For projects with multiple images (e.g., mechanics projects)
-  video?: string[]; // For projects with video files (e.g., public/videos/*.mp4)
+  video?: string[]; // Cloudinary video delivery URLs
   location?: string; // For photography projects (e.g. "Yosemite National Park")
+  githubUrl?: string; // Link to GitHub repository (software category)
+  /** Software category: group cards under Public vs Private subsections */
+  softwareVisibility?: 'public' | 'private';
 }
 
 export interface BlogPost {
@@ -59,31 +65,9 @@ export const projects: Project[] = [
     description: 'Creating detailed 3D models and renders for various applications, from architectural visualizations to product design concepts.',
     client: 'Personal Projects',
     date: '2023 - Present',
-    image: '/3d_print.jpg',
+    image: categoryImages.threeDPrint,
     categoryId: '3d-design',
     tags: ['3D modeling', 'rendering', 'product design'],
-  },
-  {
-    id: '5',
-    slug: 'automation-workflows',
-    title: 'Workflow Automation',
-    description: 'Building automated systems using Make.com and Python to streamline processes and increase productivity across various applications.',
-    client: 'Personal Projects',
-    date: '2024 - Present',
-    image: '/automation.jpg',
-    categoryId: 'workflow-automation',
-    tags: ['automation', 'python', 'workflow optimization'],
-  },
-  {
-    id: 'software',
-    slug: 'software-projects',
-    title: 'Software Projects',
-    description: 'Web applications, mobile apps, and software solutions built with modern technologies.',
-    client: 'Personal Projects',
-    date: '2020 - Present',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop',
-    categoryId: 'software-projects',
-    tags: ['software', 'web apps', 'development'],
   },
 ];
 
@@ -189,35 +173,28 @@ export const categories: Category[] = [
     slug: 'diy-electronics-mechanics',
     title: 'DIY Electronics & Mechanics',
     description: 'Creative hardware projects and mechanical builds, from CPU desk fans to custom electronics.',
-    image: '/electronics.jpg',
+    image: categoryImages.electronics,
   },
   {
     id: '3d-design',
     slug: '3d-design-modeling',
     title: '3D Design & Modeling',
     description: 'Detailed 3D models and renders for architectural visualizations and product design concepts.',
-    image: '/3d_print.jpg',
+    image: categoryImages.threeDPrint,
   },
   {
     id: 'music-composition',
     slug: 'digital-music-composition',
     title: 'Digital Music Composition',
     description: 'Original compositions blending piano, drums, and digital production.',
-    image: '/music.jpg',
-  },
-  {
-    id: 'workflow-automation',
-    slug: 'workflow-automations',
-    title: 'Workflow Automations',
-    description: 'Automated systems using Make.com and Python to streamline processes and increase productivity.',
-    image: '/automation.jpg',
+    image: categoryImages.music,
   },
   {
     id: 'photography',
     slug: 'photography',
     title: 'Photography',
     description: 'Capturing the beauty of the outdoors through nature and wildlife photography.',
-    image: '/photography.jpg',
+    image: categoryImages.photography,
   },
   {
     id: 'software-projects',

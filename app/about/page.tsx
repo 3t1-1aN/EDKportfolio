@@ -3,13 +3,26 @@ import Section from '@/components/ui/Section';
 import SectionHeader from '@/components/ui/SectionHeader';
 import ScrollAnimation from '@/components/ScrollAnimation';
 import Footer from '@/components/Footer';
-import PageWithDotBackground from '@/components/PageWithDotBackground';
+import { StarsBackground } from '@/components/ui/stars';
+import { LiquidButton } from '@/components/ui/liquid-glass-button';
 
 export default function AboutPage() {
   return (
-    <PageWithDotBackground>
+    <>
+      <div className="fixed inset-0 -z-10 w-full h-full">
+        <StarsBackground className="w-full h-full" />
+      </div>
       <Section id="hero" variant="default" className="pt-32">
         <Container>
+          <div className="relative rounded-2xl px-8 py-10 sm:px-12 sm:py-14">
+            {/* Liquid glass shadow layer */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl shadow-[0_0_6px_rgba(0,0,0,0.03),0_2px_6px_rgba(0,0,0,0.08),inset_3px_3px_0.5px_-3px_rgba(0,0,0,0.9),inset_-3px_-3px_0.5px_-3px_rgba(0,0,0,0.85),inset_1px_1px_1px_-0.5px_rgba(0,0,0,0.6),inset_-1px_-1px_1px_-0.5px_rgba(0,0,0,0.6),inset_0_0_6px_6px_rgba(0,0,0,0.12),inset_0_0_2px_2px_rgba(0,0,0,0.06),0_0_12px_rgba(255,255,255,0.15)] dark:shadow-[0_0_8px_rgba(0,0,0,0.03),0_2px_6px_rgba(0,0,0,0.08),inset_3px_3px_0.5px_-3.5px_rgba(255,255,255,0.09),inset_-3px_-3px_0.5px_-3.5px_rgba(255,255,255,0.85),inset_1px_1px_1px_-0.5px_rgba(255,255,255,0.6),inset_-1px_-1px_1px_-0.5px_rgba(255,255,255,0.6),inset_0_0_6px_6px_rgba(255,255,255,0.12),inset_0_0_2px_2px_rgba(255,255,255,0.06),0_0_12px_rgba(0,0,0,0.15)]" />
+            {/* Frosted glass backdrop layer */}
+            <div
+              className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-2xl bg-white/[0.02]"
+              style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+            />
+            <div className="relative z-10">
           <ScrollAnimation>
             <SectionHeader
               title="About Me"
@@ -123,11 +136,32 @@ export default function AboutPage() {
                 </p>
               </div>
             </ScrollAnimation>
+
           </div>
+            </div>{/* end relative z-10 */}
+          </div>{/* end glass panel */}
+
+            <ScrollAnimation delay={900}>
+              <div className="pt-10 mt-8 max-w-3xl mx-auto">
+                <LiquidButton
+                  asChild
+                  size="xxl"
+                  className="text-black dark:text-white font-semibold uppercase tracking-wider text-sm sm:text-base shadow-lg shadow-black/5 dark:shadow-black/20"
+                >
+                  <a
+                    href="/student%20resume.pdf"
+                    download="Ethan-Kunder-Resume.pdf"
+                    data-cursor-hover
+                  >
+                    Download resume
+                  </a>
+                </LiquidButton>
+              </div>
+            </ScrollAnimation>
         </Container>
       </Section>
       <Footer />
-    </PageWithDotBackground>
+    </>
   );
 }
 

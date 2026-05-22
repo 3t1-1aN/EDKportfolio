@@ -70,7 +70,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </ScrollAnimation>
 
           {/* Projects List */}
-          <CategoryProjectsClient projects={categoryProjects} />
+          <CategoryProjectsClient projects={categoryProjects} categoryId={category.id} />
         </Container>
       </Section>
       <Footer />

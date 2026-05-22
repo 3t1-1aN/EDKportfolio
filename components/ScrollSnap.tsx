@@ -3,176 +3,129 @@
 import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 
+const SNAP_SECTIONS = ['hero', 'about', 'projects'] as const;
+type SnapSection = typeof SNAP_SECTIONS[number];
+
+const SNAP_DURATION = 0.85;
+const COOLDOWN_MS = 1050;
+// How close to the top of Projects the user must scroll back to before
+// an upward scroll snaps them back to About
+const PROJECTS_SNAPBACK_THRESHOLD_PX = 80;
+
 interface ScrollSnapProps {
   lenisInstance: Lenis | null;
 }
 
 const ScrollSnap = ({ lenisInstance }: ScrollSnapProps) => {
-  const isSnappingRef = useRef(false);
-  const lastScrollDirectionRef = useRef<'up' | 'down' | null>(null);
-  const lastScrollYRef = useRef(0);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const getSectionElement = (sectionId: string): HTMLElement | null => {
-    return document.querySelector(`[data-snap-section="${sectionId}"]`);
-  };
-
-  const getSectionTop = (element: HTMLElement): number => {
-    const rect = element.getBoundingClientRect();
-    return window.scrollY + rect.top;
-  };
-
-  const snapToSection = (sectionId: string) => {
-    if (!lenisInstance || isSnappingRef.current) return;
-
-    const section = getSectionElement(sectionId);
-    if (!section) return;
-
-    isSnappingRef.current = true;
-    const targetTop = getSectionTop(section);
-
-    lenisInstance.scrollTo(targetTop, {
-      duration: 0.3,
-      easing: (t) => {
-        // Spring-like easing similar to text-rotate demo: type: "spring", duration: 0.6, bounce: 0
-        // Using cubic ease-out for smooth spring-like motion
-        return 1 - Math.pow(1 - t, 3);
-      },
-      onComplete: () => {
-        setTimeout(() => {
-          isSnappingRef.current = false;
-        }, 30);
-      },
-    });
-  };
-
-  const checkAndSnap = () => {
-    if (!lenisInstance || isSnappingRef.current) return;
-
-    const snapSections = ['hero', 'about', 'projects'];
-    const currentScrollY = window.scrollY;
-    const scrollDelta = currentScrollY - lastScrollYRef.current;
-
-    // Detect scroll direction immediately - even tiny movements
-    if (Math.abs(scrollDelta) < 1) {
-      return;
-    }
-
-    const isScrollingDown = scrollDelta > 0;
-    lastScrollDirectionRef.current = isScrollingDown ? 'down' : 'up';
-    lastScrollYRef.current = currentScrollY;
-
-    const viewportHeight = window.innerHeight;
-    const viewportCenter = currentScrollY + viewportHeight / 2;
-
-    // Get all section positions
-    const heroSection = getSectionElement('hero');
-    const aboutSection = getSectionElement('about');
-    const projectsSection = getSectionElement('projects');
-
-    if (!heroSection || !aboutSection || !projectsSection) return;
-
-    const heroTop = getSectionTop(heroSection);
-    const heroBottom = heroTop + heroSection.offsetHeight;
-    const aboutTop = getSectionTop(aboutSection);
-    const aboutBottom = aboutTop + aboutSection.offsetHeight;
-    const projectsTop = getSectionTop(projectsSection);
-    const projectsBottom = projectsTop + projectsSection.offsetHeight;
-
-    // Determine which section we're currently in based on scroll position
-    let currentSection: 'hero' | 'about' | 'projects' | null = null;
-
-    if (viewportCenter >= heroTop && viewportCenter < heroBottom) {
-      currentSection = 'hero';
-    } else if (viewportCenter >= aboutTop && viewportCenter < aboutBottom) {
-      currentSection = 'about';
-    } else if (viewportCenter >= projectsTop && viewportCenter < projectsBottom) {
-      currentSection = 'projects';
-    }
-
-    // Check if we're past Projects section (free scroll zone) - only for downward scrolling
-    const isPastProjects = currentScrollY > projectsBottom - viewportHeight / 2;
-
-    // When scrolling down
-    if (isScrollingDown) {
-      // If we're in Hero section, snap to About
-      if (currentSection === 'hero') {
-        snapToSection('about');
-        return;
-      }
-
-      // If we're in About section, snap to Projects
-      if (currentSection === 'about') {
-        snapToSection('projects');
-        return;
-      }
-
-      // If we're past Projects, don't snap (free scroll)
-      if (isPastProjects || !currentSection) {
-        return;
-      }
-    }
-    // When scrolling up
-    else {
-      // First, check if we're approaching Projects section from below (free scroll zone)
-      // When scrolling up and reaching the top area of Projects section, snap to About
-      if (isPastProjects && currentScrollY <= projectsTop + 200) {
-        snapToSection('about');
-        return;
-      }
-
-      // If we're in Projects section and scrolling up, snap to About
-      if (currentSection === 'projects') {
-        snapToSection('about');
-        return;
-      }
-
-      // If we're in About section and scrolling up, snap to Hero
-      if (currentSection === 'about') {
-        snapToSection('hero');
-        return;
-      }
-
-      // If we're in Hero section and scrolling up, don't snap (already at top)
-      if (currentSection === 'hero') {
-        return;
-      }
-
-      // If we're past Projects and not approaching it, free scroll
-      if (isPastProjects) {
-        return;
-      }
-    }
-  };
+  const cooldownRef = useRef(false);
+  const cooldownTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartYRef = useRef(0);
 
   useEffect(() => {
     if (!lenisInstance) return;
 
-    const handleScroll = () => {
-      if (isSnappingRef.current) return;
-
-      // Immediate snap on first scroll - no debounce
-      checkAndSnap();
+    const getSectionTop = (id: SnapSection): number | null => {
+      const el = document.querySelector<HTMLElement>(`[data-snap-section="${id}"]`);
+      if (!el) return null;
+      return window.scrollY + el.getBoundingClientRect().top;
     };
 
-    lenisInstance.on('scroll', handleScroll);
-
-    // Initialize last scroll position
-    lastScrollYRef.current = window.scrollY;
-
-    // Handle window resize
-    const handleResize = () => {
-      isSnappingRef.current = false;
+    // True once the user has scrolled into the Projects section
+    const isAtOrPastProjects = (): boolean => {
+      const top = getSectionTop('projects');
+      return top !== null && window.scrollY >= top - 10;
     };
 
-    window.addEventListener('resize', handleResize);
+    const getCurrentSectionIndex = (): number => {
+      const viewMid = window.scrollY + window.innerHeight * 0.4;
+      for (let i = SNAP_SECTIONS.length - 1; i >= 0; i--) {
+        const top = getSectionTop(SNAP_SECTIONS[i]);
+        if (top !== null && viewMid >= top) return i;
+      }
+      return 0;
+    };
+
+    const snapTo = (index: number) => {
+      const clamped = Math.max(0, Math.min(index, SNAP_SECTIONS.length - 1));
+      const top = getSectionTop(SNAP_SECTIONS[clamped]);
+      if (top === null) return;
+
+      cooldownRef.current = true;
+      lenisInstance.scrollTo(top, {
+        duration: SNAP_DURATION,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+      });
+
+      if (cooldownTimerRef.current) clearTimeout(cooldownTimerRef.current);
+      cooldownTimerRef.current = setTimeout(() => {
+        cooldownRef.current = false;
+      }, COOLDOWN_MS);
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      // Only active on the home page (which has snap sections)
+      if (!document.querySelector('[data-snap-section="hero"]')) return;
+
+      if (isAtOrPastProjects()) {
+        // Near the top of Projects + scrolling up → snap back to About
+        const projectsTop = getSectionTop('projects');
+        const nearTop =
+          projectsTop !== null &&
+          window.scrollY <= projectsTop + PROJECTS_SNAPBACK_THRESHOLD_PX;
+
+        if (nearTop && e.deltaY < 0 && !cooldownRef.current) {
+          e.preventDefault();
+          e.stopPropagation();
+          snapTo(SNAP_SECTIONS.indexOf('about'));
+        }
+        // Everything else inside/past Projects: free smooth scroll
+        return;
+      }
+
+      // Hero / About zone: intercept and snap
+      e.preventDefault();
+      e.stopPropagation();
+      if (cooldownRef.current) return;
+
+      const dir = e.deltaY > 0 ? 1 : -1;
+      snapTo(getCurrentSectionIndex() + dir);
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartYRef.current = e.touches[0]!.clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (!document.querySelector('[data-snap-section="hero"]')) return;
+
+      const delta = touchStartYRef.current - e.changedTouches[0]!.clientY;
+
+      if (isAtOrPastProjects()) {
+        const projectsTop = getSectionTop('projects');
+        const nearTop =
+          projectsTop !== null &&
+          window.scrollY <= projectsTop + PROJECTS_SNAPBACK_THRESHOLD_PX;
+
+        if (nearTop && delta < -40 && !cooldownRef.current) {
+          snapTo(SNAP_SECTIONS.indexOf('about'));
+        }
+        return;
+      }
+
+      if (cooldownRef.current || Math.abs(delta) < 40) return;
+      const dir = delta > 0 ? 1 : -1;
+      snapTo(getCurrentSectionIndex() + dir);
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
-      lenisInstance.off('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
+      window.removeEventListener('wheel', handleWheel, { capture: true });
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+      if (cooldownTimerRef.current) clearTimeout(cooldownTimerRef.current);
     };
   }, [lenisInstance]);
 
@@ -180,4 +133,3 @@ const ScrollSnap = ({ lenisInstance }: ScrollSnapProps) => {
 };
 
 export default ScrollSnap;
-

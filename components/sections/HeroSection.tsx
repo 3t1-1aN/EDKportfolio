@@ -3,6 +3,7 @@
 import Container from '@/components/ui/Container';
 import CursorMaskReveal from '@/components/CursorMaskReveal';
 import Image from 'next/image';
+import { categoryImages } from '@/lib/projects/category-images';
 
 const HeroSection = () => {
   return (
@@ -17,7 +18,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <div className="relative w-full h-full" style={{ transform: 'scale(1.1) translateY(5%)' }}>
           <Image
-            src="/GeneratedImage.png"
+            src={categoryImages.hero}
             alt="Ethan Kunder"
             fill
             priority
@@ -28,7 +29,7 @@ const HeroSection = () => {
             }}
             sizes="100vw"
             onError={(e) => {
-              console.error('Portrait image failed to load. Please check GeneratedImage.png in the public folder.');
+              console.error('Portrait image failed to load. Check categoryImages.hero in lib/projects/category-images.ts.');
             }}
           />
           {/* Subtle overlay to ensure text readability while keeping image visible */}
