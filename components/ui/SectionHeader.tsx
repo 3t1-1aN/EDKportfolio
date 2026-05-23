@@ -12,19 +12,19 @@ const SectionHeader = ({ label, title, description, className }: SectionHeaderPr
   return (
     <div className={cn('mb-16', className)}>
       {label && (
-        <p className="text-xs uppercase tracking-wider text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-xs uppercase tracking-wider text-gray-400 mb-4">
           {label}
         </p>
       )}
       {typeof title === 'string' ? (
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-foreground">
           {title}
         </h2>
       ) : (
         title
       )}
       {description && (
-        <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl">
+        <p className="text-lg text-gray-300 max-w-3xl">
           {description}
         </p>
       )}

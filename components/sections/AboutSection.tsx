@@ -23,7 +23,7 @@ const AboutSection = () => {
       <Container className="relative z-10">
         <ScrollAnimation>
           <div className="mb-16">
-            <p className="font-mono text-xs uppercase tracking-wider font-medium text-gray-500 dark:text-gray-500 mb-4">
+            <p className="font-mono text-xs uppercase tracking-wider font-medium text-gray-400 mb-4">
               {'>'} ABOUT_ME
             </p>
             <motion.h2
@@ -31,7 +31,7 @@ const AboutSection = () => {
               initial={{ filter: 'blur(20px)', opacity: 0 }}
               animate={isInView ? { filter: 'blur(0px)', opacity: 1 } : { filter: 'blur(20px)', opacity: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 tracking-tight"
+              className="font-mono text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-8 tracking-tight text-foreground"
             >
               {'$'} get_to_know_me()
             </motion.h2>
@@ -40,7 +40,7 @@ const AboutSection = () => {
               delay={25}
               animateBy="words"
               direction="bottom"
-              className="font-mono text-base leading-relaxed text-gray-500 dark:text-gray-400 max-w-3xl"
+              className="font-mono text-base leading-relaxed text-gray-300 max-w-3xl"
               threshold={0.1}
               rootMargin="-50px"
             />

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <footer className="bg-black dark:bg-white text-white dark:text-black py-16">
+    <footer className="bg-black text-white py-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div>
@@ -67,35 +67,35 @@ const Footer = () => {
                 placeholder="Your Email"
                 className="glass-input flex-1 px-4 py-2 rounded text-sm"
               />
-              <button className="px-4 py-2 bg-white dark:bg-black text-black dark:text-white rounded text-sm hover:opacity-80 transition-opacity">
+              <button className="px-4 py-2 bg-white text-black rounded text-sm hover:opacity-80 transition-opacity">
                 Send
               </button>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/20 dark:border-black/20">
+        <div className="pt-8 border-t border-white/20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
             <div>
               <p className="mb-2">Location</p>
-              <p className="text-white/70 dark:text-black/70">
+              <p className="text-white/70">
                 San Jose, California, United States
               </p>
             </div>
             <div>
               <p className="mb-2">Education</p>
-              <p className="text-white/70 dark:text-black/70">
+              <p className="text-white/70">
                 Gunderson High School • SVCTE Mechatronics
               </p>
             </div>
             <div>
               <p className="mb-2">Status</p>
-              <p className="text-white/70 dark:text-black/70">
+              <p className="text-white/70">
                 Seeking Internship Opportunities
               </p>
             </div>
           </div>
-          <p className="text-center mt-8 text-sm text-white/70 dark:text-black/70">
+          <p className="text-center mt-8 text-sm text-white/70">
             © 2025 Ethan Kunder. All Rights Reserved
           </p>
         </div>

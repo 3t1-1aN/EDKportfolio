@@ -43,6 +43,10 @@
   }
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

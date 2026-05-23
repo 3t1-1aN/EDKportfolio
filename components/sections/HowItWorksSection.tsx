@@ -22,7 +22,7 @@ const HowItWorksSection = () => {
             <ScrollAnimation key={step.number} delay={index * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 <div className="lg:col-span-2">
-                  <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-gray-200 dark:text-gray-800 depth-shadow-sm">
+                  <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-gray-200 depth-shadow-sm">
                     {step.number}
                   </h1>
                 </div>
