@@ -34,6 +34,9 @@
   /* Golden highlight from image */
   --shadow-dark-bottom: rgba(0, 0, 0, 0.25);
   --shadow-dark-bottom-strong: rgba(0, 0, 0, 0.35);
+
+  --accent: #cfc250;
+  --accent-muted: rgba(207, 194, 80, 0.72);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -386,4 +389,14 @@ html {
   background: var(--depth-4);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero-dot-grid {
+  background-color: var(--background);
+  background-image: radial-gradient(
+    circle,
+    rgba(207, 194, 80, 0.14) 1px,
+    transparent 1px
+  );
+  background-size: 26px 26px;
 }
