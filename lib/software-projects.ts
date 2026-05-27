@@ -55,9 +55,9 @@ export const MAJOR_SOFTWARE_PROJECTS: MajorSoftwareProjectDef[] = [
     image: 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779823793/FocusLens_product_svcz5u.png',
     video: ['none'],
     screenshots: ['https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844739/Screenshot_2026-05-26_100630_wi5fqs.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100548_jza3qk.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100524_mvkdeg.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100433_umh3jk.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100327_trisue.png'],
-    projectUrl: 'https://focus-lens-ten.vercel.app/',
+    projectUrl: 'https://focus-lens-agent.vercel.app/',
     githubUrl: 'https://github.com/3t1-1aN/FocusLens',
-    tags: ['Next.js', 'TypeScript'],
+    tags: ['Electron', 'JavaScript', 'Three.js'],
   },
 ];
 
