@@ -63,6 +63,10 @@ const ScrollSnap = ({ lenisInstance }: ScrollSnapProps) => {
     };
 
     const handleWheel = (e: WheelEvent) => {
+      // Never hijack wheel while a modal / nested scroller is open.
+      const target = e.target;
+      if (target instanceof Element && target.closest('[data-lenis-prevent]')) return;
+
       // Only active on the home page (which has snap sections)
       if (!document.querySelector('[data-snap-section="hero"]')) return;
 

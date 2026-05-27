@@ -14,7 +14,7 @@ const AboutSection = () => {
   const titleRef = useRef(null);
   const isInView = useInView(titleRef, { once: true, margin: '-100px' });
 
-  const paragraphText = "I'm a passionate creator and problem-solver who loves bringing ideas to life through code, design, and innovation. With a background spanning software development, robotics, electronics, and creative projects, I thrive on tackling complex challenges and turning them into elegant solutions. Whether I'm leading a robotics team, building custom electronics, or composing music, I bring the same level of dedication and attention to detail to every project. I believe in continuous learning and pushing boundaries, always exploring new technologies and creative avenues to expand my skills and make meaningful contributions.";
+  const paragraphText = "I’m a builder and problem-solver driven by curiosity and a willingness to take risks. I enjoy turning ideas into real, tangible outcomes—whether through code, electronics, mechanical design, music, or creative projects. I’m especially drawn to complex challenges and actively look for opportunities to create solutions, which has led me to lead my school’s first robotics team and develop practical innovations, from 3D-printed designs to workflow automations. I’m committed to continuous learning, constantly exploring new technologies and pushing my skills to create meaningful, real-world impact.";
 
   return (
     <Section id="about-me" variant="default" className="relative overflow-hidden min-h-screen" data-snap-section="about">

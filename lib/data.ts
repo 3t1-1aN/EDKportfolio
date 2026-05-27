@@ -24,11 +24,13 @@ export interface Project {
   tags?: string[];
   audio?: string[];
   images?: string[]; // For projects with multiple images (e.g., mechanics projects)
+  screenshots?: string[]; // Major software projects: gallery shown in expanded card body
   video?: string[]; // Cloudinary video delivery URLs
   location?: string; // For photography projects (e.g. "Yosemite National Park")
   githubUrl?: string; // Link to GitHub repository (software category)
-  /** Software category: group cards under Public vs Private subsections */
-  softwareVisibility?: 'public' | 'private';
+  projectUrl?: string; // Link to a live/deployed project (software category)
+  /** Software category: group cards under Major / Public / Private subsections */
+  softwareVisibility?: 'major' | 'public' | 'private';
 }
 
 export interface Testimonial {

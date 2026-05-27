@@ -2,6 +2,7 @@
 
 import { useEffect, ReactNode, useState } from 'react';
 import Lenis from 'lenis';
+import { LenisContext } from '@/lib/lenis-context';
 import ScrollSnap from './ScrollSnap';
 
 interface SmoothScrollProps {
@@ -21,6 +22,9 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
+      // Let modals / nested panels use native scroll instead of Lenis capturing wheel.
+      allowNestedScroll: true,
+      prevent: (node) => Boolean(node instanceof Element && node.closest('[data-lenis-prevent]')),
     });
 
     setLenisInstance(lenis);
@@ -39,10 +43,10 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   }, []);
 
   return (
-    <>
+    <LenisContext.Provider value={lenisInstance}>
       {lenisInstance && <ScrollSnap lenisInstance={lenisInstance} />}
       {children}
-    </>
+    </LenisContext.Provider>
   );
 };
 

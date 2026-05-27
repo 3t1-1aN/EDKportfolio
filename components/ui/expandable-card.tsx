@@ -4,6 +4,7 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useLenis } from "@/lib/lenis-context";
 
 interface ExpandableCardProps {
   title: string;
@@ -26,6 +27,8 @@ interface ExpandableCardProps {
   video?: string[]; // For projects with video (e.g. MP4)
   /** Public GitHub repo URL — shown under title/description and in expanded header */
   githubUrl?: string;
+  /** Live/deployed project URL — shown under title/description and in expanded header */
+  projectUrl?: string;
   [key: string]: any;
 }
 
@@ -44,6 +47,7 @@ export function ExpandableCard({
   images,
   video,
   githubUrl,
+  projectUrl,
   ...props
 }: ExpandableCardProps) {
   const hasHeroMedia =
@@ -54,9 +58,53 @@ export function ExpandableCard({
   const [active, setActive] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const cardRef = React.useRef<HTMLDivElement>(null);
+  const activeRef = React.useRef(active);
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const id = React.useId();
+  const lenis = useLenis();
+
+  activeRef.current = active;
+
+  // Pause Lenis while open. Guard start() so React Strict Mode cleanup cannot
+  // restart Lenis while the modal is still visible (that caused intermittent stuck scroll).
+  React.useEffect(() => {
+    if (!lenis) return;
+    if (!active) return;
+    lenis.stop();
+    return () => {
+      requestAnimationFrame(() => {
+        if (!activeRef.current) lenis.start();
+      });
+    };
+  }, [active, lenis]);
+
+  // When the pointer is over a horizontal screenshot strip, forward vertical wheel
+  // to the card — otherwise the strip can absorb the gesture and scrolling feels stuck.
+  React.useEffect(() => {
+    const card = cardRef.current;
+    if (!active || !card) return;
+
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (!target.closest("[data-scroll-horizontal]")) return;
+
+      const maxScroll = card.scrollHeight - card.clientHeight;
+      if (maxScroll <= 0) return;
+
+      const next = card.scrollTop + event.deltaY;
+      const clamped = Math.max(0, Math.min(next, maxScroll));
+      if (clamped === card.scrollTop) return;
+
+      card.scrollTop = clamped;
+      event.preventDefault();
+    };
+
+    card.addEventListener("wheel", onWheel, { passive: false });
+    return () => card.removeEventListener("wheel", onWheel);
+  }, [active]);
 
   React.useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -88,6 +136,21 @@ export function ExpandableCard({
       }
     };
   }, []);
+
+  // Lock page scroll while the expanded card is open so wheel/touch events
+  // stay inside the card instead of scrolling the page underneath.
+  React.useEffect(() => {
+    if (!active) return;
+    const { body, documentElement } = document;
+    const originalBodyOverflow = body.style.overflow;
+    const originalHtmlOverflow = documentElement.style.overflow;
+    body.style.overflow = "hidden";
+    documentElement.style.overflow = "hidden";
+    return () => {
+      body.style.overflow = originalBodyOverflow;
+      documentElement.style.overflow = originalHtmlOverflow;
+    };
+  }, [active]);
 
   React.useEffect(() => {
     if (!audio || audio.length === 0) return;
@@ -201,18 +264,49 @@ export function ExpandableCard({
               {active && (
                 <div
                   className={cn(
-                    "fixed inset-0 flex items-center justify-center z-[100] p-4 sm:p-8 before:pointer-events-none",
+                    "fixed inset-0 z-[100] flex items-center justify-center overflow-hidden p-4 sm:p-8",
                   )}
+                  data-lenis-prevent
                 >
                   <motion.div
                     layoutId={`card-${title}-${id}`}
                     ref={cardRef}
+                    data-lenis-prevent
                     className={cn(
-                      "w-full max-w-[850px] max-h-[90vh] flex flex-col overflow-hidden [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] rounded-2xl sm:rounded-3xl bg-zinc-50 shadow-sm dark:shadow-none dark:bg-zinc-950 relative",
+                      "relative w-full min-h-0 max-h-[min(90vh,100dvh)] max-w-[850px] overflow-y-auto overscroll-contain rounded-2xl bg-zinc-50 shadow-sm [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:thin] sm:rounded-3xl dark:bg-zinc-950 dark:shadow-none",
                       classNameExpanded,
                     )}
                     {...props}
                   >
+                    {/* Floating close button — sticky so it stays visible while the card scrolls. */}
+                    <div className="sticky top-0 z-30 h-0 flex justify-end pointer-events-none">
+                      <motion.button
+                        aria-label="Close card"
+                        layoutId={`button-${title}-${id}`}
+                        onClick={() => setActive(false)}
+                        className="pointer-events-auto mr-3 mt-3 h-10 w-10 flex items-center justify-center rounded-full bg-zinc-50/90 dark:bg-zinc-950/90 backdrop-blur-sm text-neutral-700 dark:text-white/80 border border-gray-200/90 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-950 hover:text-black dark:hover:text-white transition-colors duration-300 focus:outline-none shadow-sm"
+                      >
+                        <motion.div
+                          animate={{ rotate: active ? 45 : 0 }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                          </svg>
+                        </motion.div>
+                      </motion.button>
+                    </div>
                     {hasHeroMedia && (
                       <motion.div layoutId={`image-${title}-${id}`} className="flex-shrink-0">
                         {video && video.length > 0 ? (
@@ -296,9 +390,9 @@ export function ExpandableCard({
                         )}
                       </motion.div>
                     )}
-                    {/* Visible audio player when expanded (music cards) - always shown so user can play without scrolling */}
+                    {/* Visible audio player when expanded (music cards) - sticky so it stays in view while content below scrolls */}
                     {active && audio && audio.length > 0 && !video?.length && (
-                      <div className="flex-shrink-0 px-4 sm:px-6 py-3 bg-zinc-100 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+                      <div className="sticky top-0 z-10 px-4 sm:px-6 py-3 bg-zinc-100 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
                         <audio
                           controls
                           className="w-full h-10"
@@ -309,24 +403,37 @@ export function ExpandableCard({
                         </audio>
                       </div>
                     )}
-                    <div className="flex flex-col flex-1 min-h-0 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none]">
-                      <div className="flex justify-between items-start p-6 sm:p-8 flex-shrink-0">
-                        <div>
-                          {!hideTitle && (
-                            <motion.h3
-                              layoutId={`title-${title}-${id}`}
-                              className="font-semibold text-black dark:text-white text-4xl sm:text-4xl"
+                    <div className="flex flex-col">
+                      <div className="p-6 sm:p-8 pr-16 sm:pr-20">
+                        {!hideTitle && (
+                          <motion.h3
+                            layoutId={`title-${title}-${id}`}
+                            className="font-semibold text-black dark:text-white text-4xl sm:text-4xl"
+                          >
+                            {title}
+                          </motion.h3>
+                        )}
+                        {!hideDescription && (
+                          <motion.p
+                            layoutId={`description-${description}-${id}`}
+                            className="text-zinc-500 dark:text-zinc-400 text-lg mt-2"
+                          >
+                            {description}
+                          </motion.p>
+                        )}
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3">
+                          {projectUrl && (
+                            <a
+                              href={projectUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline"
+                              data-cursor-hover
                             >
-                              {title}
-                            </motion.h3>
-                          )}
-                          {!hideDescription && (
-                            <motion.p
-                              layoutId={`description-${description}-${id}`}
-                              className="text-zinc-500 dark:text-zinc-400 text-lg mt-2"
-                            >
-                              {description}
-                            </motion.p>
+                              View live project
+                              <span aria-hidden className="text-zinc-400">↗</span>
+                            </a>
                           )}
                           {githubUrl && (
                             <a
@@ -334,7 +441,7 @@ export function ExpandableCard({
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline"
+                              className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline"
                               data-cursor-hover
                             >
                               View on GitHub
@@ -342,32 +449,6 @@ export function ExpandableCard({
                             </a>
                           )}
                         </div>
-                        <motion.button
-                          aria-label="Close card"
-                          layoutId={`button-${title}-${id}`}
-                          className="h-10 w-10 shrink-0 flex items-center justify-center rounded-full bg-zinc-50 dark:bg-zinc-950 text-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-950 dark:text-white/70 text-black/70 border border-gray-200/90 dark:border-zinc-900 hover:border-gray-300/90 hover:text-black dark:hover:text-white dark:hover:border-zinc-800 transition-colors duration-300 focus:outline-none"
-                          onClick={() => setActive(false)}
-                        >
-                          <motion.div
-                            animate={{ rotate: active ? 45 : 0 }}
-                            transition={{ duration: 0.4 }}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M5 12h14" />
-                              <path d="M12 5v14" />
-                            </svg>
-                          </motion.div>
-                        </motion.button>
                       </div>
                       <div className="px-6 sm:px-8 pb-8">
                         <motion.div
@@ -432,6 +513,18 @@ export function ExpandableCard({
                 >
                   {description}
                 </motion.p>
+              )}
+              {projectUrl && (
+                <a
+                  href={projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
+                  data-cursor-hover
+                >
+                  {projectUrl.replace(/^https?:\/\//, '')}
+                </a>
               )}
               {githubUrl && (
                 <a

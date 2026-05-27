@@ -16,15 +16,24 @@ function isProjectVisible(project: Project): boolean {
     Boolean(project.image?.trim()) ||
     Boolean(project.video?.length) ||
     Boolean(project.images?.length) ||
-    project.softwareVisibility === 'private'
+    project.softwareVisibility === 'private' ||
+    project.softwareVisibility === 'major'
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({
+  project,
+  variant = 'default',
+}: {
+  project: Project;
+  variant?: 'default' | 'major';
+}) {
   const isPhotography = project.categoryId === 'photography';
   const isGitHubSoftware =
     project.categoryId === 'software-projects' && Boolean(project.githubUrl);
-  /** Header already shows description; skip duplicate block under tags */
+  const isMajor = variant === 'major';
+  /** Header already shows description; skip duplicate block under tags
+   *  (GitHub list cards and Private summaries already surface description) */
   const showExpandedDescriptionSection =
     !isGitHubSoftware && project.softwareVisibility !== 'private';
 
@@ -37,12 +46,22 @@ function ProjectCard({ project }: { project: Project }) {
       images={project.images}
       video={project.video}
       githubUrl={project.githubUrl}
+      projectUrl={project.projectUrl}
       classNameExpanded={
         isPhotography
           ? 'max-w-[min(96vw,1200px)] [&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
-          : '[&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
+          : isMajor
+            ? 'max-w-[min(96vw,1100px)] [&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
+            : '[&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
       }
-      imageClassName={isPhotography ? 'w-full h-[220px] sm:h-[280px]' : undefined}
+      className={isMajor ? 'w-full items-stretch' : undefined}
+      imageClassName={
+        isPhotography
+          ? 'w-full h-[220px] sm:h-[280px]'
+          : isMajor
+            ? 'w-full aspect-[16/10] object-cover'
+            : undefined
+      }
       hideDescription={isPhotography}
       hideTitle={isPhotography}
       showImageFully={isPhotography}
@@ -116,7 +135,7 @@ function ProjectCard({ project }: { project: Project }) {
                 </div>
               </div>
             )}
-          {project.video && project.video.length > 0 && (
+          {project.video && project.video.length > 0 && !isMajor && (
             <div>
               <h4 className="text-lg font-semibold mb-2">Video</h4>
               <div className="space-y-4">
@@ -130,6 +149,40 @@ function ProjectCard({ project }: { project: Project }) {
                   >
                     Your browser does not support the video element.
                   </video>
+                ))}
+              </div>
+            </div>
+          )}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <div className="w-full">
+              <h4 className="text-lg font-semibold mb-2">Screenshots</h4>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-3">
+                Scroll sideways to browse. Each shot is scaled to fit the same frame
+                (aspect ratio kept). Click one to open the full-resolution image.
+              </p>
+              <div
+                className="-mx-6 sm:-mx-8 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-6 pb-3 [scrollbar-width:thin] sm:px-8"
+                data-lenis-prevent
+                data-scroll-horizontal
+              >
+                {project.screenshots.map((shot, index) => (
+                  <a
+                    key={index}
+                    href={shot}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex max-w-[min(78vw,640px)] shrink-0 snap-start items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100/80 p-1.5 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:border-zinc-700"
+                    data-cursor-hover
+                  >
+                    <img
+                      src={shot}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      className="block h-auto w-auto max-h-[min(360px,40vh)] max-w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </a>
                 ))}
               </div>
             </div>
@@ -177,11 +230,16 @@ export default function CategoryProjectsClient({
   }
 
   const isSoftware = categoryId === 'software-projects';
-  const publicSoftware = visible.filter((p) => p.softwareVisibility !== 'private');
+  const majorSoftware = visible.filter((p) => p.softwareVisibility === 'major');
+  const publicSoftware = visible.filter(
+    (p) => p.softwareVisibility !== 'private' && p.softwareVisibility !== 'major'
+  );
   const privateSoftware = visible.filter((p) => p.softwareVisibility === 'private');
 
   const gridClass =
     'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16 sm:pb-20';
+  const majorGridClass =
+    'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 pb-16 sm:pb-20';
 
   if (isSoftware) {
     return (
@@ -193,6 +251,36 @@ export default function CategoryProjectsClient({
             aria-hidden
           />
           <div className="relative z-10 flex flex-col gap-20 sm:gap-24 pb-64 sm:pb-80 md:pb-96 lg:pb-[32rem]">
+            <section aria-labelledby="software-major-heading">
+              <h2 id="software-major-heading" className={subsectionTitleClass}>
+                Major Projects
+              </h2>
+              <p className={subsectionDescClass}>
+                Larger webapps, mobile apps, and websites. Expand a card to see a
+                demo video, description, and a link to the live project when
+                available.
+              </p>
+              {majorSoftware.length === 0 ? (
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm italic">
+                  Add entries in{' '}
+                  <code className="text-xs bg-zinc-200/80 dark:bg-zinc-800/80 px-1.5 py-0.5 rounded not-italic">
+                    lib/software-projects.ts
+                  </code>{' '}
+                  →{' '}
+                  <code className="text-xs bg-zinc-200/80 dark:bg-zinc-800/80 px-1.5 py-0.5 rounded not-italic">
+                    MAJOR_SOFTWARE_PROJECTS
+                  </code>
+                  .
+                </p>
+              ) : (
+                <div className={majorGridClass}>
+                  {majorSoftware.map((project) => (
+                    <ProjectCard key={project.id} project={project} variant="major" />
+                  ))}
+                </div>
+              )}
+            </section>
+
             <section aria-labelledby="software-public-heading">
               <h2 id="software-public-heading" className={subsectionTitleClass}>
                 Public

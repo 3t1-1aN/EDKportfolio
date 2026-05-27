@@ -3,6 +3,65 @@ import { Project } from './data';
 const GITHUB_USER = '3t1-1aN';
 
 /**
+ * Major / featured software projects — full webapps, apps, or sites.
+ * They render under the "Major Projects" subsection at the top of the
+ * Software Projects page with larger cards: project screenshot, a demo
+ * video that auto-plays when the card is expanded, a description, and
+ * optional links (live project URL and/or GitHub).
+ *
+ * - slug: unique, URL-friendly (lowercase, hyphens)
+ * - title, description: shown on the card
+ * - image: cover screenshot (collapsed thumbnail + expanded header fallback)
+ * - video: demo video URL(s); auto-plays when card expands
+ * - screenshots: additional screenshots shown as a scrollable gallery in the
+ *   expanded card body (separate from the cover image)
+ * - projectUrl: optional live/deployed URL
+ * - githubUrl: optional repo URL if public
+ * - tags: optional tech / category tags
+ */
+export type MajorSoftwareProjectDef = {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  video?: string[];
+  screenshots?: string[];
+  projectUrl?: string;
+  githubUrl?: string;
+  tags?: string[];
+};
+
+export const MAJOR_SOFTWARE_PROJECTS: MajorSoftwareProjectDef[] = [
+  // Example — replace with your real projects:
+  // {
+  //   slug: 'my-webapp',
+  //   title: 'My Webapp',
+  //   description: 'A short description of what the project does.',
+  //   image: '/projects/software/my-webapp/cover.png',
+  //   video: ['/projects/software/my-webapp/demo.mp4'],
+  //   screenshots: [
+  //     '/projects/software/my-webapp/home.png',
+  //     '/projects/software/my-webapp/dashboard.png',
+  //     '/projects/software/my-webapp/settings.png',
+  //   ],
+  //   projectUrl: 'https://my-webapp.example.com',
+  //   githubUrl: 'https://github.com/3t1-1aN/my-webapp',
+  //   tags: ['Next.js', 'TypeScript'],
+  // },
+  {
+    slug: 'focuslens',
+    title: 'FocusLens',
+    description: 'A productivity desktop app built with React that utilizes AI and OS level integrations to help you stay focused and productive on the task you have set.',
+    image: 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779823793/FocusLens_product_svcz5u.png',
+    video: ['none'],
+    screenshots: ['https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844739/Screenshot_2026-05-26_100630_wi5fqs.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100548_jza3qk.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100524_mvkdeg.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100433_umh3jk.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779844738/Screenshot_2026-05-26_100327_trisue.png'],
+    projectUrl: 'https://focus-lens-ten.vercel.app/',
+    githubUrl: 'https://github.com/3t1-1aN/FocusLens',
+    tags: ['Next.js', 'TypeScript'],
+  },
+];
+
+/**
  * Private / non-public-repo software — edit this array to add entries.
  * They render under the "Private" subsection on the Software Projects page.
  *
@@ -207,6 +266,54 @@ function privateDefsToProjects(defs: PrivateSoftwareProjectDef[]): Project[] {
   }));
 }
 
+/** Treat `''`, `'none'`, and `'#'` as "not set yet" so placeholders don't
+ *  render as broken videos / dead links. */
+function cleanUrl(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  if (!trimmed || trimmed.toLowerCase() === 'none' || trimmed === '#') {
+    return undefined;
+  }
+  return trimmed;
+}
+
+function cleanUrlList(values: string[] | undefined): string[] | undefined {
+  if (!values) return undefined;
+  const cleaned = values
+    .map((v) => cleanUrl(v))
+    .filter((v): v is string => Boolean(v));
+  return cleaned.length > 0 ? cleaned : undefined;
+}
+
+function majorDefsToProjects(defs: MajorSoftwareProjectDef[]): Project[] {
+  return defs.map((def) => {
+    const video = cleanUrlList(def.video);
+    const screenshots = cleanUrlList(def.screenshots);
+    const projectUrl = cleanUrl(def.projectUrl);
+    const githubUrl = cleanUrl(def.githubUrl);
+    return {
+      id: `software-major-${def.slug}`,
+      slug: def.slug,
+      title: def.title,
+      description: def.description,
+      client: '',
+      date: '',
+      image: def.image,
+      ...(video ? { video } : {}),
+      ...(screenshots ? { screenshots } : {}),
+      ...(projectUrl ? { projectUrl } : {}),
+      ...(githubUrl ? { githubUrl } : {}),
+      categoryId: 'software-projects',
+      softwareVisibility: 'major' as const,
+      tags: def.tags ?? [],
+    };
+  });
+}
+
 export async function getSoftwareProjects(): Promise<Project[]> {
-  return [...mapPublicGithubRepos(), ...privateDefsToProjects(PRIVATE_SOFTWARE_PROJECTS)];
+  return [
+    ...majorDefsToProjects(MAJOR_SOFTWARE_PROJECTS),
+    ...mapPublicGithubRepos(),
+    ...privateDefsToProjects(PRIVATE_SOFTWARE_PROJECTS),
+  ];
 }
