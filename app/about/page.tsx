@@ -150,7 +150,7 @@ export default function AboutPage() {
                   My long-term goal is to develop technology that feels intuitive, human, and useful, blending technical precision with creativity to design systems that make everyday life smarter and more connected.
                 </p>
                 <p className="text-lg text-grey-700 dark:text-grey-300 leading-relaxed">
-                  I'm currently seeking internship opportunities in Electromechanical Engineering, Automation Engineering, Software Development, and Autonomous Systems Engineering.
+                  I'm currently preparing for an internship at Rincell Corporation, with a focus on electromechanical engineering, automation engineering, software development, and autonomous systems engineering.
                 </p>
               </div>
             </ScrollAnimation>

@@ -59,6 +59,17 @@ export const MAJOR_SOFTWARE_PROJECTS: MajorSoftwareProjectDef[] = [
     githubUrl: 'https://github.com/3t1-1aN/FocusLens',
     tags: ['Electron', 'JavaScript', 'Three.js'],
   },
+  {
+    slug: 'grove',
+    title: 'Grove',
+    description: 'An organic, lightweight tasker/productivity app that is built with Tauri. Designed as a transparent, subscription free version of other producivity apps while being muich more enjoyable to use. Open source',
+    image: 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210394/Grove_product_ts8q97.png',
+    video: ['none'],
+    screenshots: ['https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210835/Screenshot_2026-05-31_000010_j5ok3p.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210835/Screenshot_2026-05-30_235923_hhg5bg.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210835/Screenshot_2026-05-30_235543_fof0ud.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210836/Screenshot_2026-05-30_235858_fxg2tr.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210946/Screenshot_2026-05-31_000159_kcqpig.png', 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780210946/Screenshot_2026-05-31_000214_bijfqd.png'],
+    projectUrl: 'https://grove-todo.vercel.app/',
+    githubUrl: 'https://github.com/3t1-1aN/Grove_organic_todo_website',
+    tags: ['HTML'],
+  },
 ];
 
 /**

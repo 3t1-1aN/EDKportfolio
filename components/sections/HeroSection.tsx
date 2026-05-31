@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 import { categoryImages } from '@/lib/projects/category-images';
 
-const TAGLINE = 'MECHATRONICS · ROBOTICS · ENGINEERING';
+const TAGLINE = 'MECHATRONICS · AI · ENGINEERING';
 
 const BIO =
   'High school junior at Gunderson High School — SVCTE Mechatronics student, FTC Robotics team lead, and builder of real-world electromechanical systems.';

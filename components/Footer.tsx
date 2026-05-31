@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white py-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
             <h2 className="text-2xl font-bold mb-4">ETHAN KUNDER</h2>
             <div className="flex gap-4 flex-wrap">
@@ -56,22 +56,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">Newsletter</h3>
-            <p className="text-sm mb-4">Keep in the know!</p>
-            <p className="text-sm mb-4">Get the scoop on our latest news and updates by signing up for our newsletter!</p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="glass-input flex-1 px-4 py-2 rounded text-sm"
-              />
-              <button className="px-4 py-2 bg-white text-black rounded text-sm hover:opacity-80 transition-opacity">
-                Send
-              </button>
-            </div>
-          </div>
         </div>
 
         <div className="pt-8 border-t border-white/20">
@@ -85,13 +69,13 @@ const Footer = () => {
             <div>
               <p className="mb-2">Education</p>
               <p className="text-white/70">
-                Gunderson High School • SVCTE Mechatronics
+                Gunderson High School • SVCTE Mechatronics • De Anza College
               </p>
             </div>
             <div>
               <p className="mb-2">Status</p>
               <p className="text-white/70">
-                Seeking Internship Opportunities
+                Preparing for internship at Rincell Corporation
               </p>
             </div>
           </div>
