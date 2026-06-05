@@ -1,6 +1,7 @@
 "use client";
 
 import { Project, categories } from "@/lib/data";
+import { categoryImages } from "@/lib/projects/category-images";
 import { CardStack, type CardStackItem } from "@/components/ui/card-stack";
 
 interface ImagesScrollingAnimationProps {
@@ -9,7 +10,7 @@ interface ImagesScrollingAnimationProps {
 
 const FALLBACK_UNSPLASH_IMAGES = [
   "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80",
+  categoryImages.softwareProjects,
   "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
   "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1600&q=80",
   "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",

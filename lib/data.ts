@@ -142,7 +142,7 @@ export const categories: Category[] = [
     slug: 'software-projects',
     title: 'Software Projects',
     description: 'Web applications, mobile apps, and software solutions built with modern technologies.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&h=800&fit=crop',
+    image: categoryImages.softwareProjects,
   },
 ];
 export const testimonials: Testimonial[] = [

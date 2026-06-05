@@ -8,6 +8,8 @@ export const categoryImages = {
   music: 'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779249840/music_ovo14q.jpg',
   photography:
     'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779249840/photography_ryhe82.jpg',
+  softwareProjects:
+    'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780689173/software_wnxoql.png',
   about:
     'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779467978/Ethan_business_craiuj.jpg',
 } as const;
