@@ -7,6 +7,7 @@ import { GlassFilter, LiquidButton } from '@/components/ui/liquid-glass-button';
 
 const navLinks = [
   { href: '/projects#top', label: 'Projects', path: '/projects' },
+  { href: '/writing#top', label: 'Writing', path: '/writing' },
   { href: '/about#hero', label: 'About', path: '/about' },
   { href: '/contact#contact', label: 'Contact', path: '/contact' },
 ] as const;

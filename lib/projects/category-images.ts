@@ -9,7 +9,7 @@ export const categoryImages = {
   photography:
     'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779249840/photography_ryhe82.jpg',
   softwareProjects:
-    'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780689173/software_wnxoql.png',
+    'https://res.cloudinary.com/dhbn2shvj/image/upload/v1780690316/software_rifuzt.png',
   about:
     'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779467978/Ethan_business_craiuj.jpg',
 } as const;

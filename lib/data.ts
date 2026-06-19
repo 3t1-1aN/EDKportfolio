@@ -49,6 +49,36 @@ export interface WorkflowStep {
   services: string[];
 }
 
+export interface WritingPost {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  readTime: string;
+  mediumUrl: string;
+  tags: string[];
+  featured?: boolean;
+}
+
+export const writingPosts: WritingPost[] = [
+  // Add Medium posts here as you publish them.
+  {
+    id: 'first-post',
+    slug: 'first-post',
+    title: 'Linux vs Windows: AI might finally be Linux\'s killer feature',
+    description: 'Want to be in the frontier of the ever changing landscape of AI? Now might be the best time to make the switch to Linux',
+    date: 'June 2026',
+    readTime: '7 min read',
+    mediumUrl: 'https://medium.com/@ethankunder/linux-vs-windows-ai-might-finally-be-linuxs-killer-feature-f4169d443735',
+    tags: ['AI', 'Windows', 'Linux'],
+    featured: true,
+  },
+];
+
+// Backward-compatible alias for the old blog route/component while the site moves to Writing.
+export const blogPosts = writingPosts;
+
 export const projects: Project[] = [
   {
     id: '3',

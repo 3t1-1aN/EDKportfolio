@@ -1,6 +1,7 @@
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
+import WritingSection from '@/components/sections/WritingSection';
 import Footer from '@/components/Footer';
 import type { Project } from '@/lib/data';
 import { categories } from '@/lib/data';
@@ -25,6 +26,7 @@ export default async function Home() {
       <main>
         <AboutSection />
         <ProjectsSection featuredProjects={featuredProjects} />
+        <WritingSection />
       </main>
       <Footer />
     </>

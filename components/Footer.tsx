@@ -3,6 +3,14 @@
 import Link from 'next/link';
 
 const Footer = () => {
+  const navigationLinks = [
+    { href: '/', label: 'Home' },
+    { href: '/projects#top', label: 'Projects' },
+    { href: '/writing#top', label: 'Writing' },
+    { href: '/about#hero', label: 'About' },
+    { href: '/contact#contact', label: 'Contact' },
+  ];
+
   return (
     <footer className="bg-black text-white py-16">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -34,10 +42,10 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Navigation</h3>
             <ul className="space-y-2">
-              {['Home', 'Projects', 'About', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link href={`#${item.toLowerCase()}`} className="text-sm hover:opacity-70 transition-opacity">
-                    {item}
+              {navigationLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm hover:opacity-70 transition-opacity">
+                    {item.label}
                   </Link>
                 </li>
               ))}
