@@ -51,7 +51,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-medium mb-2 text-grey-700 dark:text-grey-300"
+          className="block text-sm font-medium mb-2 text-gray-300"
         >
           Name
         </label>
@@ -59,7 +59,7 @@ export default function ContactForm() {
           type="text"
           id="name"
           name="name"
-          className="glass-input w-full px-4 py-3 rounded-lg"
+          className="frosted-input w-full px-4 py-3 rounded-xl"
           required
           disabled={isSubmitting}
         />
@@ -67,7 +67,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium mb-2 text-grey-700 dark:text-grey-300"
+          className="block text-sm font-medium mb-2 text-gray-300"
         >
           Email
         </label>
@@ -75,7 +75,7 @@ export default function ContactForm() {
           type="email"
           id="email"
           name="email"
-          className="glass-input w-full px-4 py-3 rounded-lg"
+          className="frosted-input w-full px-4 py-3 rounded-xl"
           required
           disabled={isSubmitting}
         />
@@ -83,7 +83,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="message"
-          className="block text-sm font-medium mb-2 text-grey-700 dark:text-grey-300"
+          className="block text-sm font-medium mb-2 text-gray-300"
         >
           Message
         </label>
@@ -91,7 +91,7 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={6}
-          className="glass-input w-full px-4 py-3 rounded-lg resize-none"
+          className="frosted-input w-full px-4 py-3 rounded-xl resize-none"
           required
           disabled={isSubmitting}
         />

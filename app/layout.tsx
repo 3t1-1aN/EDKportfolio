@@ -1,22 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["300", "400", "500", "600", "700"],
-});
+import { GridBackground } from "@/components/ui/grid-background";
+import { NoiseOverlay } from "@/components/ui/noise-overlay";
+import { PageEntrance } from "@/lib/page-entrance-context";
+import { fontSans } from "@/lib/fonts";
+import { GlassFilter } from "@/components/ui/liquid-glass";
 
 export const metadata: Metadata = {
   title: "Ethan Kunder - Portfolio",
@@ -30,17 +23,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="lenis dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
+      <body className={`${fontSans.variable} site-ambient font-sans antialiased`}>
+        <GlassFilter />
         <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
-          <SmoothScroll>
-            <Cursor />
-            <Navbar />
-            {children}
-          </SmoothScroll>
+          <div data-site-content-root className="relative min-h-screen">
+            <div data-site-backdrop className="pointer-events-none fixed inset-0 z-0" aria-hidden>
+              <GridBackground />
+            </div>
+            <SmoothScroll>
+              <Cursor />
+              <Navbar />
+              <PageEntrance>{children}</PageEntrance>
+            </SmoothScroll>
+            {/* Grain sits above content so backdrop-filter on glass only samples grid + sketches */}
+            <NoiseOverlay className="fixed inset-0 z-40" />
+          </div>
         </ThemeProvider>
         <Analytics />
       </body>
     </html>
   );
 }
-

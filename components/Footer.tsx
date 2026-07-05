@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { FrostedPanel } from '@/components/ui/frosted-glass';
 
 const Footer = () => {
   const navigationLinks = [
@@ -12,8 +13,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-black text-white py-16">
+    <footer className="border-t border-white/10 bg-transparent py-16 text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <FrostedPanel>
+        <div className="p-8 sm:p-10 lg:p-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
             <h2 className="text-2xl font-bold mb-4">ETHAN KUNDER</h2>
@@ -57,7 +60,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {['Privacy Policy', 'Terms of Service', '404 Page'].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase().replace(' ', '-')}`} className="text-sm hover:opacity-70 transition-opacity">
+                  <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm hover:opacity-70 transition-opacity">
                     {item}
                   </Link>
                 </li>
@@ -66,7 +69,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/20">
+        <div className="pt-8 border-t border-white/10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
             <div>
               <p className="mb-2">Location</p>
@@ -83,7 +86,7 @@ const Footer = () => {
             <div>
               <p className="mb-2">Status</p>
               <p className="text-white/70">
-                Preparing for internship at Rincell Corporation
+                Interning at Rincell Corporation
               </p>
             </div>
           </div>
@@ -91,6 +94,8 @@ const Footer = () => {
             © 2025 Ethan Kunder. All Rights Reserved
           </p>
         </div>
+        </div>
+        </FrostedPanel>
       </div>
     </footer>
   );

@@ -54,7 +54,7 @@ const TestimonialsComponent = () => {
                           <img
                             src={testimonial.avatar}
                             alt={testimonial.author}
-                            className="w-16 h-16 rounded-full object-cover border-2 border-yellow-400/30"
+                            className="w-16 h-16 rounded-full object-cover border-2 border-accent/30"
                           />
                           <div>
                             <p className="font-semibold text-white">{testimonial.author}</p>

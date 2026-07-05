@@ -32,10 +32,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       backdropBlur: {
         '3xl': '64px',
+        '4xl': '96px',
       },
     },
   },

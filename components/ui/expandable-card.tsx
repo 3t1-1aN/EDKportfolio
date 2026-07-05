@@ -273,7 +273,7 @@ export function ExpandableCard({
                     ref={cardRef}
                     data-lenis-prevent
                     className={cn(
-                      "relative w-full min-h-0 max-h-[min(90vh,100dvh)] max-w-[850px] overflow-y-auto overscroll-contain rounded-2xl bg-zinc-50 shadow-sm [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:thin] sm:rounded-3xl dark:bg-zinc-950 dark:shadow-none",
+                      "relative w-full min-h-0 max-h-[min(90vh,100dvh)] max-w-[850px] overflow-y-auto overscroll-contain rounded-2xl [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch] [scrollbar-width:thin] sm:rounded-3xl [backdrop-filter:blur(88px)_saturate(185%)] [-webkit-backdrop-filter:blur(88px)_saturate(185%)] [background-color:rgba(21,22,26,0.38)]",
                       classNameExpanded,
                     )}
                     {...props}
@@ -284,7 +284,7 @@ export function ExpandableCard({
                         aria-label="Close card"
                         layoutId={`button-${title}-${id}`}
                         onClick={() => setActive(false)}
-                        className="pointer-events-auto mr-3 mt-3 h-10 w-10 flex items-center justify-center rounded-full bg-zinc-50/90 dark:bg-zinc-950/90 backdrop-blur-sm text-neutral-700 dark:text-white/80 border border-gray-200/90 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-950 hover:text-black dark:hover:text-white transition-colors duration-300 focus:outline-none shadow-sm"
+                        className="frosted-pill pointer-events-auto mr-3 mt-3 h-10 w-10 flex items-center justify-center rounded-full text-white/80 hover:text-white transition-colors duration-300 focus:outline-none"
                       >
                         <motion.div
                           animate={{ rotate: active ? 45 : 0 }}
@@ -326,7 +326,7 @@ export function ExpandableCard({
                           </div>
                         ) : images && images.length > 1 ? (
                           // Multiple images: display in a responsive grid
-                          <div className="grid grid-cols-2 gap-2 p-2 bg-zinc-100 dark:bg-zinc-900 max-h-[600px] overflow-y-auto">
+                          <div className="grid grid-cols-2 gap-2 p-2 bg-black/20 max-h-[600px] overflow-y-auto">
                             {images.map((img, idx) => (
                               <img
                                 key={idx}
@@ -345,7 +345,7 @@ export function ExpandableCard({
                               onClick={handleImageClick}
                               className={cn(
                                 showImageFully
-                                  ? "w-full max-h-[72vh] object-contain bg-zinc-100 dark:bg-zinc-900"
+                                  ? "w-full max-h-[72vh] object-contain bg-black/20"
                                   : "w-full h-64 sm:h-80 object-cover object-center",
                                 audio && audio.length > 0 && "cursor-pointer hover:opacity-90 transition-opacity"
                               )}
@@ -392,7 +392,7 @@ export function ExpandableCard({
                     )}
                     {/* Visible audio player when expanded (music cards) - sticky so it stays in view while content below scrolls */}
                     {active && audio && audio.length > 0 && !video?.length && (
-                      <div className="sticky top-0 z-10 px-4 sm:px-6 py-3 bg-zinc-100 dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
+                      <div className="sticky top-0 z-10 px-4 sm:px-6 py-3 bg-black/30 border-t border-white/10 backdrop-blur">
                         <audio
                           controls
                           className="w-full h-10"
@@ -477,7 +477,7 @@ export function ExpandableCard({
         layoutId={`card-${title}-${id}`}
         onClick={() => setActive(true)}
         className={cn(
-          "p-3 flex flex-col justify-between items-center bg-zinc-50 shadow-sm dark:shadow-none dark:bg-zinc-950 rounded-2xl cursor-pointer border border-gray-200/70 dark:border-zinc-900 group",
+          "relative p-3 flex flex-col justify-between items-center rounded-2xl cursor-pointer group [backdrop-filter:blur(56px)_saturate(175%)] [-webkit-backdrop-filter:blur(56px)_saturate(175%)] [background-color:rgba(21,22,26,0.38)]",
           className,
         )}
       >
@@ -489,7 +489,7 @@ export function ExpandableCard({
                 alt={title}
                 className={cn(
                   showImageFully
-                    ? "rounded-lg w-full h-full object-contain bg-zinc-100 dark:bg-zinc-900"
+                    ? "rounded-lg w-full h-full object-contain bg-zinc-900"
                     : "rounded-lg object-cover object-center",
                   imageClassName ?? "w-64 h-56"
                 )}
@@ -501,7 +501,7 @@ export function ExpandableCard({
               {!hideTitle && (
                 <motion.h3
                   layoutId={`title-${title}-${id}`}
-                  className="text-black dark:text-white md:text-left font-semibold"
+                  className="text-white md:text-left font-semibold"
                 >
                   {title}
                 </motion.h3>
@@ -509,7 +509,7 @@ export function ExpandableCard({
               {!hideDescription && (
                 <motion.p
                   layoutId={`description-${description}-${id}`}
-                  className="text-zinc-500 dark:text-zinc-400 md:text-left text-sm font-medium line-clamp-3 mt-1"
+                  className="text-zinc-400 md:text-left text-sm font-medium line-clamp-3 mt-1"
                 >
                   {description}
                 </motion.p>
@@ -520,7 +520,7 @@ export function ExpandableCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
+                  className="text-xs sm:text-sm text-zinc-400 hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
                   data-cursor-hover
                 >
                   {projectUrl.replace(/^https?:\/\//, '')}
@@ -532,7 +532,7 @@ export function ExpandableCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
+                  className="text-xs sm:text-sm text-zinc-400 hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
                   data-cursor-hover
                 >
                   {githubUrl.replace(/^https:\/\//, '')}
@@ -543,7 +543,7 @@ export function ExpandableCard({
               aria-label="Open card"
               layoutId={`button-${title}-${id}`}
               className={cn(
-                "h-8 w-8 shrink-0 flex items-center justify-center rounded-full bg-zinc-50 dark:bg-zinc-950 text-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-950 dark:text-white/70 text-black/70 border border-gray-200/90 dark:border-zinc-900 hover:border-gray-300/90 hover:text-black dark:hover:text-white dark:hover:border-zinc-800 transition-colors duration-300  focus:outline-none",
+                "frosted-pill h-8 w-8 shrink-0 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors duration-300 focus:outline-none",
                 className,
               )}
             >

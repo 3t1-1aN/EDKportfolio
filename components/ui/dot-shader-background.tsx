@@ -98,7 +98,7 @@ function Scene() {
       case 'dark':
         return {
           dotColor: '#FFFFFF', // White for dark theme
-          bgColor: '#030301',
+          bgColor: '#15161a',
           dotOpacity: 0.08
         }
       case 'light':
@@ -110,7 +110,7 @@ function Scene() {
       default:
         return {
           dotColor: '#FFFFFF', // White
-          bgColor: '#030301',
+          bgColor: '#15161a',
           dotOpacity: 0.08
         }
     }

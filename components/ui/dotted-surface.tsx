@@ -63,11 +63,11 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 				const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
 
 				positions.push(x, y, z);
-				// Use yellow color matching the gradient (#fbbf24 = rgb(251, 191, 36))
+				// Ashen grey accent matching the photo palette
 				if (theme === 'dark') {
-					colors.push(251, 191, 36);
+					colors.push(209, 213, 219);
 				} else {
-					colors.push(254, 243, 199); // Lighter yellow (#fef3c7)
+					colors.push(184, 192, 202);
 				}
 			}
 		}

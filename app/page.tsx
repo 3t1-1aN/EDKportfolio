@@ -3,6 +3,7 @@ import AboutSection from '@/components/sections/AboutSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import WritingSection from '@/components/sections/WritingSection';
 import Footer from '@/components/Footer';
+import { EngineeringSketchBackground } from '@/components/ui/engineering-sketch-background';
 import type { Project } from '@/lib/data';
 import { categories } from '@/lib/data';
 
@@ -22,6 +23,8 @@ export default async function Home() {
 
   return (
     <>
+      {/* SKETCHES_ENABLED in engineering-sketch-background.tsx — re-enable after blur verified */}
+      <EngineeringSketchBackground />
       <HeroSection />
       <main>
         <AboutSection />

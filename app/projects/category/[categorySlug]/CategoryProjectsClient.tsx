@@ -3,6 +3,7 @@
 import ScrollAnimation from '@/components/ScrollAnimation';
 import Link from 'next/link';
 import { ExpandableCard } from '@/components/ui/expandable-card';
+import { FrostedCard, FrostedPanel } from '@/components/ui/frosted-glass';
 import { Project } from '@/lib/data';
 
 interface CategoryProjectsClientProps {
@@ -49,10 +50,10 @@ function ProjectCard({
       projectUrl={project.projectUrl}
       classNameExpanded={
         isPhotography
-          ? 'max-w-[min(96vw,1200px)] [&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
+          ? 'max-w-[min(96vw,1200px)] [&_h4]:text-white [&_h4]:font-medium'
           : isMajor
-            ? 'max-w-[min(96vw,1100px)] [&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
-            : '[&_h4]:text-black dark:[&_h4]:text-white [&_h4]:font-medium'
+            ? 'max-w-[min(96vw,1100px)] [&_h4]:text-white [&_h4]:font-medium'
+            : '[&_h4]:text-white [&_h4]:font-medium'
       }
       className={isMajor ? 'w-full items-stretch' : undefined}
       imageClassName={
@@ -103,7 +104,7 @@ function ProjectCard({
                 {project.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-zinc-200 dark:bg-zinc-800 rounded-full text-sm"
+                    className="frosted-pill px-3 py-1 rounded-full text-sm text-gray-200"
                   >
                     {tag}
                   </span>
@@ -166,15 +167,19 @@ function ProjectCard({
                 data-scroll-horizontal
               >
                 {project.screenshots.map((shot, index) => (
-                  <a
+                  <FrostedCard
                     key={index}
-                    href={shot}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex max-w-[min(78vw,640px)] shrink-0 snap-start items-center justify-center rounded-lg border border-zinc-200 bg-zinc-100/80 p-1.5 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/80 dark:hover:border-zinc-700"
-                    data-cursor-hover
+                    radiusClass="rounded-lg"
+                    className="inline-flex max-w-[min(78vw,640px)] shrink-0 snap-start"
                   >
+                    <a
+                      href={shot}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center justify-center p-1.5"
+                      data-cursor-hover
+                    >
                     <img
                       src={shot}
                       alt={`${project.title} screenshot ${index + 1}`}
@@ -182,7 +187,8 @@ function ProjectCard({
                       loading="lazy"
                       decoding="async"
                     />
-                  </a>
+                    </a>
+                  </FrostedCard>
                 ))}
               </div>
             </div>
@@ -245,8 +251,8 @@ export default function CategoryProjectsClient({
     return (
       <ScrollAnimation>
         <div className="relative max-w-7xl mx-auto">
-          <div
-            className="absolute -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl bg-white/[0.06] dark:bg-white/[0.04] backdrop-blur-sm border border-white/10 dark:border-white/5"
+          <FrostedPanel
+            className="absolute -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl pointer-events-none"
             style={{ top: '-2rem', bottom: '14rem' }}
             aria-hidden
           />
@@ -337,8 +343,8 @@ export default function CategoryProjectsClient({
   return (
     <ScrollAnimation>
       <div className="relative max-w-7xl mx-auto">
-        <div
-          className="absolute -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl bg-white/[0.06] dark:bg-white/[0.04] backdrop-blur-sm border border-white/10 dark:border-white/5"
+        <FrostedPanel
+          className="absolute -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl pointer-events-none"
           style={{ top: '-2rem', bottom: '14rem' }}
           aria-hidden
         />

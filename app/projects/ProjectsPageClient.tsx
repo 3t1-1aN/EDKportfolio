@@ -9,6 +9,7 @@ import { Category } from '@/lib/data';
 import PageWithDotBackground from '@/components/PageWithDotBackground';
 import { motion } from 'framer-motion';
 import { BlurIn } from '@/components/ui/blur-in';
+import { FrostedCard, FrostedPanel } from '@/components/ui/frosted-glass';
 
 export type CategoryWithCount = Category & { projectCount: number };
 
@@ -39,10 +40,7 @@ export default function ProjectsPageClient({ categoriesWithCounts }: ProjectsPag
 
           <div className="relative">
             {/* Glass backdrop: same distance above first row and below last row (2rem) */}
-            <div
-              className="absolute -top-8 sm:-top-10 -bottom-8 sm:-bottom-10 -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl bg-white/[0.06] dark:bg-white/[0.04] backdrop-blur-sm border border-white/10 dark:border-white/5"
-              aria-hidden
-            />
+            <FrostedPanel className="absolute -top-8 sm:-top-10 -bottom-8 sm:-bottom-10 -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl pointer-events-none" aria-hidden />
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {categoriesWithCounts.map((category, index) => (
                 <motion.div
@@ -56,19 +54,20 @@ export default function ProjectsPageClient({ categoriesWithCounts }: ProjectsPag
                     ease: [0.25, 0.1, 0.25, 1],
                   }}
                 >
-                  <Link
-                    href={`/projects/category/${category.slug}`}
-                    className="group block"
-                    data-cursor-hover
-                  >
-                    <div className="relative overflow-hidden rounded-lg aspect-[4/3] bg-gray-100 dark:bg-gray-900 mb-4">
+                  <FrostedCard className="group">
+                    <Link
+                      href={`/projects/category/${category.slug}`}
+                      className="block p-4"
+                      data-cursor-hover
+                    >
+                    <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-gray-900 mb-4">
                       <img
                         src={category.image}
                         alt={category.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-                      <div className="absolute top-4 right-4 bg-black/70 dark:bg-white/20 text-white dark:text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      <div className="frosted-pill absolute top-4 right-4 text-white px-3 py-1 rounded-full text-xs font-semibold">
                         {category.projectCount} {category.projectCount === 1 ? 'project' : 'projects'}
                       </div>
                     </div>
@@ -76,11 +75,12 @@ export default function ProjectsPageClient({ categoriesWithCounts }: ProjectsPag
                       <h4 className="text-xl font-bold mb-2 group-hover:opacity-70 transition-opacity">
                         {category.title}
                       </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                      <p className="text-sm text-gray-400 line-clamp-2">
                         {category.description}
                       </p>
                     </div>
                   </Link>
+                  </FrostedCard>
                 </motion.div>
               ))}
             </div>

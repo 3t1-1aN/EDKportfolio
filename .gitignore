@@ -38,3 +38,7 @@ public/mechanics/gimbal.mp4
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated / local tooling
+graphify-out/
+.open-next/
