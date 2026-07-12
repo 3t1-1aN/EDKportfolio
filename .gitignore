@@ -26,7 +26,6 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.dev.vars
 
 # vercel
 .vercel
@@ -41,4 +40,3 @@ next-env.d.ts
 
 # generated / local tooling
 graphify-out/
-.open-next/

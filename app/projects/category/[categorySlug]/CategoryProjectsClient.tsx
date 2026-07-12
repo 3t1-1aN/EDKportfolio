@@ -136,11 +136,11 @@ function ProjectCard({
                 </div>
               </div>
             )}
-          {project.video && project.video.length > 0 && !isMajor && (
+          {project.video && project.video.length > 1 && !isMajor && (
             <div>
               <h4 className="text-lg font-semibold mb-2">Video</h4>
               <div className="space-y-4">
-                {project.video.map((videoFile, index) => (
+                {project.video.slice(1).map((videoFile, index) => (
                   <video
                     key={index}
                     controls
