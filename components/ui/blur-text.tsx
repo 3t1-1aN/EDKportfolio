@@ -129,11 +129,7 @@ export const BlurText = ({
   const MotionComponent = motion[Component] as typeof motion.p;
 
   return (
-    <MotionComponent
-      ref={ref}
-      className={className}
-      style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center' }}
-    >
+    <MotionComponent ref={ref} className={className}>
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
@@ -147,6 +143,16 @@ export const BlurText = ({
           ease: easing,
         };
 
+        // A real space lives in the text. CSS margins cannot separate these
+        // words: the global `* { margin: 0 }` rule beats utility margins, and
+        // a flex parent drops the whitespace between spans.
+        const content =
+          animateBy === 'words'
+            ? `${segment}${index < elements.length - 1 ? '\u00A0' : ''}`
+            : segment === ' '
+              ? '\u00A0'
+              : segment;
+
         return (
           <motion.span
             className="inline-block will-change-[transform,filter,opacity]"
@@ -157,9 +163,8 @@ export const BlurText = ({
             onAnimationComplete={
               index === elements.length - 1 && inView ? onAnimationComplete : undefined
             }
-            style={animateBy === 'words' ? { marginRight: '0.35em' } : undefined}
           >
-            {segment === ' ' ? '\u00A0' : segment}
+            {content}
           </motion.span>
         );
       })}

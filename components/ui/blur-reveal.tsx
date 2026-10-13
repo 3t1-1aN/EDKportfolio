@@ -81,9 +81,10 @@ export function BlurRevealWords({
           trigger={trigger}
           delay={startDelay + index * stepDelay}
           blur={blur}
-          className={cn('mr-[0.35em]', wordClassName)}
+          className={wordClassName}
         >
           {word}
+          {index < words.length - 1 ? '\u00A0' : ''}
         </BlurReveal>
       ))}
     </span>
