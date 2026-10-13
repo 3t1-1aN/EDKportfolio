@@ -33,14 +33,6 @@ export interface Project {
   softwareVisibility?: 'major' | 'public' | 'private';
 }
 
-export interface Testimonial {
-  id: string;
-  text: string;
-  author: string;
-  role: string;
-  avatar: string;
-}
-
 export interface WorkflowStep {
   number: string;
   title: string;
@@ -175,52 +167,4 @@ export const categories: Category[] = [
     image: categoryImages.softwareProjects,
   },
 ];
-export const testimonials: Testimonial[] = [
-  {
-    id: '1',
-    text: 'Leo is more than a designer; he\'s a creative partner who adapts to our needs while keeping us on brand during product launches.',
-    author: 'Patrick Lin',
-    role: 'Head of Product at Sluck',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces',
-  },
-  {
-    id: '2',
-    text: 'From the first deck to final handoff, every part of the process felt intentional. Leo is a systems thinker and a storyteller, and he delivers work that\'s as scalable as it is stunning.',
-    author: 'Oliver Griggs',
-    role: 'Senior PM at Tisla Mobility',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=faces',
-  },
-  {
-    id: '3',
-    text: 'Working with Leo transformed our brand. He not only created a stunning visual identity but also changed how we connect with our audience.',
-    author: 'Amanda Reyes',
-    role: 'Head of Brand at Googel',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces',
-  },
-  {
-    id: '4',
-    text: 'Leo designs strategically and executes artistically. He unified our scattered product vision into a cohesive experience that our customers adore.',
-    author: 'Daniel Kim',
-    role: 'Product Manager at Canvo',
-    avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=faces',
-  },
-  {
-    id: '5',
-    text: 'From the first call to final delivery, Leo made everything seamless and collaborative, turning abstract ideas into beautiful, aligned outcomes.',
-    author: 'Nina Patel',
-    role: 'Creative Director at Microsuft',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces',
-  },
-];
-
-export const stats = {
-  mobileApps: 72,
-  webDesigns: 28,
-  dashboards: 15,
-  consultations: 10,
-  projectsCompleted: 125,
-  campaignsLaunched: 48,
-  clientsServed: 89,
-  satisfactionRate: 98,
-};
 

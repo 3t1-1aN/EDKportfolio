@@ -86,7 +86,7 @@ const Footer = () => {
             <div>
               <p className="mb-2">Status</p>
               <p className="text-white/70">
-                Interning at Rincell Corporation
+                Building robots and apps
               </p>
             </div>
           </div>
