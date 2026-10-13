@@ -22,13 +22,16 @@ const ABOUT_DESCRIPTION =
   'Learn more about my journey in engineering, robotics, and technology.';
 
 const introParagraph =
-  "I'm Ethan Kunder, a high school junior at Gunderson High School and a student in the Mechatronics program at Silicon Valley Career Technical Education Center (SVCTE), where I'm developing hands-on experience across multiple engineering disciplines. I love exploring the intersection of programming, robotics, AI, and creative engineering, turning small ideas into systems that move, respond, and think.";
+  "I'm Ethan Kunder, a high school senior at Gunderson High School and a student in the Mechatronics program at Silicon Valley Career Technical Education Center (SVCTE), where I'm developing hands-on experience across multiple engineering disciplines. I love exploring the intersection of programming, robotics, AI, and creative engineering, turning small ideas into systems that move, respond, and think.";
 
 const platformParagraph =
   'EKfeats is my platform designed to showcase a diverse range of projects spanning music, electronics, coding, mechanics, and 3D software. The site serves as a visual journey through the impressive variety of work I\'ve completed over the past few years, with a focus on innovation and creative problem-solving.';
 
 const RINCELL_INTERNSHIP =
-  "I'm currently interning at Rincell Corporation, with a focus on electromechanical engineering, automation engineering, software development, and autonomous systems engineering.";
+  "Last summer I was an unpaid junior intern at Rincell Corporation for six weeks. I worked on EV battery jellyroll measurement and built a local Windows Python app, Rincell Measurement Tools. It reads an OHAUS balance and an MTG-DX2 diameter gauge over USB/serial COM ports and writes one Google Sheet row per jellyroll. It has a production-line workflow plus diagnostic diameter-only and weight-only modes, a local web UI, and it ships as a Windows zip through a GitHub Actions release.";
+
+const roboticsParagraph =
+  "I co-founded the Gunderson robotics club, and I have been president since sophomore year. On our rookie FTC team I lead software, hardware, communications, and grant work, and I mentor teammates.";
 
 function buildSequence() {
   let seq = sectionHeaderSequenceEnd(ABOUT_TITLE, ABOUT_DESCRIPTION);
@@ -52,9 +55,9 @@ function buildSequence() {
       "At SVCTE, I've learned to solve problems from multiple perspectives, work in professional team settings, and apply both hardware and software to real-world challenges. This program has strengthened my ability to think critically, design iteratively, and build with purpose."
     ),
     roboticsHeading: heading('Robotics Leadership'),
-    roboticsBody: body(
-      "I founded my school's Robotics Club, where I lead our rookie team in the FIRST Tech Challenge (FTC). Through this experience, I've gained valuable lessons in leadership, team coordination, sponsorship outreach, and project management, all while mentoring peers in programming, design, and problem-solving."
-    ),
+    roboticsBody: body(roboticsParagraph),
+    rincellHeading: heading('Rincell Internship'),
+    rincellBody: body(RINCELL_INTERNSHIP),
     skillsHeading: heading('Technical Skills'),
     skillsBody: body(
       "I'm fluent in Python and currently expanding my skills in C++ for embedded systems and microcontroller applications while pursuing Cisco certification. Outside the classroom, I enjoy 3D printing, experimenting with Arduino and Raspberry Pi, and automating workflows with Make.com."
@@ -75,7 +78,6 @@ function buildSequence() {
     forwardBody: body(
       'My long-term goal is to develop technology that feels intuitive, human, and useful, blending technical precision with creativity to design systems that make everyday life smarter and more connected.'
     ),
-    forwardBody2: body(RINCELL_INTERNSHIP),
     end: seq,
   };
 }
@@ -148,10 +150,28 @@ export default function AboutPage() {
                   className="text-2xl font-bold"
                 />
                 <BlurText
-                  text="I founded my school's Robotics Club, where I lead our rookie team in the FIRST Tech Challenge (FTC). Through this experience, I've gained valuable lessons in leadership, team coordination, sponsorship outreach, and project management, all while mentoring peers in programming, design, and problem-solving."
+                  text={roboticsParagraph}
                   variant="body"
                   trigger="mount"
                   startDelay={delays.roboticsBody}
+                  className="text-lg text-grey-300 leading-relaxed"
+                />
+              </div>
+
+              <div className="space-y-4">
+                <BlurText
+                  text="Rincell Internship"
+                  variant="heading"
+                  as="h3"
+                  trigger="mount"
+                  startDelay={delays.rincellHeading}
+                  className="text-2xl font-bold"
+                />
+                <BlurText
+                  text={RINCELL_INTERNSHIP}
+                  variant="body"
+                  trigger="mount"
+                  startDelay={delays.rincellBody}
                   className="text-lg text-grey-300 leading-relaxed"
                 />
               </div>
@@ -264,13 +284,6 @@ export default function AboutPage() {
                   variant="body"
                   trigger="mount"
                   startDelay={delays.forwardBody}
-                  className="text-lg text-grey-300 leading-relaxed"
-                />
-                <BlurText
-                  text={RINCELL_INTERNSHIP}
-                  variant="body"
-                  trigger="mount"
-                  startDelay={delays.forwardBody2}
                   className="text-lg text-grey-300 leading-relaxed"
                 />
               </div>

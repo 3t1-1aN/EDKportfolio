@@ -60,6 +60,30 @@ export const MAJOR_SOFTWARE_PROJECTS: MajorSoftwareProjectDef[] = [
     tags: ['Electron', 'JavaScript', 'Three.js'],
   },
   {
+    slug: 'signyl',
+    title: 'Signyl',
+    description:
+      'I built Signyl, an AI-native Gmail client. It ranks mail into four tiers (Needs You, Worth Seeing, Reference, and Noise) and keeps a To Claim list for claimable items and scholarship leads. It flags deadlines, adds a short why note on each ranking, and includes an Ask Signyl side panel that gives decisions (it does not write replies). I can filter noise senders and unsubscribe without deleting mail, switch between accounts, and open a demo mailbox.',
+    // TODO: cover photo (Ethan will send photos)
+    image: 'TODO: cover photo',
+    // TODO: screenshots (Ethan will send photos)
+    screenshots: ['TODO: screenshots'],
+    projectUrl: 'https://signyl-nine.vercel.app',
+    tags: ['Vite', 'React', 'Tailwind', 'Radix', 'Vercel', 'Gmail API', 'Google OAuth', 'OpenRouter'],
+  },
+  {
+    slug: 'bybaktime',
+    title: 'Bybaktime',
+    description:
+      'I built Bybaktime, a task console that keeps tasks, habit bricks, and a focus timer in one place. Tasks sit in color-themed buckets (including a Journal bucket), with Flow, Quick, and Easy states, Important and Urgent toggles (Eisenhower-style), and a date, time, and duration. I can switch between Day, Week, and Month calendar views. Habit bricks stack toward milestones. The timer covers countdown, stopwatch, and focus sessions. I sign in with Google and sync to the Google Drive app-data folder, with localStorage as a fallback.',
+    // TODO: cover photo (Ethan will send photos)
+    image: 'TODO: cover photo',
+    // TODO: screenshots (Ethan will send photos)
+    screenshots: ['TODO: screenshots'],
+    projectUrl: 'https://bybaktime.vercel.app',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Vercel'],
+  },
+  {
     slug: 'grove',
     title: 'Grove',
     description: 'An organic, lightweight tasker/todo productivity app that is built with Tauri. Designed as a transparent, subscription free version of other producivity apps while being much more enjoyable to use. fully open source and open to any feedback or contributions.',
@@ -277,12 +301,20 @@ function privateDefsToProjects(defs: PrivateSoftwareProjectDef[]): Project[] {
   }));
 }
 
-/** Treat `''`, `'none'`, and `'#'` as "not set yet" so placeholders don't
- *  render as broken videos / dead links. */
+/** Treat empty values, `none`, `#`, and `TODO` markers as unset so placeholders
+ *  don't render as broken images, videos, or dead links. */
 function cleanUrl(value: string | undefined): string | undefined {
   if (!value) return undefined;
   const trimmed = value.trim();
-  if (!trimmed || trimmed.toLowerCase() === 'none' || trimmed === '#') {
+  const lower = trimmed.toLowerCase();
+  if (
+    !trimmed ||
+    lower === 'none' ||
+    trimmed === '#' ||
+    lower === 'todo' ||
+    lower.startsWith('todo:') ||
+    lower.startsWith('todo ')
+  ) {
     return undefined;
   }
   return trimmed;
@@ -302,6 +334,7 @@ function majorDefsToProjects(defs: MajorSoftwareProjectDef[]): Project[] {
     const screenshots = cleanUrlList(def.screenshots);
     const projectUrl = cleanUrl(def.projectUrl);
     const githubUrl = cleanUrl(def.githubUrl);
+    const image = cleanUrl(def.image);
     return {
       id: `software-major-${def.slug}`,
       slug: def.slug,
@@ -309,7 +342,7 @@ function majorDefsToProjects(defs: MajorSoftwareProjectDef[]): Project[] {
       description: def.description,
       client: '',
       date: '',
-      image: def.image,
+      ...(image ? { image } : {}),
       ...(video ? { video } : {}),
       ...(screenshots ? { screenshots } : {}),
       ...(projectUrl ? { projectUrl } : {}),

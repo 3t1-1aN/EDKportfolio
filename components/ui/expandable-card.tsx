@@ -6,6 +6,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useLenis } from "@/lib/lenis-context";
 
+function hasDisplayableSrc(src?: string): boolean {
+  if (!src) return false;
+  const trimmed = src.trim();
+  const lower = trimmed.toLowerCase();
+  return Boolean(
+    trimmed &&
+      lower !== "none" &&
+      trimmed !== "#" &&
+      lower !== "todo" &&
+      !lower.startsWith("todo:") &&
+      !lower.startsWith("todo ")
+  );
+}
+
 interface ExpandableCardProps {
   title: string;
   /** Empty when the card has no thumbnail (e.g. GitHub-only software cards) */
@@ -50,10 +64,17 @@ export function ExpandableCard({
   projectUrl,
   ...props
 }: ExpandableCardProps) {
+  const showSrc = hasDisplayableSrc(src);
+  const showCoverFallback =
+    Boolean(imageClassName) &&
+    !showSrc &&
+    !(video && video.length > 0) &&
+    !(images && images.length > 1);
   const hasHeroMedia =
     Boolean(video?.length) ||
     Boolean(images && images.length > 1) ||
-    Boolean(src?.trim());
+    showSrc ||
+    showCoverFallback;
 
   const [active, setActive] = React.useState(false);
   const [isPlaying, setIsPlaying] = React.useState(false);
@@ -336,7 +357,7 @@ export function ExpandableCard({
                               />
                             ))}
                           </div>
-                        ) : (
+                        ) : showSrc ? (
                           // Single image: display normally
                           <div className="relative group/image">
                             <img
@@ -386,6 +407,15 @@ export function ExpandableCard({
                                 </div>
                               </div>
                             )}
+                          </div>
+                        ) : (
+                          <div
+                            className={cn(
+                              "flex items-center justify-center bg-zinc-900/70 text-sm text-zinc-400",
+                              imageClassName ?? "w-full h-64 sm:h-80"
+                            )}
+                          >
+                            Photos coming
                           </div>
                         )}
                       </motion.div>
@@ -484,16 +514,27 @@ export function ExpandableCard({
         <div className={cn("flex flex-col", hasHeroMedia ? "gap-4" : "gap-0")}>
           {hasHeroMedia && (
             <motion.div layoutId={`image-${title}-${id}`} className={cn("relative", imageClassName && "w-full")}>
-              <img
-                src={src}
-                alt={title}
-                className={cn(
-                  showImageFully
-                    ? "rounded-lg w-full h-full object-contain bg-zinc-900"
-                    : "rounded-lg object-cover object-center",
-                  imageClassName ?? "w-64 h-56"
-                )}
-              />
+              {showSrc ? (
+                <img
+                  src={src}
+                  alt={title}
+                  className={cn(
+                    showImageFully
+                      ? "rounded-lg w-full h-full object-contain bg-zinc-900"
+                      : "rounded-lg object-cover object-center",
+                    imageClassName ?? "w-64 h-56"
+                  )}
+                />
+              ) : (
+                <div
+                  className={cn(
+                    "rounded-lg flex items-center justify-center bg-zinc-900/70 text-sm text-zinc-400",
+                    imageClassName ?? "w-64 h-56"
+                  )}
+                >
+                  Photos coming
+                </div>
+              )}
             </motion.div>
           )}
           <div className={cn("flex justify-between items-center", !hasHeroMedia && "w-full")}>
