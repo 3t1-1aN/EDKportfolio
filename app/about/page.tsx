@@ -28,7 +28,7 @@ const platformParagraph =
   'EKfeats is my platform designed to showcase a diverse range of projects spanning music, electronics, coding, mechanics, and 3D software. The site serves as a visual journey through the impressive variety of work I\'ve completed over the past few years, with a focus on innovation and creative problem-solving.';
 
 const RINCELL_INTERNSHIP =
-  "Last summer I was an unpaid junior intern at Rincell Corporation for six weeks. I worked on EV battery jellyroll measurement and built a local Windows Python app, Rincell Measurement Tools. It reads an OHAUS balance and an MTG-DX2 diameter gauge over USB/serial COM ports and writes one Google Sheet row per jellyroll. It has a production-line workflow plus diagnostic diameter-only and weight-only modes, a local web UI, and it ships as a Windows zip through a GitHub Actions release.";
+  "In summer 2026 I was an unpaid junior intern at Rincell Corporation for six weeks. I worked on EV battery jellyroll measurement and built a local Windows Python app, Rincell Measurement Tools. It reads an OHAUS balance and an MTG-DX2 diameter gauge over USB/serial COM ports and writes one Google Sheet row per jellyroll. It has a production-line workflow plus diagnostic diameter-only and weight-only modes, a local web UI, and it ships as a Windows zip through a GitHub Actions release.";
 
 const roboticsParagraph =
   "I co-founded the Gunderson robotics club, and I have been president since sophomore year. On our rookie FTC team I lead software, hardware, communications, and grant work, and I mentor teammates.";
