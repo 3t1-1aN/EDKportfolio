@@ -39,6 +39,16 @@ const Footer = () => {
               >
                 LinkedIn
               </a>
+              <a
+                href="https://x.com/ETHAIVk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm hover:opacity-70 transition-opacity"
+                data-cursor-hover
+                aria-label="X (@ETHAIVk)"
+              >
+                X
+              </a>
             </div>
           </div>
 
@@ -58,7 +68,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
-              {['Privacy Policy', 'Terms of Service', '404 Page'].map((item) => (
+              {['Privacy Policy', 'Terms of Service'].map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm hover:opacity-70 transition-opacity">
                     {item}
