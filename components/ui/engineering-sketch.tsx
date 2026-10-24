@@ -49,6 +49,8 @@ export function EngineeringSketch({
       ? 1
       : clamp(drawProgress, 0, 1) * (1 - clamp(eraseProgress, 0, 1));
     return (
+      // Decorative SVG line art. next/image does not optimize this asset.
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={sketch.asset}
         alt=""
