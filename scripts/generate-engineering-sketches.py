@@ -375,8 +375,8 @@ def draw_gear() -> None:
     d.polyline(upper_solid, "object")
     d.polyline(lower_solid, "object")
 
-    d.text(sx + face / 2, sy + tip_r + 36, "SECTION A-A", 14)
-    d.dim_h(sx, sx + face, sy + tip_r + 18, sy + tip_r, str(face), above=False)
+    d.dim_h(sx, sx + face, sy + tip_r + 20, sy + tip_r, str(face), above=False)
+    d.text(sx + face / 2, sy + tip_r + 64, "SECTION A-A", 14)
 
     d.title_block(760, 668, 250, 58, "SPUR GEAR", "SECTION A-A")
     d.save("sketch-gear.svg")
@@ -422,7 +422,7 @@ def draw_motor() -> None:
 
     d.leader(holes[1][0] + 2, holes[1][1] - 2, fx + half + 36, top - 6, "4X Ø18")
     d.dim_h(left, left + flange, top - 36, top, "228")
-    d.text(fx, top - 52, "FRONT", 13)
+    d.text(fx, top - 74, "FRONT", 13)
 
     # Side view, third angle: shaft points toward the front view.
     sy = fy
@@ -537,9 +537,37 @@ def draw_pcb() -> None:
     bx, by, bw, bh, rad = 108, 86, 740, 520, 18
     d.rect(bx, by, bw, bh, "object", rad)
 
-    # Sparse construction dots inside the board.
+    # Sparse construction dots inside the board. Skip any that would
+    # land on a reference designator (the grid hits C3 and C1).
+    def on_label(x: float, y: float) -> bool:
+        labels = (
+            (300, 305, "U1", 18, "middle"),
+            (210, 238, "1", 12, "middle"),
+            (560, 235, "U2", 16, "middle"),
+            (182, 462, "R1", 14, "middle"),
+            (264, 492, "C3", 14, "middle"),
+            (444, 462, "R2", 14, "middle"),
+            (662, 448, "C1", 14, "start"),
+            (768, 226, "J1", 15, "middle"),
+        )
+        for lx, ly, text, size, anchor in labels:
+            w = len(text) * size * 0.62
+            if anchor == "middle":
+                x0 = lx - w / 2
+            elif anchor == "end":
+                x0 = lx - w
+            else:
+                x0 = lx
+            y0 = ly - size * 0.8
+            y1 = ly + size * 0.25
+            if x0 - 2 <= x <= x0 + w + 2 and y0 - 2 <= y <= y1 + 2:
+                return True
+        return False
+
     for gx in range(bx + 40, bx + bw - 10, 40):
         for gy in range(by + 40, by + bh - 10, 40):
+            if on_label(gx, gy):
+                continue
             d.circle(gx, gy, 0.7, "thin")
 
     def hole(cx: float, cy: float) -> None:
@@ -580,7 +608,7 @@ def draw_pcb() -> None:
             centers.append((cx + half + gap + pad_h / 2, cy + o))
             centers.append((cx + o, cy - half - gap - pad_h / 2))
             centers.append((cx + o, cy + half + gap + pad_h / 2))
-        d.text(cx - half - 18, cy - half - 16, "1", 12)
+        d.text(cx - half - 34, cy - half - 4, "1", 12)
         return centers
 
     def soic(cx: float, cy: float, w: float, h: float, pins: int, pitch: float, ref: str) -> None:
@@ -633,27 +661,27 @@ def draw_pcb() -> None:
     def route(pts: list[tuple[float, float]]) -> None:
         d.polyline(chamfer(pts, 14), "trace")
 
-    # U1 bottom pin area to R1.
-    route([(300, 300 + 56 + 5 + 6), (300, 430), (182, 430), (182, 470)])
-    # R1 to C3.
-    route([(196, 507), (196, 530), (250, 530)])
-    # U1 right side toward U2.
-    route([(300 + 56 + 5 + 6, 300), (500, 300), (500, 230), (560 - 26 - 10, 230)])
-    # U2 down to R2.
-    route([(560, 230 + 54 + 8), (560, 400), (444, 400), (444, 470)])
+    # U1 bottom pad to the left pad of R1, kept above the R1 silkscreen.
+    route([(294, 367), (294, 438), (165, 438), (165, 477)])
+    # R1 right pad to the left pad of C3.
+    route([(199, 477), (220, 477), (220, 507), (247, 507)])
+    # U1 right pad toward the U2 left pad.
+    route([(367, 294), (500, 294), (500, 230), (524, 230)])
+    # U2 lower-left pad down to the R2 left pad, clear of the R2 silkscreen.
+    route([(524, 266), (524, 430), (427, 430), (427, 477)])
     # R2 across to C1.
     route([(458, 477), (620, 477), (620, 444), (640, 444)])
     # C1 up to J1 pin 4.
     route([(647, 430), (700, 430), (700, pin_pts[4][1]), (pin_pts[4][0], pin_pts[4][1])])
     # A second trace from U1 top to a via, then to J1 pin 1.
     via(300, 168)
-    route([(300, 300 - 56 - 11), (300, 168)])
+    route([(294, 233), (294, 200), (300, 200), (300, 168)])
     route([(300, 168), (430, 168), (430, pin_pts[0][1]), (pin_pts[0][0], pin_pts[0][1])])
     via(700, 168)
-    route([(430, 140), (700, 140), (700, 168)])
+    route([(430, 168), (430, 140), (700, 140), (700, 168)])
     # Decoupling via near U1.
     via(210, 300)
-    route([(300 - 56 - 11, 276), (210, 276), (210, 300)])
+    route([(233, 270), (210, 270), (210, 300)])
 
     d.dim_h(bx, bx + bw, by + bh + 36, by + bh, str(bw), above=False)
     d.dim_v(by, by + bh, bx - 46, bx, str(bh))

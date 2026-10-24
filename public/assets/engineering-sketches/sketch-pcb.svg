@@ -45,7 +45,6 @@
   <circle cx="268" cy="366" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="268" cy="406" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="268" cy="446" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
-  <circle cx="268" cy="486" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="268" cy="526" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="268" cy="566" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="308" cy="126" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
@@ -164,7 +163,6 @@
   <circle cx="668" cy="326" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="668" cy="366" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="668" cy="406" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
-  <circle cx="668" cy="446" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="668" cy="486" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="668" cy="526" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="668" cy="566" r="0.7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
@@ -259,7 +257,7 @@
   <rect x="361" y="338.5" width="12" height="7" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <rect x="338.5" y="227" width="7" height="12" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <rect x="338.5" y="361" width="7" height="12" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
-  <text x="226" y="228" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" text-anchor="middle" letter-spacing="0.4">1</text>
+  <text x="210" y="240" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" text-anchor="middle" letter-spacing="0.4">1</text>
   <rect x="534" y="176" width="52" height="108" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
   <circle cx="542" cy="184" r="2.2" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.35" vector-effect="non-scaling-stroke" />
   <text x="560" y="235" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" text-anchor="middle" letter-spacing="0.4">U2</text>
@@ -303,22 +301,22 @@
   <rect x="763" y="336" width="10" height="8" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <rect x="763" y="354" width="10" height="8" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <rect x="763" y="372" width="10" height="8" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
-  <polyline points="300,367 300,416 286,430 196,430 182,444 182,470" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
-  <polyline points="196,507 196,519.65 206.35,530 250,530" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
-  <polyline points="367,300 486,300 500,286 500,240.8 510.8,230 524,230" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
-  <polyline points="560,292 560,386 546,400 458,400 444,414 444,470" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="294,367 294,424 280,438 179,438 165,452 165,477" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="199,477 210.55,477 220,486.45 220,494.85 232.15,507 247,507" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="367,294 486,294 500,280 500,240.8 510.8,230 524,230" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="524,266 524,416 510,430 441,430 427,444 427,477" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <polyline points="458,477 606,477 620,463 620,453 629,444 640,444" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <polyline points="647,430 686,430 700,416 700,336 714,322 768,322" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <circle cx="300" cy="168" r="5.5" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="300" cy="168" r="2.2" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
-  <polyline points="300,233 300,168" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="294,233 294,202.7 296.7,200 297.3,200 300,197.3 300,168" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <polyline points="300,168 416,168 430,182 430,236 444,250 768,250" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <circle cx="700" cy="168" r="5.5" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="700" cy="168" r="2.2" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
-  <polyline points="430,140 687.4,140 700,152.6 700,168" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="430,168 430,152.6 442.6,140 687.4,140 700,152.6 700,168" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <circle cx="210" cy="300" r="5.5" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
   <circle cx="210" cy="300" r="2.2" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
-  <polyline points="233,276 220.35,276 210,286.35 210,300" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
+  <polyline points="233,270 220.35,270 210,280.35 210,300" stroke="rgba(209, 213, 219, 0.72)" stroke-width="2.35" vector-effect="non-scaling-stroke" />
   <line x1="108" y1="606" x2="108" y2="646" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
   <line x1="848" y1="606" x2="848" y2="646" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
   <line x1="108" y1="642" x2="848" y2="642" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
