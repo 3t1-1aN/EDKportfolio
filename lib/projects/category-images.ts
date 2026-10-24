@@ -1,6 +1,6 @@
-/** Hero + category hub thumbnails — paste Cloudinary delivery URLs here */
+/** Hero is a local poster. Category hub thumbnails are Cloudinary delivery URLs. */
 export const categoryImages = {
-  hero: 'https://res.cloudinary.com/dhbn2shvj/image/upload/f_auto,q_auto:best,w_1200,c_limit/v1779772589/hero_photo_gajmk5.png',
+  hero: '/hero-portrait.webp',
   electronics:
     'https://res.cloudinary.com/dhbn2shvj/image/upload/v1779249866/electronics_vkjpxg.jpg',
   threeDPrint:

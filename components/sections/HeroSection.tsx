@@ -104,30 +104,16 @@ const HeroSection = () => {
               variants={heroFadeUp}
               className="relative mx-auto w-full max-w-md lg:max-w-none lg:mx-0"
             >
-              <div
-                className="pointer-events-none absolute -inset-3 sm:-inset-4 rounded-[1.35rem] bg-[radial-gradient(circle_at_50%_40%,rgba(209,213,219,0.14),transparent_68%)] opacity-70"
-                aria-hidden
-              />
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 glass-light shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-                <div className="relative aspect-[4/5] w-full sm:aspect-[3/4] lg:aspect-[4/5]">
-                  <Image
-                    src={categoryImages.hero}
-                    alt="Ethan Kunder"
-                    fill
-                    priority
-                    quality={90}
-                    className="object-cover object-[center_25%]"
-                    sizes="(max-width: 1024px) 90vw, 560px"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--background)]/50 via-transparent to-[var(--background)]/10"
-                    aria-hidden
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10"
-                    aria-hidden
-                  />
-                </div>
+              <div className="relative aspect-[3/4] w-full">
+                <Image
+                  src={categoryImages.hero}
+                  alt="Ethan Kunder"
+                  fill
+                  priority
+                  quality={100}
+                  className="object-contain object-center"
+                  sizes="(max-width: 1024px) 90vw, 560px"
+                />
               </div>
             </motion.figure>
           </div>
