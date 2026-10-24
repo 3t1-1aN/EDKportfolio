@@ -8,7 +8,7 @@ const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef({ x: 0, y: 0 });
   const scaleRef = useRef(1);
-  const isVisibleRef = useRef(true);
+  const isVisibleRef = useRef(false);
 
   useEffect(() => {
     // Initialize cursor position
@@ -17,16 +17,16 @@ const Cursor = () => {
       y: window.innerHeight / 2,
     };
 
+    const size = 8;
+
     if (cursorRef.current) {
-      const size = 24;
       cursorRef.current.style.transform = `translate(${positionRef.current.x - size / 2}px, ${positionRef.current.y - size / 2}px)`;
-      cursorRef.current.style.opacity = '1';
       cursorRef.current.style.display = 'block';
     }
 
     const updateCursor = () => {
       if (cursorRef.current) {
-        const size = 24;
+        const size = 8;
         cursorRef.current.style.transform = `translate(${positionRef.current.x - size / 2}px, ${positionRef.current.y - size / 2}px) scale(${scaleRef.current})`;
         cursorRef.current.style.opacity = isVisibleRef.current ? '1' : '0';
       }
@@ -110,7 +110,7 @@ const Cursor = () => {
     if (!isClicking) {
       scaleRef.current = isHovering ? 1.3 : 1;
       if (cursorRef.current) {
-        const size = 24;
+        const size = 8;
         cursorRef.current.style.transform = `translate(${positionRef.current.x - size / 2}px, ${positionRef.current.y - size / 2}px) scale(${scaleRef.current})`;
         cursorRef.current.style.opacity = isVisibleRef.current ? '1' : '0';
       }
@@ -120,11 +120,10 @@ const Cursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 w-6 h-6 rounded-full pointer-events-none z-[9999] will-change-transform"
+      className="fixed top-0 left-0 h-2 w-2 pointer-events-none z-[9999] will-change-transform"
       style={{
-        backgroundColor: 'rgb(237, 237, 237)',
+        backgroundColor: 'var(--accent-orange)',
         opacity: 0,
-        mixBlendMode: 'difference',
         transform: 'translate(0, 0)',
       }}
     />

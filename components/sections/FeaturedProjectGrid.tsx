@@ -26,7 +26,7 @@ export default function FeaturedProjectGrid({ projects }: FeaturedProjectGridPro
             <FrostedCard className="h-full">
               <Link href={href} className="relative block h-full" data-cursor-hover>
                 <div
-                  className="pointer-events-none absolute inset-0 z-10 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_0%,rgba(207,194,80,0.12),transparent_55%)]"
+                  className="pointer-events-none absolute inset-0 z-10 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_0%,rgba(255,65,0,0.14),transparent_55%)]"
                   aria-hidden
                 />
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
@@ -49,6 +49,10 @@ export default function FeaturedProjectGrid({ projects }: FeaturedProjectGridPro
                     <p className="text-sm sm:text-base leading-relaxed text-gray-400 line-clamp-2">
                       {project.description}
                     </p>
+                    <span
+                      className="mt-4 block h-0.5 w-0 bg-accent-orange transition-all duration-300 group-hover:w-10"
+                      aria-hidden
+                    />
                   </div>
                 </FrostedInset>
               </Link>

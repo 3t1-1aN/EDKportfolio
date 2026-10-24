@@ -46,7 +46,10 @@ const HeroSection = () => {
                 variants={heroFadeUp}
                 className="mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.65rem] sm:text-xs font-semibold uppercase tracking-[0.28em] sm:tracking-[0.35em] text-accent-muted"
               >
-                <span>{TAGLINE}</span>
+                <span className="inline-flex items-center gap-2.5">
+                  <span className="accent-square" aria-hidden />
+                  {TAGLINE}
+                </span>
                 <span className="text-white/40">©2026</span>
                 <span className="text-white/35">{BUILDING_SINCE}</span>
               </motion.div>

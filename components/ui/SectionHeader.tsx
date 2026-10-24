@@ -54,38 +54,45 @@ const SectionHeader = ({
 
   return (
     <div className={cn('mb-16', className)}>
-      {label &&
-        (blurLabel ? (
-          <BlurReveal
-            trigger="mount"
-            delay={0}
-            duration={revealTiming.labelDuration}
-            className="mb-4 block text-xs font-semibold uppercase tracking-[0.32em] text-accent-muted"
-          >
-            {label}
-          </BlurReveal>
-        ) : (
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent-muted mb-4">
-            {label}
-          </p>
-        ))}
+      {label && (
+        <p className="mb-4 flex items-center gap-2.5">
+          <span className="accent-square" aria-hidden />
+          {blurLabel ? (
+            <BlurReveal
+              trigger="mount"
+              delay={0}
+              duration={revealTiming.labelDuration}
+              className="text-xs font-semibold uppercase tracking-[0.32em] text-accent-muted"
+            >
+              {label}
+            </BlurReveal>
+          ) : (
+            <span className="text-xs font-semibold uppercase tracking-[0.32em] text-accent-muted">
+              {label}
+            </span>
+          )}
+        </p>
+      )}
 
       {typeof title === 'string' ? (
-        blurTitle ? (
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-8 text-foreground max-w-4xl">
-            <BlurRevealWords
-              text={title}
-              stepDelay={revealTiming.titleWordStep}
-              blur="8px"
-              trigger="mount"
-              startDelay={titleStartDelay}
-            />
-          </h2>
-        ) : (
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-8 text-foreground max-w-4xl">
-            {title}
-          </h2>
-        )
+        <div className={cn('mb-8 flex max-w-4xl items-start gap-3', label && 'gap-0')}>
+          {!label && <span className="accent-square mt-[0.72rem] sm:mt-[0.85rem]" aria-hidden />}
+          {blurTitle ? (
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              <BlurRevealWords
+                text={title}
+                stepDelay={revealTiming.titleWordStep}
+                blur="8px"
+                trigger="mount"
+                startDelay={titleStartDelay}
+              />
+            </h2>
+          ) : (
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+              {title}
+            </h2>
+          )}
+        </div>
       ) : (
         title
       )}

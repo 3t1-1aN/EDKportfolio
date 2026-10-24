@@ -40,6 +40,8 @@
 
   --accent: #d1d5db;
   --accent-muted: rgba(154, 168, 181, 0.88);
+  /* Portrait orange. A rare mark, not a fill for large type. */
+  --accent-orange: #ff4100;
   --accent-soft: rgba(209, 213, 219, 0.12);
   --accent-soft-hover: rgba(209, 213, 219, 0.18);
   --accent-border: rgba(209, 213, 219, 0.38);
@@ -399,8 +401,8 @@ body::after {
 
 .frosted-input:focus {
   background: rgba(255, 255, 255, 0.085);
-  border-color: var(--accent-focus);
-  box-shadow: 0 0 0 3px var(--accent-ring);
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 3px rgba(255, 65, 0, 0.28);
 }
 
 .frosted-button {
@@ -447,6 +449,57 @@ body::after {
 
 html {
   scroll-behavior: auto;
+}
+
+::selection {
+  background: var(--accent-orange);
+  color: #15161a;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 3px;
+}
+
+.accent-square {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  flex: none;
+  background: var(--accent-orange);
+}
+
+.accent-link {
+  background-image: linear-gradient(var(--accent-orange), var(--accent-orange));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition:
+    background-size 180ms ease,
+    color 180ms ease;
+}
+
+.accent-link:hover {
+  background-size: 100% 1px;
+}
+
+.square-list {
+  list-style: none;
+}
+
+.square-list > li {
+  position: relative;
+  padding-left: 0.85rem;
+}
+
+.square-list > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-orange);
 }
 
 /* Custom Scrollbar */

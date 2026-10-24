@@ -32,9 +32,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity"
+            className="inline-flex items-center gap-2.5 text-xl font-bold tracking-tight hover:opacity-70 transition-opacity"
             data-cursor-hover
           >
+            <span className="accent-square" aria-hidden />
             ETHAN KUNDER
           </Link>
 
@@ -67,13 +68,14 @@ const Navbar = () => {
                   key={path}
                   href={href}
                   className={cn(
-                    'relative w-fit rounded-full px-4 py-2 text-sm transition-colors',
+                    'accent-link relative inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors',
                     isActive
                       ? 'text-foreground frosted-pill border border-white/12'
                       : 'text-white/75 hover:text-white'
                   )}
                   onClick={() => setIsMenuOpen(false)}
                 >
+                  {isActive && <span className="accent-square h-1.5 w-1.5" aria-hidden />}
                   {label}
                 </Link>
               );

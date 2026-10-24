@@ -28,14 +28,17 @@ const AboutSection = () => {
       <Container>
         <FrostedPanel>
           <div className="p-8 sm:p-10 lg:p-12">
-          <BlurReveal
-            trigger="mount"
-            delay={0}
-            duration={revealTiming.labelDuration}
-            className="mb-4 block text-xs font-semibold uppercase tracking-[0.32em] text-accent-muted"
-          >
-            About Me
-          </BlurReveal>
+          <p className="mb-4 flex items-center gap-2.5">
+            <span className="accent-square" aria-hidden />
+            <BlurReveal
+              trigger="mount"
+              delay={0}
+              duration={revealTiming.labelDuration}
+              className="text-xs font-semibold uppercase tracking-[0.32em] text-accent-muted"
+            >
+              About Me
+            </BlurReveal>
+          </p>
           <BlurText
             text={headingText}
             variant="heading"
