@@ -32,10 +32,9 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2.5 text-xl font-bold tracking-tight hover:opacity-70 transition-opacity"
+            className="text-xl font-bold tracking-tight hover:opacity-70 transition-opacity"
             data-cursor-hover
           >
-            <span className="accent-square" aria-hidden />
             ETHAN KUNDER
           </Link>
 

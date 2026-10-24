@@ -29,11 +29,6 @@ export default function RootLayout({
           <div data-site-content-root className="relative min-h-screen">
             <div data-site-backdrop className="pointer-events-none fixed inset-0 z-0" aria-hidden>
               <GridBackground />
-              <div className="absolute inset-0 hidden md:block">
-                <span className="accent-square absolute left-7 top-[28%] h-2 w-2" />
-                <span className="accent-square absolute left-12 top-[31.5%] h-1.5 w-1.5 opacity-80" />
-                <span className="accent-square absolute right-8 bottom-[22%] h-2 w-2" />
-              </div>
             </div>
             <SmoothScroll>
               <Cursor />
