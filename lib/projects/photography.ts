@@ -44,7 +44,30 @@ const photoUrls: string[] = [
   'https://res.cloudinary.com/dhbn2shvj/image/upload/v1783900906/1ab39789-3620-4a25-8a2e-5d4a141308e0_vvph5w.jpg',
 ];
 
-/** Derive a stable, unique slug from the Cloudinary public ID in the URL. */
+/**
+ * Added after the Cloudinary list. Title is the alt text; photography cards
+ * hide the title, so it is not shown as a caption.
+ */
+const localPhotos: { image: string; title: string }[] = [
+  {
+    image: '/photography/softball.jpg',
+    title: 'Yellow softball resting in fallen autumn leaves by a chain-link fence',
+  },
+  {
+    image: '/photography/rincell-pen.jpg',
+    title: 'Red Rincell pen seen from below against a wooden pole and blue sky',
+  },
+  {
+    image: '/photography/vintage-cadillac-model.jpg',
+    title: 'Cream vintage Cadillac convertible model car in low light',
+  },
+  {
+    image: '/photography/lizard.jpg',
+    title: 'Small lizard on a paved path, seen through a chain-link shadow, with dry leaves nearby',
+  },
+];
+
+/** Derive a stable, unique slug from the image filename. */
 function slugFromUrl(url: string): string {
   const file = url.split('/').pop() ?? url;
   const withoutExt = file.replace(/\.[a-z0-9]+$/i, '');
@@ -54,11 +77,21 @@ function slugFromUrl(url: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
-export const photographyProjects: Project[] = photoUrls.map((image) =>
-  photographyProject({
-    slug: slugFromUrl(image),
-    title: '',
-    description: '',
-    image,
-  })
-);
+export const photographyProjects: Project[] = [
+  ...photoUrls.map((image) =>
+    photographyProject({
+      slug: slugFromUrl(image),
+      title: '',
+      description: '',
+      image,
+    })
+  ),
+  ...localPhotos.map((photo) =>
+    photographyProject({
+      slug: slugFromUrl(photo.image),
+      title: photo.title,
+      description: '',
+      image: photo.image,
+    })
+  ),
+];
