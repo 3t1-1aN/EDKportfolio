@@ -110,7 +110,7 @@ const HeroSection = () => {
                   alt="Ethan Kunder"
                   fill
                   priority
-                  quality={100}
+                  quality={90}
                   className="object-contain object-center"
                   sizes="(max-width: 1024px) 90vw, 560px"
                 />
