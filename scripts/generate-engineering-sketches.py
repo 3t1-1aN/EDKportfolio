@@ -6,8 +6,14 @@ Writes stroke-only SVG (no fills except text) to:
   public/assets/engineering-sketches/sketch-gear.svg
   public/assets/engineering-sketches/sketch-motor.svg
   public/assets/engineering-sketches/sketch-pcb.svg
+  public/assets/engineering-sketches/sketch-bearing.svg
+  public/assets/engineering-sketches/sketch-bolt.svg
+  public/assets/engineering-sketches/sketch-mecanum.svg
+  public/assets/engineering-sketches/sketch-belt.svg
+  public/assets/engineering-sketches/sketch-planetary.svg
+  public/assets/engineering-sketches/sketch-plate.svg
 
-ViewBoxes match the previous files so placement aspect stays the same.
+ViewBoxes stay near 1040 by 748 so placement aspect matches the first sheets.
 Run: python3 scripts/generate-engineering-sketches.py
 """
 
@@ -113,6 +119,33 @@ class Drawing:
                 f'<line x1="{fmt(x)}" y1="{fmt(miny)}" x2="{fmt(x + (maxy - miny))}" y2="{fmt(maxy)}" {self._style("hatch")} />'
             )
         self.parts.append(f'<clipPath id="{cid}"><path d="{d}" /></clipPath>')
+        self.parts.append(f'<g clip-path="url(#{cid})">')
+        self.parts.extend(lines)
+        self.parts.append("</g>")
+
+    def hatch_band(self, cx: float, cy: float, r_out: float, r_in: float, spacing: float = 10.0, steps: int = 72) -> None:
+        """Hatch an annulus. clip-rule evenodd punches the inner circle out."""
+        self._clip += 1
+        cid = f"h{self._clip}"
+
+        def ring(radius: float, sign: float) -> str:
+            pts = []
+            for i in range(steps):
+                ang = sign * 2 * math.pi * i / steps
+                pts.append((cx + radius * math.cos(ang), cy + radius * math.sin(ang)))
+            return "M " + " L ".join(f"{fmt(x)} {fmt(y)}" for x, y in pts) + " Z"
+
+        d = ring(r_out, 1) + " " + ring(r_in, -1)
+        diag = r_out * 2
+        lines = []
+        start = cx - r_out - diag
+        n = int((diag * 2) / spacing) + 2
+        for i in range(n):
+            x = start + i * spacing
+            lines.append(
+                f'<line x1="{fmt(x)}" y1="{fmt(cy - r_out)}" x2="{fmt(x + diag)}" y2="{fmt(cy + r_out)}" {self._style("hatch")} />'
+            )
+        self.parts.append(f'<clipPath id="{cid}" clip-rule="evenodd"><path d="{d}" /></clipPath>')
         self.parts.append(f'<g clip-path="url(#{cid})">')
         self.parts.extend(lines)
         self.parts.append("</g>")
@@ -691,11 +724,498 @@ def draw_pcb() -> None:
     d.save("sketch-pcb.svg")
 
 
+def arc_pts(cx: float, cy: float, r: float, a0: float, a1: float, n: int) -> list[tuple[float, float]]:
+    """Polyline along an SVG angle (0 = +x, clockwise positive)."""
+    return [
+        (cx + r * math.cos(a0 + (a1 - a0) * i / n), cy + r * math.sin(a0 + (a1 - a0) * i / n))
+        for i in range(n + 1)
+    ]
+
+
+def place_gear(outline: list[tuple[float, float]], cx: float, cy: float, spin: float) -> list[tuple[float, float]]:
+    """Move a gear outline built around the origin. `spin` is CCW in y-up space."""
+    placed = []
+    for x, y in outline:
+        xr, yr = rotate(x, -y, spin)
+        placed.append((cx + xr, cy - yr))
+    return placed
+
+
+def capsule(cx: float, cy: float, length: float, width: float, ang: float) -> str:
+    """Stadium outline. `ang` is the long-axis angle in SVG space."""
+    radius = width / 2
+    half = max(length / 2 - radius, 0.1)
+    ux, uy = math.cos(ang), math.sin(ang)
+    px, py = -uy, ux
+    x1, y1 = cx - ux * half, cy - uy * half
+    x2, y2 = cx + ux * half, cy + uy * half
+    return (
+        f"M {fmt(x1 + px * radius)} {fmt(y1 + py * radius)} "
+        f"A {fmt(radius)} {fmt(radius)} 0 0 1 {fmt(x1 - px * radius)} {fmt(y1 - py * radius)} "
+        f"L {fmt(x2 - px * radius)} {fmt(y2 - py * radius)} "
+        f"A {fmt(radius)} {fmt(radius)} 0 0 1 {fmt(x2 + px * radius)} {fmt(y2 + py * radius)} Z"
+    )
+
+
+def hex_points(cx: float, cy: float, across_flats: float) -> list[tuple[float, float]]:
+    """Point-up hexagon. Across-flats is the width between the vertical flats."""
+    radius = (across_flats / 2) / math.cos(math.radians(30))
+    pts = []
+    for i in range(6):
+        ang = math.radians(90 + i * 60)
+        pts.append((cx + radius * math.cos(ang), cy - radius * math.sin(ang)))
+    pts.append(pts[0])
+    return pts
+
+
+def draw_bearing() -> None:
+    """Deep-groove ball bearing: face view plus a diametral section."""
+    d = Drawing(1040, 748)
+    cx, cy = 246, 300
+    r_od = 112
+    r_bore = 36
+    pitch = 78
+    ball_r = 14
+    d.center_cross(cx, cy, r_od + 28, r_od + 22)
+    d.circle(cx, cy, r_od, "object")
+    d.circle(cx, cy, r_bore, "object")
+    d.circle(cx, cy, pitch, "center")
+    for k in range(8):
+        ang = math.radians(k * 45 + 22.5)
+        d.circle(cx + pitch * math.cos(ang), cy + pitch * math.sin(ang), ball_r, "object")
+    # Cutting plane just outside the rims, same convention as the spur gear.
+    d.line(cx - r_od - 30, cy, cx - r_od - 8, cy, "plane")
+    d.line(cx + r_od + 8, cy, cx + r_od + 30, cy, "plane")
+    d.arrow(cx - r_od - 30, cy, math.pi / 2, 8)
+    d.arrow(cx + r_od + 30, cy, math.pi / 2, 8)
+    d.text(cx - r_od - 30, cy - 16, "A", 14)
+    d.text(cx + r_od + 30, cy - 16, "A", 14)
+    d.dim_v(cy - r_od, cy + r_od, cx - r_od - 58, cx - r_od, "Ø 224")
+    d.text(cx, cy - r_od - 36, "FRONT", 13)
+
+    # Section A-A. Same radial scale, axis horizontal.
+    # The groove is deeper than the shoulder, so each ball sits in a pocket
+    # and still shows past the land. Cage ears occupy the axial gap.
+    sx, width, sy = 575, 72, cy
+    mid = sx + width / 2
+    pocket = 24
+    shoulder = 10
+    groove = ball_r + 6
+    races = []
+    for sign in (1, -1):
+        # sign +1 is the upper race (smaller SVG y). Pocket back is away from the axis.
+        outer = [
+            (sx, sy - sign * r_od),
+            (sx + width, sy - sign * r_od),
+            (sx + width, sy - sign * (pitch + shoulder)),
+            (mid + pocket, sy - sign * (pitch + shoulder)),
+            (mid + pocket, sy - sign * (pitch + groove)),
+            (mid - pocket, sy - sign * (pitch + groove)),
+            (mid - pocket, sy - sign * (pitch + shoulder)),
+            (sx, sy - sign * (pitch + shoulder)),
+        ]
+        inner = [
+            (sx, sy - sign * r_bore),
+            (sx, sy - sign * (pitch - shoulder)),
+            (mid - pocket, sy - sign * (pitch - shoulder)),
+            (mid - pocket, sy - sign * (pitch - groove)),
+            (mid + pocket, sy - sign * (pitch - groove)),
+            (mid + pocket, sy - sign * (pitch - shoulder)),
+            (sx + width, sy - sign * (pitch - shoulder)),
+            (sx + width, sy - sign * r_bore),
+        ]
+        races.append(outer)
+        races.append(inner)
+    for poly in races:
+        d.hatch(poly, 8)
+        d.polyline(poly + [poly[0]], "object")
+    ear_w, ear_h = 6, 14
+    for sign in (1, -1):
+        ball_y = sy - sign * pitch
+        d.circle(mid, ball_y, ball_r, "object")
+        d.rect(mid - ball_r - 2 - ear_w, ball_y - ear_h / 2, ear_w, ear_h, "thin")
+        d.rect(mid + ball_r + 2, ball_y - ear_h / 2, ear_w, ear_h, "thin")
+    d.line(sx - 24, sy, sx + width + 24, sy, "center")
+    d.line(mid, sy - pitch - groove - 16, mid, sy + pitch + groove + 16, "center")
+
+    d.dim_h(sx, sx + width, sy + r_od + 28, sy + r_od, str(width), above=False)
+    d.dim_v(sy - r_bore, sy + r_bore, sx + width + 46, sx + width, "Ø 72")
+    d.text(mid, sy + r_od + 72, "SECTION A-A", 14)
+    d.leader(mid - ball_r - 6, sy - pitch, 470, 168, "CAGE", "end")
+    d.leader(mid + 4, sy - pitch - ball_r + 2, 760, 168, "BALL", "start")
+
+    d.title_block(772, 678, 248, 56, "BALL BEARING", "SECTION A-A")
+    d.save("sketch-bearing.svg")
+
+
+def draw_bolt() -> None:
+    """Hex-head screw, top and side, with a run of schematic thread crests."""
+    d = Drawing(1040, 748)
+    across = 86
+    head_t = 54
+    shank_r = 20
+    grip = 108
+    thread_len = 156
+    pitch = 9
+    y = 455
+    x0 = 390
+    head_cx = x0 + head_t / 2
+
+    # Top view, point up, aligned over the head. Side view height matches this.
+    top_y = 150
+    hex_r = (across / 2) / math.cos(math.radians(30))
+    d.polyline(hex_points(head_cx, top_y, across), "object")
+    d.circle(head_cx, top_y, across / 2 - 6, "thin")
+    d.circle(head_cx, top_y, shank_r, "hidden")
+    d.center_cross(head_cx, top_y, across / 2 + 18, hex_r + 12)
+    d.dim_h(head_cx - across / 2, head_cx + across / 2, top_y + hex_r + 40, top_y + hex_r * 0.5, f"{across} AF")
+    d.text(head_cx, top_y - hex_r - 36, "TOP", 13)
+
+    # Side view across corners: pointed chamfer and the corner edge down the head.
+    x_shank = x0 + head_t
+    x_thread = x_shank + grip
+    x_end = x_thread + thread_len
+    half_c = hex_r
+    chamfer = 14
+    tip = 16
+    profile = [
+        (x0, y - half_c + chamfer),
+        (x0 + chamfer, y - half_c),
+        (x_shank, y - half_c),
+        (x_shank, y - shank_r),
+        (x_end - tip, y - shank_r),
+        (x_end, y - shank_r + tip),
+        (x_end, y + shank_r - tip),
+        (x_end - tip, y + shank_r),
+        (x_shank, y + shank_r),
+        (x_shank, y + half_c),
+        (x0 + chamfer, y + half_c),
+        (x0, y + half_c - chamfer),
+    ]
+    d.polyline(profile + [profile[0]], "object")
+    d.line(x0 + chamfer + 2, y, x_shank, y, "edge")
+
+    minor = shank_r - 5
+    d.line(x_thread, y - minor, x_end - tip - 4, y - minor, "thin")
+    d.line(x_thread, y + minor, x_end - tip - 4, y + minor, "thin")
+    crests = 12
+    for i in range(crests):
+        x = x_thread + 4 + i * pitch
+        d.polyline(
+            [(x, y - minor), (x + pitch / 2, y - shank_r), (x + pitch, y - minor)],
+            "edge",
+        )
+        d.polyline(
+            [(x, y + minor), (x + pitch / 2, y + shank_r), (x + pitch, y + minor)],
+            "edge",
+        )
+    d.line(x0 - 28, y, x0, y, "center")
+    d.line(x_shank, y, x_end + 22, y, "center")
+
+    d.dim_h(x0, x_end, y + half_c + 34, y + half_c, str(head_t + grip + thread_len), above=False)
+    d.dim_h(x_thread, x_end, y - half_c - 30, y - shank_r, str(thread_len))
+    d.dim_v(y - shank_r, y + shank_r, x_end + 40, x_end, "Ø 40")
+    d.text(x0 - 16, y + 4, "SIDE", 13, "end")
+    d.leader(x_thread + 5 * pitch, y - shank_r, x_thread + 8, y - half_c - 58, "THREAD", "start")
+    d.leader(x_thread + 36, y + minor, x_thread + 8, y + half_c + 16, "MINOR", "start")
+
+    d.title_block(772, 678, 248, 56, "HEX BOLT", "TOP / SIDE")
+    d.save("sketch-bolt.svg")
+
+
+def draw_mecanum() -> None:
+    """Roller wheel, face and side. Roller axes sit at 45 degrees."""
+    d = Drawing(1040, 748)
+    cx, cy, radius = 268, 318, 124
+    hub_r, bore_r = 46, 15
+    d.circle(cx, cy, radius, "object")
+    d.circle(cx, cy, radius - 16, "thin")
+    d.circle(cx, cy, hub_r, "object")
+    d.path(bore_keyway_path(cx, cy, bore_r, 8, 4), "object")
+    d.center_cross(cx, cy, radius + 24, radius + 18)
+    bolt_r = 31
+    for k in range(6):
+        ang = math.radians(k * 60 + 30)
+        hx = cx + bolt_r * math.cos(ang)
+        hy = cy + bolt_r * math.sin(ang)
+        d.circle(hx, hy, 5, "object")
+        d.center_cross(hx, hy, 9, 9)
+    for k in range(8):
+        ang = math.radians(k * 45 + 12)
+        rx = cx + 86 * math.cos(ang)
+        ry = cy + 86 * math.sin(ang)
+        # Long axis is 45 degrees off the tangent, same sense all the way around.
+        d.path(capsule(rx, ry, 74, 24, ang + math.pi / 4), "object")
+    d.dim_v(cy - radius, cy + radius, cx - radius - 48, cx - radius, "Ø 248")
+    d.text(cx, cy - radius - 34, "FRONT", 13)
+
+    # Side view, third angle: axle points back toward the front view.
+    axle_r = 15
+    axle_len = 68
+    wheel_w = 96
+    x_axle = 575
+    x_face = x_axle + axle_len
+    x_back = x_face + wheel_w
+    d.polyline(
+        [
+            (x_axle, cy - axle_r),
+            (x_face, cy - axle_r),
+            (x_face, cy - radius),
+            (x_back, cy - radius),
+            (x_back, cy + radius),
+            (x_face, cy + radius),
+            (x_face, cy + axle_r),
+            (x_axle, cy + axle_r),
+            (x_axle, cy - axle_r),
+        ],
+        "object",
+    )
+    d.line(x_axle - 18, cy, x_back + 18, cy, "center")
+    # Near-side rollers. Rise equals run, so the axis is 45 degrees.
+    # `my` is shifted by half the skew so each roller is centered on its station.
+    half_l, half_h, skew = 14, 7, 28
+    mx = (x_face + x_back) / 2
+    for desired in (-52, 0, 52):
+        my = cy + desired + skew / 2
+        d.polyline(
+            [
+                (mx - half_l, my - half_h),
+                (mx + half_l, my - half_h - skew),
+                (mx + half_l, my + half_h - skew),
+                (mx - half_l, my + half_h),
+                (mx - half_l, my - half_h),
+            ],
+            "object",
+        )
+    d.dim_h(x_face, x_back, cy + radius + 32, cy + radius, str(wheel_w), above=False)
+    d.text((x_face + x_back) / 2, cy - radius - 28, "SIDE", 13)
+    d.leader(mx, cy - 52, x_back + 26, cy - radius + 24, "45°", "start")
+    d.text(cx, cy + radius + 56, "8 ROLLERS", 13)
+
+    d.title_block(772, 678, 248, 56, "DRIVE WHEEL", "MECANUM")
+    d.save("sketch-mecanum.svg")
+
+
+def belt_tangents(c1: tuple[float, float], r1: float, c2: tuple[float, float], r2: float) -> tuple[float, float]:
+    """SVG angles of the external belt tangents. Same angle on both pulleys."""
+    dx, dy = c2[0] - c1[0], c2[1] - c1[1]
+    dist = math.hypot(dx, dy)
+    theta = math.atan2(dy, dx)
+    alpha = math.acos((r1 - r2) / dist)
+    return theta - alpha, theta + alpha
+
+
+def draw_belt() -> None:
+    """Open belt between two plain pulleys."""
+    d = Drawing(1040, 748)
+    c1 = (250, 318)
+    c2 = (690, 318)
+    r1, r2 = 116, 64
+    thick = 8
+
+    def pulley(center: tuple[float, float], radius: float, hub: float, bore: float, holes: int, bolt: float) -> None:
+        cx, cy = center
+        d.circle(cx, cy, radius, "object")
+        d.circle(cx, cy, radius - 18, "thin")
+        d.circle(cx, cy, hub, "object")
+        d.circle(cx, cy, bore, "object")
+        d.center_cross(cx, cy, radius + 16, radius + 14)
+        for k in range(holes):
+            ang = math.radians(-90 + k * (360 / holes))
+            d.circle(cx + bolt * math.cos(ang), cy + bolt * math.sin(ang), 8 if radius > 90 else 6, "object")
+
+    pulley(c1, r1, 30, 12, 4, 62)
+    pulley(c2, r2, 20, 9, 3, 36)
+
+    def belt(radius_a: float, radius_b: float, kind: str) -> None:
+        a_top, a_bot = belt_tangents(c1, radius_a, c2, radius_b)
+        # Large pulley takes the long wrap; the small pulley takes the short outer wrap.
+        span = a_bot - a_top
+        outer = arc_pts(c1[0], c1[1], radius_a, a_top, a_top - (2 * math.pi - span), 40)
+        inner = arc_pts(c2[0], c2[1], radius_b, a_top, a_bot, 24)
+        d.polyline([outer[0], inner[0]], kind)
+        d.polyline(outer, kind)
+        d.polyline([outer[-1], inner[-1]], kind)
+        d.polyline(inner, kind)
+
+    belt(r1 + thick, r2 + thick, "object")
+    belt(r1, r2, "thin")
+
+    d.dim_v(c1[1] - r1, c1[1] + r1, c1[0] - r1 - 42, c1[0] - r1, "Ø 232")
+    d.dim_v(c2[1] - r2, c2[1] + r2, c2[0] + r2 + 40, c2[0] + r2, "Ø 128")
+    d.dim_h(c1[0], c2[0], c1[1] + r1 + 40, c1[1] + r1, str(int(c2[0] - c1[0])), above=False)
+    a_top, _ = belt_tangents(c1, r1 + thick, c2, r2 + thick)
+    span_a = (c1[0] + (r1 + thick) * math.cos(a_top), c1[1] + (r1 + thick) * math.sin(a_top))
+    span_b = (c2[0] + (r2 + thick) * math.cos(a_top), c2[1] + (r2 + thick) * math.sin(a_top))
+    mid_x = (c1[0] + c2[0]) / 2
+    span_t = (mid_x - span_a[0]) / (span_b[0] - span_a[0])
+    span_y = span_a[1] + span_t * (span_b[1] - span_a[1])
+    d.leader(mid_x, span_y, mid_x + 8, span_y - 46, "BELT", "start")
+
+    d.title_block(772, 678, 248, 56, "BELT DRIVE", "OPEN BELT")
+    d.save("sketch-belt.svg")
+
+
+def draw_planetary() -> None:
+    """Sun, three planets, and an internal ring. Tooth counts mesh at 120 degrees."""
+    d = Drawing(1040, 748)
+    module = 5.6
+    z_sun, z_planet, z_ring = 15, 15, 45
+    rp_s = module * z_sun / 2
+    rp_p = module * z_planet / 2
+    rp_r = module * z_ring / 2
+    cx, cy = 318, 318
+    # Extra center distance keeps the involute flanks from crossing.
+    # The ring pitch grows by the same amount so the three meshes still line up.
+    mesh_gap = 2.8
+    dist = rp_s + rp_p + mesh_gap
+    ring_pitch = dist + rp_p
+
+    sun, _ = gear_tooth_points(0, 0, z_sun, module, steps=6)
+    planet, _ = gear_tooth_points(0, 0, z_planet, module, steps=6)
+    d.path(points_path(place_gear(sun, cx, cy, 0)), "object")
+    d.circle(cx, cy, 14, "object")
+    d.center_cross(cx, cy, 22, 22)
+
+    d.circle(cx, cy, 26, "thin")
+    # Carrier arms sit in the open sectors between the planets.
+    for k in range(3):
+        phi = math.radians(30 + k * 120)
+        arm = -phi
+        ox, oy = math.cos(arm + math.pi / 2), math.sin(arm + math.pi / 2)
+        inner = rp_s + module + 6
+        outer = ring_pitch - module - 10
+        for side in (4.5, -4.5):
+            d.line(
+                cx + inner * math.cos(arm) + ox * side,
+                cy + inner * math.sin(arm) + oy * side,
+                cx + outer * math.cos(arm) + ox * side,
+                cy + outer * math.sin(arm) + oy * side,
+                "edge",
+            )
+    for k in range(3):
+        phi = math.radians(90 + k * 120)
+        px = cx + dist * math.cos(phi)
+        py = cy - dist * math.sin(phi)
+        # Space faces the sun; with an odd tooth count the opposite tooth faces the ring.
+        spin = phi + math.pi - math.pi / z_planet
+        d.path(points_path(place_gear(planet, px, py, spin)), "object")
+        d.circle(px, py, 8, "object")
+        d.center_cross(px, py, 14, 14)
+
+    # Internal ring: trapezoid teeth, spaces centered on each planet.
+    r_tip = ring_pitch - module
+    r_root = ring_pitch + 1.25 * module
+    r_out = ring_pitch + 24
+    space = math.radians(90)
+    half = math.pi / z_ring
+    teeth = []
+    for k in range(z_ring):
+        mid = space + half + k * (2 * half)
+        # mid is the tooth center. `half` above is pi/z, and the pitch step is 2*half.
+        a_root_l = mid - half * 0.48
+        a_tip_l = mid - half * 0.26
+        a_tip_r = mid + half * 0.26
+        a_root_r = mid + half * 0.48
+
+        def xy(radius: float, ang: float) -> tuple[float, float]:
+            return (cx + radius * math.cos(ang), cy - radius * math.sin(ang))
+
+        teeth.extend((xy(r_root, a_root_l), xy(r_tip, a_tip_l), xy(r_tip, a_tip_r), xy(r_root, a_root_r)))
+    d.circle(cx, cy, r_out, "object")
+    d.hatch_band(cx, cy, r_out, r_root, 9)
+    d.polyline(teeth + [teeth[0]], "object")
+    d.circle(cx, cy, ring_pitch, "center")
+
+    d.leader(cx + (rp_s + module), cy, 640, 156, "SUN", "start")
+    d.leader(cx, cy - dist - rp_p - module + 6, 640, 220, "3X PLANET", "start")
+    d.leader(cx + r_out, cy, 640, 284, "RING", "start")
+    d.leader(cx, cy + 100, 640, 430, "CARRIER", "start")
+
+    d.title_block(772, 678, 248, 56, "PLANETARY", "SUN / PLANET / RING")
+    d.save("sketch-planetary.svg")
+
+
+def draw_plate() -> None:
+    """Flat chassis plate with a bearing pattern, a slot, and edge holes."""
+    d = Drawing(1040, 748)
+    x, y, w, h = 150, 118, 640, 400
+    chamfer = 22
+    outline = [
+        (x + chamfer, y),
+        (x + w - chamfer, y),
+        (x + w, y + chamfer),
+        (x + w, y + h - chamfer),
+        (x + w - chamfer, y + h),
+        (x + chamfer, y + h),
+        (x, y + h - chamfer),
+        (x, y + chamfer),
+    ]
+    d.polyline(outline + [outline[0]], "object")
+    d.line(x - 16, y + h / 2, x + w + 16, y + h / 2, "center")
+    d.line(x + w / 2, y - 16, x + w / 2, y + h + 16, "center")
+
+    inset = 44
+    hole_r = 9
+    holes = [
+        (x + inset, y + inset),
+        (x + w - inset, y + inset),
+        (x + inset, y + h / 2),
+        (x + w - inset, y + h / 2),
+        (x + inset, y + h - inset),
+        (x + w - inset, y + h - inset),
+    ]
+    for hx, hy in holes:
+        d.circle(hx, hy, hole_r, "object")
+        d.center_cross(hx, hy, hole_r + 7, hole_r + 7)
+
+    bx, by = x + 220, y + h / 2
+    d.circle(bx, by, 28, "object")
+    d.circle(bx, by, 16, "thin")
+    d.center_cross(bx, by, 62, 40)
+    for k in range(4):
+        ang = math.radians(45 + k * 90)
+        hx = bx + 48 * math.cos(ang)
+        hy = by + 48 * math.sin(ang)
+        d.circle(hx, hy, 6, "object")
+        d.center_cross(hx, hy, 11, 11)
+
+    slot_cx, slot_cy = x + 470, y + h / 2
+    d.path(capsule(slot_cx, slot_cy, 108, 18, 0), "object")
+    d.line(slot_cx - 62, slot_cy, slot_cx + 62, slot_cy, "center")
+
+    d.dim_h(x, x + w, y + h + 32, y + h, str(w), above=False)
+    d.dim_v(y, y + h, x - 42, x, str(h))
+    d.dim_h(x, bx, y - 28, y, "220")
+    d.text(x + w / 2, y - 52, "TOP", 13)
+    d.leader(holes[0][0] + 8, holes[0][1] + 8, x + 130, y + 96, "6X Ø18", "start")
+    d.leader(bx, by - 30, bx + 86, by - 86, "Ø 56", "start")
+    hole_ang = math.radians(45)
+    d.leader(
+        bx + 54 * math.cos(hole_ang),
+        by - 54 * math.sin(hole_ang),
+        bx + 156,
+        by - 78,
+        "4X Ø12",
+        "start",
+    )
+    d.leader(slot_cx + 20, slot_cy - 9, slot_cx + 20, slot_cy - 58, "108 x 18", "start")
+
+    d.title_block(772, 678, 248, 56, "CHASSIS PLATE", "HOLE PATTERN")
+    d.save("sketch-plate.svg")
+
+
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     draw_gear()
     draw_motor()
     draw_pcb()
+    draw_bearing()
+    draw_bolt()
+    draw_mecanum()
+    draw_belt()
+    draw_planetary()
+    draw_plate()
 
 
 if __name__ == "__main__":
