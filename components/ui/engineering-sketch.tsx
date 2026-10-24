@@ -32,6 +32,10 @@ export function EngineeringSketch({
   const prefersReducedMotion = useReducedMotion();
 
   useLayoutEffect(() => {
+    if (sketch.asset) {
+      setReady(true);
+      return;
+    }
     const next = sketch.paths.map((_, index) => {
       const el = pathRefs.current[index];
       return el?.getTotalLength() ?? 0;
@@ -39,6 +43,21 @@ export function EngineeringSketch({
     setLengths(next);
     setReady(next.every((len) => len > 0));
   }, [sketch]);
+
+  if (sketch.asset) {
+    const shown = prefersReducedMotion
+      ? 1
+      : clamp(drawProgress, 0, 1) * (1 - clamp(eraseProgress, 0, 1));
+    return (
+      <img
+        src={sketch.asset}
+        alt=""
+        draggable={false}
+        className={cn('engineering-sketch-svg h-full w-full object-contain', className)}
+        style={{ ...style, opacity: shown }}
+      />
+    );
+  }
 
   return (
     <svg

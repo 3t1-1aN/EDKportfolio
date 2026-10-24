@@ -12,6 +12,8 @@ export interface EngineeringSketchArt {
   label: string;
   viewBox: string;
   paths: SketchPath[];
+  /** Public SVG used in place of stroked paths. Keeps dashes, hatching, and labels. */
+  asset?: string;
 }
 
 export interface SketchPlacement {
