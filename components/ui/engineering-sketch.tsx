@@ -17,6 +17,12 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
+/** CSS-like ease-in-out (smoothstep). Mirrored fades sum to 1. */
+function easeInOut(value: number) {
+  const t = clamp(value, 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
 export function EngineeringSketch({
   sketch,
   drawProgress,
@@ -47,7 +53,7 @@ export function EngineeringSketch({
   if (sketch.asset) {
     const shown = prefersReducedMotion
       ? 1
-      : clamp(drawProgress, 0, 1) * (1 - clamp(eraseProgress, 0, 1));
+      : easeInOut(drawProgress) * (1 - easeInOut(eraseProgress));
     return (
       // Decorative SVG line art. next/image does not optimize this asset.
       // eslint-disable-next-line @next/next/no-img-element

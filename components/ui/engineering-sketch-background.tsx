@@ -94,6 +94,14 @@ export function EngineeringSketchBackground() {
   );
 
   useEffect(() => {
+    engineeringSketches.forEach((sketch) => {
+      if (!sketch.asset) return;
+      const img = new Image();
+      img.src = sketch.asset;
+    });
+  }, []);
+
+  useEffect(() => {
     const host = document.createElement('div');
     host.className = 'engineering-sketch-layer';
     host.setAttribute('aria-hidden', 'true');
