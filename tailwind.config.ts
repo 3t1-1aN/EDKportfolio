@@ -15,6 +15,7 @@ const config: Config = {
         accent: {
           DEFAULT: "var(--accent)",
           muted: "var(--accent-muted)",
+          orange: "var(--accent-orange)",
         },
         grey: {
           50: "var(--grey-50)",

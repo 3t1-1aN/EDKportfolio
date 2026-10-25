@@ -29,7 +29,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <Container>
           <Link
             href="/projects"
-            className="inline-block mb-8 text-sm uppercase tracking-wider hover:opacity-70 transition-opacity"
+            className="accent-link mb-8 inline-flex items-center gap-2 text-sm uppercase tracking-wider"
             data-cursor-hover
           >
             ← Back to Projects
@@ -37,7 +37,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">
+              <h1 className="mb-4 flex items-start gap-3 text-4xl font-bold sm:text-5xl md:text-6xl">
+                <span className="accent-square mt-[0.55em] h-2.5 w-2.5" aria-hidden />
                 {project.title}
               </h1>
               <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">

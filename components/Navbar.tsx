@@ -67,13 +67,14 @@ const Navbar = () => {
                   key={path}
                   href={href}
                   className={cn(
-                    'relative w-fit rounded-full px-4 py-2 text-sm transition-colors',
+                    'accent-link relative inline-flex w-fit items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors',
                     isActive
                       ? 'text-foreground frosted-pill border border-white/12'
                       : 'text-white/75 hover:text-white'
                   )}
                   onClick={() => setIsMenuOpen(false)}
                 >
+                  {isActive && <span className="accent-square h-1.5 w-1.5" aria-hidden />}
                   {label}
                 </Link>
               );

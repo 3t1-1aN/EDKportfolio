@@ -66,6 +66,10 @@ const WritingSection = () => {
                           <span className="mt-6 inline-flex text-sm font-semibold uppercase tracking-wider text-white transition-opacity group-hover:opacity-75">
                             Read on Medium
                           </span>
+                          <span
+                            className="mt-3 block h-0.5 w-0 bg-accent-orange transition-all duration-300 group-hover:w-10"
+                            aria-hidden
+                          />
                         </div>
                       </FrostedInset>
                     </a>

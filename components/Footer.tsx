@@ -25,7 +25,7 @@ const Footer = () => {
                 href="https://github.com/3t1-1aN"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm hover:opacity-70 transition-opacity"
+                className="accent-link text-sm transition-opacity"
                 data-cursor-hover
               >
                 GitHub
@@ -34,7 +34,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/ethankunder/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm hover:opacity-70 transition-opacity"
+                className="accent-link text-sm transition-opacity"
                 data-cursor-hover
               >
                 LinkedIn
@@ -44,10 +44,10 @@ const Footer = () => {
 
           <div>
             <h3 className="font-semibold mb-4">Navigation</h3>
-            <ul className="space-y-2">
+            <ul className="square-list space-y-2">
               {navigationLinks.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-sm hover:opacity-70 transition-opacity">
+                  <Link href={item.href} className="accent-link text-sm">
                     {item.label}
                   </Link>
                 </li>
@@ -60,7 +60,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {['Privacy Policy', 'Terms of Service', '404 Page'].map((item) => (
                 <li key={item}>
-                  <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm hover:opacity-70 transition-opacity">
+                  <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="accent-link text-sm">
                     {item}
                   </Link>
                 </li>

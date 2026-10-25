@@ -91,7 +91,7 @@ export function NavHoverPill({ links, activePath, className }: NavHoverPillProps
         transition={{ type: 'spring', stiffness: 360, damping: 34 }}
       >
         <span
-          className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+          className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-accent-orange to-transparent"
           aria-hidden
         />
       </motion.div>
