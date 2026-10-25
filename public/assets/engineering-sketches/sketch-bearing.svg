@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 748" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <line x1="106" y1="300" x2="386" y2="300" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <line x1="246" y1="166" x2="246" y2="434" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <circle cx="246" cy="300" r="112" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="246" cy="300" r="36" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="246" cy="300" r="78" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <circle cx="318.06" cy="329.85" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="275.85" cy="372.06" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="216.15" cy="372.06" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="173.94" cy="329.85" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="173.94" cy="270.15" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="216.15" cy="227.94" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="275.85" cy="227.94" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="318.06" cy="270.15" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <line x1="104" y1="300" x2="126" y2="300" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.7" vector-effect="non-scaling-stroke" stroke-dasharray="18 4 2 4" />
+  <line x1="366" y1="300" x2="388" y2="300" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.7" vector-effect="non-scaling-stroke" stroke-dasharray="18 4 2 4" />
+  <line x1="104" y1="300" x2="100.49" y2="292.81" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="104" y1="300" x2="107.51" y2="292.81" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="388" y1="300" x2="384.49" y2="292.81" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="388" y1="300" x2="391.51" y2="292.81" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="104" y="284" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" text-anchor="middle" letter-spacing="0.4">A</text>
+  <text x="388" y="284" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" text-anchor="middle" letter-spacing="0.4">A</text>
+  <line x1="134" y1="188" x2="72" y2="188" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="134" y1="412" x2="72" y2="412" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="76" y1="188" x2="76" y2="412" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="76" y1="188" x2="79.95" y2="196.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="76" y1="188" x2="72.05" y2="196.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="76" y1="412" x2="72.05" y2="403.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="76" y1="412" x2="79.95" y2="403.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="68" y="304" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="end" letter-spacing="0.4">Ø 224</text>
+  <text x="246" y="152" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="middle" letter-spacing="0.4">FRONT</text>
+  <clipPath id="h1"><path d="M 575 188 L 647 188 L 647 212 L 635 212 L 635 202 L 587 202 L 587 212 L 575 212 Z" /></clipPath>
+  <g clip-path="url(#h1)">
+  <line x1="551" y1="188" x2="575" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="559" y1="188" x2="583" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="567" y1="188" x2="591" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="188" x2="599" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="583" y1="188" x2="607" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="591" y1="188" x2="615" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="599" y1="188" x2="623" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="607" y1="188" x2="631" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="615" y1="188" x2="639" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="623" y1="188" x2="647" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="631" y1="188" x2="655" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="639" y1="188" x2="663" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="188" x2="671" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="655" y1="188" x2="679" y2="212" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  </g>
+  <polyline points="575,188 647,188 647,212 635,212 635,202 587,202 587,212 575,212 575,188" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <clipPath id="h2"><path d="M 575 264 L 575 232 L 587 232 L 587 242 L 635 242 L 635 232 L 647 232 L 647 264 Z" /></clipPath>
+  <g clip-path="url(#h2)">
+  <line x1="543" y1="232" x2="575" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="551" y1="232" x2="583" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="559" y1="232" x2="591" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="567" y1="232" x2="599" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="232" x2="607" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="583" y1="232" x2="615" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="591" y1="232" x2="623" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="599" y1="232" x2="631" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="607" y1="232" x2="639" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="615" y1="232" x2="647" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="623" y1="232" x2="655" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="631" y1="232" x2="663" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="639" y1="232" x2="671" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="232" x2="679" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="655" y1="232" x2="687" y2="264" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  </g>
+  <polyline points="575,264 575,232 587,232 587,242 635,242 635,232 647,232 647,264 575,264" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <clipPath id="h3"><path d="M 575 412 L 647 412 L 647 388 L 635 388 L 635 398 L 587 398 L 587 388 L 575 388 Z" /></clipPath>
+  <g clip-path="url(#h3)">
+  <line x1="551" y1="388" x2="575" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="559" y1="388" x2="583" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="567" y1="388" x2="591" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="388" x2="599" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="583" y1="388" x2="607" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="591" y1="388" x2="615" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="599" y1="388" x2="623" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="607" y1="388" x2="631" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="615" y1="388" x2="639" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="623" y1="388" x2="647" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="631" y1="388" x2="655" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="639" y1="388" x2="663" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="388" x2="671" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="655" y1="388" x2="679" y2="412" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  </g>
+  <polyline points="575,412 647,412 647,388 635,388 635,398 587,398 587,388 575,388 575,412" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <clipPath id="h4"><path d="M 575 336 L 575 368 L 587 368 L 587 358 L 635 358 L 635 368 L 647 368 L 647 336 Z" /></clipPath>
+  <g clip-path="url(#h4)">
+  <line x1="543" y1="336" x2="575" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="551" y1="336" x2="583" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="559" y1="336" x2="591" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="567" y1="336" x2="599" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="336" x2="607" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="583" y1="336" x2="615" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="591" y1="336" x2="623" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="599" y1="336" x2="631" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="607" y1="336" x2="639" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="615" y1="336" x2="647" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="623" y1="336" x2="655" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="631" y1="336" x2="663" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="639" y1="336" x2="671" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="336" x2="679" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  <line x1="655" y1="336" x2="687" y2="368" stroke="rgba(176, 188, 200, 0.42)" stroke-width="0.8" vector-effect="non-scaling-stroke" />
+  </g>
+  <polyline points="575,336 575,368 587,368 587,358 635,358 635,368 647,368 647,336 575,336" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="611" cy="222" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <rect x="589" y="215" width="6" height="14" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <rect x="627" y="215" width="6" height="14" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <circle cx="611" cy="378" r="14" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <rect x="589" y="371" width="6" height="14" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <rect x="627" y="371" width="6" height="14" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <line x1="551" y1="300" x2="671" y2="300" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <line x1="611" y1="186" x2="611" y2="414" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <line x1="575" y1="412" x2="575" y2="444" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="412" x2="647" y2="444" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="440" x2="647" y2="440" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="440" x2="583.09" y2="436.05" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="575" y1="440" x2="583.09" y2="443.95" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="440" x2="638.91" y2="443.95" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="440" x2="638.91" y2="436.05" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="611" y="456" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="middle" letter-spacing="0.4">72</text>
+  <line x1="647" y1="264" x2="697" y2="264" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="647" y1="336" x2="697" y2="336" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="693" y1="264" x2="693" y2="336" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="693" y1="264" x2="696.95" y2="272.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="693" y1="264" x2="689.05" y2="272.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="693" y1="336" x2="689.05" y2="327.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="693" y1="336" x2="696.95" y2="327.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="685" y="304" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="end" letter-spacing="0.4">Ø 72</text>
+  <text x="611" y="484" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" text-anchor="middle" letter-spacing="0.4">SECTION A-A</text>
+  <line x1="591" y1="222" x2="470" y2="168" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <circle cx="591" cy="222" r="1.6" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="464" y="172" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="end" letter-spacing="0.4">CAGE</text>
+  <line x1="615" y1="210" x2="760" y2="168" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <circle cx="615" cy="210" r="1.6" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="766" y="172" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="start" letter-spacing="0.4">BALL</text>
+  <rect x="772" y="678" width="248" height="56" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <line x1="772" y1="706" x2="1020" y2="706" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <line x1="950.56" y1="678" x2="950.56" y2="734" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <text x="784" y="697.04" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" text-anchor="start" letter-spacing="0.4">BALL BEARING</text>
+  <text x="784" y="721.68" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" text-anchor="start" letter-spacing="0.4">SECTION A-A</text>
+  <text x="985.28" y="697.04" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" text-anchor="middle" letter-spacing="0.4">REV</text>
+  <text x="985.28" y="721.68" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" text-anchor="middle" letter-spacing="0.4">A</text>
+</svg>

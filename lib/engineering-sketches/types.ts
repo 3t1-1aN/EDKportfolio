@@ -12,6 +12,8 @@ export interface EngineeringSketchArt {
   label: string;
   viewBox: string;
   paths: SketchPath[];
+  /** Public SVG used in place of stroked paths. Keeps dashes, hatching, and labels. */
+  asset?: string;
 }
 
 export interface SketchPlacement {
@@ -32,12 +34,16 @@ export interface SketchPhaseState {
 
 export const MAX_CONCURRENT_SKETCHES = 2;
 
-/** Autoplay timing per sketch (ms) */
+/**
+ * Autoplay timing per sketch (ms).
+ * Fade in and fade out match, and the idle gap matches the hold, so the two
+ * slots (half a cycle apart) crossfade for `draw` ms without a blank gap.
+ */
 export const SKETCH_CYCLE_MS = {
-  draw: 2400,
-  hold: 700,
-  erase: 2400,
-  gap: 900,
+  draw: 1400,
+  hold: 1800,
+  erase: 1400,
+  gap: 1800,
 } as const;
 
 export function getSketchCycleMs() {

@@ -17,6 +17,12 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
+/** CSS-like ease-in-out (smoothstep). Mirrored fades sum to 1. */
+function easeInOut(value: number) {
+  const t = clamp(value, 0, 1);
+  return t * t * (3 - 2 * t);
+}
+
 export function EngineeringSketch({
   sketch,
   drawProgress,
@@ -32,6 +38,10 @@ export function EngineeringSketch({
   const prefersReducedMotion = useReducedMotion();
 
   useLayoutEffect(() => {
+    if (sketch.asset) {
+      setReady(true);
+      return;
+    }
     const next = sketch.paths.map((_, index) => {
       const el = pathRefs.current[index];
       return el?.getTotalLength() ?? 0;
@@ -39,6 +49,23 @@ export function EngineeringSketch({
     setLengths(next);
     setReady(next.every((len) => len > 0));
   }, [sketch]);
+
+  if (sketch.asset) {
+    const shown = prefersReducedMotion
+      ? 1
+      : easeInOut(drawProgress) * (1 - easeInOut(eraseProgress));
+    return (
+      // Decorative SVG line art. next/image does not optimize this asset.
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={sketch.asset}
+        alt=""
+        draggable={false}
+        className={cn('engineering-sketch-svg h-full w-full object-contain', className)}
+        style={{ ...style, opacity: shown }}
+      />
+    );
+  }
 
   return (
     <svg

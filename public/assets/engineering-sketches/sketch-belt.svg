@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 748" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="250" cy="318" r="116" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="250" cy="318" r="98" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <circle cx="250" cy="318" r="30" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="250" cy="318" r="12" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <line x1="118" y1="318" x2="382" y2="318" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <line x1="250" y1="188" x2="250" y2="448" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <circle cx="250" cy="256" r="8" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="312" cy="318" r="8" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="250" cy="380" r="8" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="188" cy="318" r="8" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="690" cy="318" r="64" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="690" cy="318" r="46" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <circle cx="690" cy="318" r="20" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="690" cy="318" r="9" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <line x1="610" y1="318" x2="770" y2="318" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <line x1="690" y1="240" x2="690" y2="396" stroke="rgba(176, 188, 200, 0.42)" stroke-width="1.05" vector-effect="non-scaling-stroke" stroke-dasharray="16 4 2 4" />
+  <circle cx="690" cy="282" r="6" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="721.18" cy="336" r="6" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <circle cx="658.82" cy="336" r="6" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <polyline points="264.65,194.87 698.51,246.5" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <polyline points="264.65,194.87 254.21,194.07 243.74,194.16 233.32,195.13 223.01,196.97 212.9,199.68 203.05,203.23 193.53,207.6 184.42,212.76 175.78,218.67 167.66,225.28 160.13,232.56 153.25,240.44 147.05,248.88 141.59,257.82 136.89,267.18 133.01,276.9 129.96,286.92 127.77,297.15 126.44,307.54 126,318 126.44,328.46 127.77,338.85 129.96,349.08 133.01,359.1 136.89,368.82 141.59,378.18 147.05,387.12 153.25,395.56 160.13,403.44 167.66,410.72 175.78,417.33 184.42,423.24 193.53,428.4 203.05,432.77 212.9,436.32 223.01,439.03 233.32,440.87 243.74,441.84 254.21,441.93 264.65,441.13" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <polyline points="264.65,441.13 698.51,389.5" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <polyline points="698.51,246.5 707.08,248.05 715.4,250.63 723.35,254.19 730.81,258.68 737.67,264.04 743.84,270.19 749.21,277.04 753.73,284.49 757.31,292.43 759.9,300.74 761.47,309.31 762,318 761.47,326.69 759.9,335.26 757.31,343.57 753.73,351.51 749.21,358.96 743.84,365.81 737.67,371.96 730.81,377.32 723.35,381.81 715.4,385.37 707.08,387.95 698.51,389.5" stroke="rgba(209, 213, 219, 0.72)" stroke-width="1.6" vector-effect="non-scaling-stroke" />
+  <polyline points="263.71,202.81 697.56,254.45" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <polyline points="263.71,202.81 253.94,202.07 244.15,202.15 234.4,203.05 224.75,204.78 215.29,207.31 206.08,210.64 197.18,214.72 188.65,219.55 180.57,225.08 172.97,231.26 165.93,238.07 159.49,245.45 153.69,253.34 148.58,261.7 144.19,270.45 140.56,279.55 137.7,288.92 135.65,298.5 134.41,308.21 134,318 134.41,327.79 135.65,337.5 137.7,347.08 140.56,356.45 144.19,365.55 148.58,374.3 153.69,382.66 159.49,390.55 165.93,397.93 172.97,404.74 180.57,410.92 188.65,416.45 197.18,421.28 206.08,425.36 215.29,428.69 224.75,431.22 234.4,432.95 244.15,433.85 253.94,433.93 263.71,433.19" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <polyline points="263.71,433.19 697.56,381.55" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <polyline points="697.56,254.45 705.18,255.83 712.58,258.11 719.64,261.28 726.27,265.27 732.37,270.04 737.85,275.5 742.64,281.59 746.65,288.21 749.83,295.27 752.13,302.66 753.53,310.27 754,318 753.53,325.73 752.13,333.34 749.83,340.73 746.65,347.79 742.64,354.41 737.85,360.5 732.37,365.96 726.27,370.73 719.64,374.72 712.58,377.89 705.18,380.17 697.56,381.55" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <line x1="134" y1="202" x2="88" y2="202" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="134" y1="434" x2="88" y2="434" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="92" y1="202" x2="92" y2="434" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="92" y1="202" x2="95.95" y2="210.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="92" y1="202" x2="88.05" y2="210.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="92" y1="434" x2="88.05" y2="425.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="92" y1="434" x2="95.95" y2="425.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="84" y="322" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="end" letter-spacing="0.4">Ø 232</text>
+  <line x1="754" y1="254" x2="798" y2="254" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="754" y1="382" x2="798" y2="382" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="794" y1="254" x2="794" y2="382" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="794" y1="254" x2="797.95" y2="262.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="794" y1="254" x2="790.05" y2="262.09" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="794" y1="382" x2="790.05" y2="373.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="794" y1="382" x2="797.95" y2="373.91" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="786" y="322" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="end" letter-spacing="0.4">Ø 128</text>
+  <line x1="250" y1="434" x2="250" y2="478" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="690" y1="434" x2="690" y2="478" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="250" y1="474" x2="690" y2="474" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="250" y1="474" x2="258.09" y2="470.05" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="250" y1="474" x2="258.09" y2="477.95" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="690" y1="474" x2="681.91" y2="477.95" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <line x1="690" y1="474" x2="681.91" y2="470.05" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="470" y="490" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="middle" letter-spacing="0.4">440</text>
+  <line x1="470" y1="219.31" x2="478" y2="173.31" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <circle cx="470" cy="219.31" r="1.6" stroke="rgba(209, 213, 219, 0.48)" stroke-width="0.95" vector-effect="non-scaling-stroke" />
+  <text x="484" y="177.31" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" text-anchor="start" letter-spacing="0.4">BELT</text>
+  <rect x="772" y="678" width="248" height="56" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <line x1="772" y1="706" x2="1020" y2="706" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <line x1="950.56" y1="678" x2="950.56" y2="734" stroke="rgba(209, 213, 219, 0.48)" stroke-width="1.05" vector-effect="non-scaling-stroke" />
+  <text x="784" y="697.04" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" text-anchor="start" letter-spacing="0.4">BELT DRIVE</text>
+  <text x="784" y="721.68" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" text-anchor="start" letter-spacing="0.4">OPEN BELT</text>
+  <text x="985.28" y="697.04" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" text-anchor="middle" letter-spacing="0.4">REV</text>
+  <text x="985.28" y="721.68" fill="rgba(209, 213, 219, 0.78)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="14" text-anchor="middle" letter-spacing="0.4">A</text>
+</svg>

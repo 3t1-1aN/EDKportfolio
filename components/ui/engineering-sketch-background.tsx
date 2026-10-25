@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useReducedMotion } from 'framer-motion';
 import { EngineeringSketch } from '@/components/ui/engineering-sketch';
@@ -35,13 +35,21 @@ function SketchSlot({
   const cycleIndex = getSlotCycleIndex(elapsedMs, staggerMs);
   const phase = getAutoplaySketchPhaseState(elapsedMs, staggerMs);
 
+  // Keep the drawing that is on screen until this slot's own cycle rolls
+  // over. The other slot's new placement must not shove a visible drawing.
+  const contentLock = useRef({ cycleIndex: -1, avoid });
+  if (contentLock.current.cycleIndex !== cycleIndex) {
+    contentLock.current = { cycleIndex, avoid };
+  }
+  const lockedAvoid = contentLock.current.avoid;
+
   const { sketch, placement } = useMemo(
     () =>
       pickSlotContent(slotId, cycleIndex, {
-        sketchIndex: avoid?.sketchIndex,
-        placementIndex: avoid?.placementIndex,
+        sketchIndex: lockedAvoid?.sketchIndex,
+        placementIndex: lockedAvoid?.placementIndex,
       }),
-    [slotId, cycleIndex, avoid?.sketchIndex, avoid?.placementIndex]
+    [slotId, cycleIndex, lockedAvoid?.sketchIndex, lockedAvoid?.placementIndex]
   );
 
   const active =
@@ -92,6 +100,14 @@ export function EngineeringSketchBackground() {
       }),
     [slot1Cycle, slot0Content.sketchIndex, slot0Content.placementIndex]
   );
+
+  useEffect(() => {
+    engineeringSketches.forEach((sketch) => {
+      if (!sketch.asset) return;
+      const img = new Image();
+      img.src = sketch.asset;
+    });
+  }, []);
 
   useEffect(() => {
     const host = document.createElement('div');
