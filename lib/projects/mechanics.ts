@@ -39,7 +39,11 @@ const U = {
   gimbal1:
     'https://res.cloudinary.com/dhbn2shvj/image/upload/v1783897790/Gemini_Generated_Image_e1i3uwe1i3uwe1i3_vjqrub.png',
   gimbal2:
-    'https://res.cloudinary.com/dhbn2shvj/video/upload/v1779250085/gimbal_fhm9yh.mp4'
+    'https://res.cloudinary.com/dhbn2shvj/video/upload/v1779250085/gimbal_fhm9yh.mp4',
+  rubeGoldberg1:
+    'https://res.cloudinary.com/dhbn2shvj/image/upload/v1793653977/PXL_20251211_233521699_w4excz.jpg',
+  rubeGoldberg2:
+    'https://res.cloudinary.com/dhbn2shvj/video/upload/v1793653987/PXL_20251212_230759399_ksshl5.mp4',
 
 } as const;
 
@@ -55,6 +59,14 @@ export const mechanicsProjects: Project[] = [
       'One of my biggest most challengin projects I have ever done. It is a take on the classic boring digital clock and instead of mechanising it like how normally done with a flip mechanism, this one keeps the classic digital clock look but actuates the segments in and out with teh use of 30 hobby servo motors.',
     image: U.kineticClock1,
     video: [U.kineticClock2],
+  }),
+  mechanicsProject({
+    slug: 'rube-goldberg-machine',
+    title: 'Rube Goldberg Machine',
+    description:
+      'My part of a Rube Goldberg machine we built near the start of my SVCTE class (around Sep to Oct 2025). The frame is made from old printer parts and old PC boards. My teammate and I used an Arduino Uno and multiple sensors to make a silent chain reaction that releases a ball at the end.',
+    image: U.rubeGoldberg1,
+    video: [U.rubeGoldberg2],
   }),
   mechanicsProject({
     slug: 'gimbal',
