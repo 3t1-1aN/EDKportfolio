@@ -36,7 +36,9 @@ function ProjectCard({
   /** Header already shows description; skip duplicate block under tags
    *  (GitHub list cards and Private summaries already surface description) */
   const showExpandedDescriptionSection =
-    !isGitHubSoftware && project.softwareVisibility !== 'private';
+    !isGitHubSoftware &&
+    project.softwareVisibility !== 'private' &&
+    !project.license;
 
   return (
     <ExpandableCard
@@ -48,6 +50,8 @@ function ProjectCard({
       video={project.video}
       githubUrl={project.githubUrl}
       projectUrl={project.projectUrl}
+      projectLinkLabel={project.license ? 'View on MakerWorld' : undefined}
+      model={project.model}
       classNameExpanded={
         isPhotography
           ? 'max-w-[min(96vw,1200px)] [&_h4]:text-white [&_h4]:font-medium'
@@ -85,6 +89,19 @@ function ProjectCard({
         </>
       ) : (
         <>
+          {project.details && project.details.length > 0 && (
+            <div className="space-y-3">
+              {project.details.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+          )}
+          {project.license && (
+            <div>
+              <h4 className="text-lg font-semibold mb-2">License</h4>
+              <p>{project.license}</p>
+            </div>
+          )}
           {project.client && (
             <div>
               <h4 className="text-lg font-semibold mb-2">Client</h4>
@@ -108,6 +125,23 @@ function ProjectCard({
                   >
                     {tag}
                   </span>
+                ))}
+              </div>
+            </div>
+          )}
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="w-full">
+              <h4 className="text-lg font-semibold mb-2">Photos</h4>
+              <div className="grid grid-cols-2 gap-2">
+                {project.gallery.map((img, index) => (
+                  <img
+                    key={img}
+                    src={img}
+                    alt={`${project.title} photo ${index + 1}`}
+                    className="w-full h-40 sm:h-56 object-cover rounded-lg"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 ))}
               </div>
             </div>

@@ -29,6 +29,14 @@ export interface Project {
   location?: string; // For photography projects (e.g. "Yosemite National Park")
   githubUrl?: string; // Link to GitHub repository (software category)
   projectUrl?: string; // Link to a live/deployed project (software category)
+  /** MakerWorld models: extra paragraphs of the MakerWorld description (after `description`) */
+  details?: string[];
+  /** MakerWorld models: photos shown under the 3D viewer */
+  gallery?: string[];
+  /** Path to a .glb file in /public. Shows the lazy-loaded 3D viewer in the expanded card */
+  model?: string;
+  /** Licence as listed on MakerWorld */
+  license?: string;
   /** Software category: group cards under Major / Public / Private subsections */
   softwareVisibility?: 'major' | 'public' | 'private';
 }
@@ -142,7 +150,7 @@ export const categories: Category[] = [
     id: '3d-design',
     slug: '3d-design-modeling',
     title: '3D Design & Modeling',
-    description: 'Detailed 3D models and renders for architectural visualizations and product design concepts.',
+    description: 'Detailed 3D models and renders for architectural visualizations and product design concepts, plus the things I design for 3D printing and share on MakerWorld.',
     image: categoryImages.threeDPrint,
   },
   {
