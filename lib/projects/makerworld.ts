@@ -39,6 +39,7 @@ function makerworldProject(input: MakerworldInput): Project {
       images: input.model ? undefined : [cover, ...gallery],
       tags: ['3D printing', ...input.tags],
     }),
+    tool: 'cad',
     client: '',
     date: '',
     details: input.details,

@@ -239,6 +239,24 @@ function ProjectCard({
   );
 }
 
+/** 3D Design category: sections shown in this order, each filled from `project.tool` */
+const threeDGroups: {
+  tool: NonNullable<Project['tool']>;
+  title: string;
+  intro: string;
+}[] = [
+  {
+    tool: 'cad',
+    title: 'CAD models for 3D printing',
+    intro: 'Parts I designed in CAD and published on MakerWorld.',
+  },
+  {
+    tool: 'blender',
+    title: 'Blender renders',
+    intro: 'Scenes and models I made in Blender.',
+  },
+];
+
 const subsectionTitleClass =
   'text-2xl sm:text-3xl font-bold tracking-tight text-black dark:text-white mb-2';
 const subsectionDescClass =
@@ -280,6 +298,53 @@ export default function CategoryProjectsClient({
     'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-16 sm:pb-20';
   const majorGridClass =
     'grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 pb-16 sm:pb-20';
+
+  if (categoryId === '3d-design') {
+    const groups = threeDGroups
+      .map((group) => ({
+        ...group,
+        items: visible.filter((p) => (p.tool ?? 'blender') === group.tool),
+      }))
+      .filter((group) => group.items.length > 0);
+
+    return (
+      <ScrollAnimation>
+        <div className="relative max-w-7xl mx-auto">
+          <FrostedPanel
+            className="absolute -left-6 sm:-left-8 md:-left-10 -right-6 sm:-right-8 md:-right-10 z-0 rounded-3xl pointer-events-none"
+            style={{ top: '-2rem', bottom: '14rem' }}
+            aria-hidden
+          />
+          <div className="relative z-10 flex flex-col gap-16 sm:gap-20 pb-64 sm:pb-80 md:pb-96 lg:pb-[32rem]">
+            {groups.map((group, index) => (
+              <section
+                key={group.tool}
+                aria-labelledby={`three-d-${group.tool}-heading`}
+                className={
+                  index > 0
+                    ? 'border-t border-black/10 dark:border-white/15 pt-12 sm:pt-16'
+                    : undefined
+                }
+              >
+                <h2
+                  id={`three-d-${group.tool}-heading`}
+                  className={subsectionTitleClass}
+                >
+                  {group.title}
+                </h2>
+                <p className={subsectionDescClass}>{group.intro}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {group.items.map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      </ScrollAnimation>
+    );
+  }
 
   if (isSoftware) {
     return (

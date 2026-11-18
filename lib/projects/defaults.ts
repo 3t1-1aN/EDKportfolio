@@ -68,6 +68,7 @@ export function threeDProject(partial: ThreeDInput): Project {
     client: 'Personal Projects',
     date: '2023 - Present',
     categoryId: '3d-design',
+    tool: 'blender',
     tags: partial.tags ?? ['3D modeling', 'rendering', 'design'],
     image,
     ...partial,

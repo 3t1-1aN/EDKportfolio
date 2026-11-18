@@ -37,6 +37,8 @@ export interface Project {
   model?: string;
   /** Licence as listed on MakerWorld */
   license?: string;
+  /** 3D Design category: which tool the work was made in. Drives the grouped sections on the category page */
+  tool?: 'cad' | 'blender';
   /** Software category: group cards under Major / Public / Private subsections */
   softwareVisibility?: 'major' | 'public' | 'private';
 }
