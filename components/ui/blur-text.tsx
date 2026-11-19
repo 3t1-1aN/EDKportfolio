@@ -73,6 +73,17 @@ export const BlurText = ({
   const [scrollInView, setScrollInView] = useState(false);
   const ref = useRef<HTMLParagraphElement>(null);
 
+  // When the page was opened on a #hash link, text inside the target section skips the
+  // entrance delay, so it is readable as soon as the browser scrolls there.
+  const [isHashTarget, setIsHashTarget] = useState(false);
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash || !ref.current) return;
+    const target = document.getElementById(decodeURIComponent(hash));
+    setIsHashTarget(Boolean(target && target.contains(ref.current)));
+  }, []);
+  const effectiveStartDelay = isHashTarget ? 0 : startDelay;
+
   useEffect(() => {
     if (prefersReducedMotion || trigger === 'mount') {
       return;
@@ -138,7 +149,7 @@ export const BlurText = ({
           times: times as number[],
           delay:
             inView && !prefersReducedMotion
-              ? startDelay + (index * wordDelay) / 1000
+              ? effectiveStartDelay + (index * wordDelay) / 1000
               : 0,
           ease: easing,
         };

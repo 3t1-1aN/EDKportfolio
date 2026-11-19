@@ -1,7 +1,7 @@
 import HeroSection from '@/components/sections/HeroSection';
 import AboutSection from '@/components/sections/AboutSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
-import WritingSection from '@/components/sections/WritingSection';
+import TimelineSection from '@/components/sections/TimelineSection';
 import Footer from '@/components/Footer';
 import { EngineeringSketchBackground } from '@/components/ui/engineering-sketch-background';
 import type { Project } from '@/lib/data';
@@ -29,7 +29,7 @@ export default async function Home() {
       <main>
         <AboutSection />
         <ProjectsSection featuredProjects={featuredProjects} />
-        <WritingSection />
+        <TimelineSection />
       </main>
       <Footer />
     </>

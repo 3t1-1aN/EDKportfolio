@@ -81,10 +81,10 @@ export default function WritingPageClient() {
                 <h2 className="mb-4 text-2xl font-bold">Medium posts coming soon</h2>
                 <p className="mb-6 text-base leading-relaxed text-gray-300">
                   This page is ready for future Medium posts. Add each post to the writing data
-                  list, and it will show up here and in the homepage preview automatically.
+                  list, and it will show up here automatically.
                 </p>
                 <Link
-                  href="/#writing"
+                  href="/"
                   className="inline-block text-sm uppercase tracking-wider border-b-2 border-white pb-2 transition-opacity hover:opacity-70"
                   data-cursor-hover
                 >
