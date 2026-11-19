@@ -132,15 +132,17 @@ export default function AboutPage() {
                 </ScrollAnimation>
               </div>
 
-              <BlurText
-                text="At SVCTE, I've learned to solve problems from multiple perspectives, work in professional team settings, and apply both hardware and software to real-world challenges. This program has strengthened my ability to think critically, design iteratively, and build with purpose."
-                variant="body"
-                trigger="mount"
-                startDelay={delays.svcte}
-                className="text-lg text-grey-300 leading-relaxed"
-              />
+              <div id="svcte" className="scroll-mt-28 sm:scroll-mt-32">
+                <BlurText
+                  text="At SVCTE, I've learned to solve problems from multiple perspectives, work in professional team settings, and apply both hardware and software to real-world challenges. This program has strengthened my ability to think critically, design iteratively, and build with purpose."
+                  variant="body"
+                  trigger="mount"
+                  startDelay={delays.svcte}
+                  className="text-lg text-grey-300 leading-relaxed"
+                />
+              </div>
 
-              <div className="space-y-4">
+              <div id="robotics" className="space-y-4 scroll-mt-28 sm:scroll-mt-32">
                 <BlurText
                   text="Robotics Leadership"
                   variant="heading"
@@ -158,7 +160,7 @@ export default function AboutPage() {
                 />
               </div>
 
-              <div className="space-y-4">
+              <div id="rincell" className="space-y-4 scroll-mt-28 sm:scroll-mt-32">
                 <BlurText
                   text="Rincell Internship"
                   variant="heading"
