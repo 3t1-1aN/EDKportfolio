@@ -51,6 +51,7 @@ function ProjectCard({
       githubUrl={project.githubUrl}
       projectUrl={project.projectUrl}
       projectLinkLabel={project.license ? 'View on MakerWorld' : undefined}
+      projectLinkText={project.license ? 'View on MakerWorld ↗' : undefined}
       model={project.model}
       classNameExpanded={
         isPhotography

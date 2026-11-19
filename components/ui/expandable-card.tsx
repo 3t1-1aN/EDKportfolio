@@ -46,6 +46,8 @@ interface ExpandableCardProps {
   projectUrl?: string;
   /** Link text for projectUrl in the expanded card (default "View live project") */
   projectLinkLabel?: string;
+  /** Text for projectUrl on the closed card (default: the URL without https://) */
+  projectLinkText?: string;
   /** Path to a .glb file. Shows a rotatable 3D viewer (lazy-loaded) in the expanded card */
   model?: string;
   [key: string]: any;
@@ -68,6 +70,7 @@ export function ExpandableCard({
   githubUrl,
   projectUrl,
   projectLinkLabel,
+  projectLinkText,
   model,
   ...props
 }: ExpandableCardProps) {
@@ -576,10 +579,10 @@ export function ExpandableCard({
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="block w-0 min-w-[calc(100%-2.5rem)] text-xs sm:text-sm text-zinc-400 hover:text-white underline-offset-2 hover:underline truncate text-left mt-1"
+                  className="text-xs sm:text-sm text-zinc-400 hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
                   data-cursor-hover
                 >
-                  {projectUrl.replace(/^https?:\/\//, '')}
+                  {projectLinkText ?? projectUrl.replace(/^https?:\/\//, '')}
                 </a>
               )}
               {githubUrl && (
