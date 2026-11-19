@@ -601,10 +601,9 @@ export function ExpandableCard({
             <motion.button
               aria-label="Open card"
               layoutId={`button-${title}-${id}`}
-              className={cn(
-                "frosted-pill h-8 w-8 shrink-0 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors duration-300 focus:outline-none",
-                className,
-              )}
+              // Do not pass the card's `className` here: on Major cards it is "w-full" and
+              // stretched this button across the row, squeezing the title and links to 0px.
+              className="frosted-pill h-8 w-8 shrink-0 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors duration-300 focus:outline-none"
             >
               <motion.div
                 animate={{ rotate: active ? 45 : 0 }}
