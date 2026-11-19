@@ -1,6 +1,7 @@
 import type { Project } from '../data';
 import { categoryImages } from './category-images';
 import { threeDProject } from './defaults';
+import { makerworldProjects } from './makerworld';
 
 const U = {
   astonMartin:
@@ -32,6 +33,7 @@ const blenderTags = ['3D modeling', 'rendering', 'design', 'Blender'] as const;
  * Order in this array is display order (reorder freely).
  */
 export const threeDDesignProjects: Project[] = [
+  ...makerworldProjects,
   threeDProject({
     slug: 'blender-aston-martin',
     title: 'Aston Martin',

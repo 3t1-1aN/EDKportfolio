@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useLenis } from "@/lib/lenis-context";
+import { ModelViewer } from "@/components/ui/model-viewer";
 
 function hasDisplayableSrc(src?: string): boolean {
   if (!src) return false;
@@ -43,6 +44,12 @@ interface ExpandableCardProps {
   githubUrl?: string;
   /** Live/deployed project URL — shown under title/description and in expanded header */
   projectUrl?: string;
+  /** Link text for projectUrl in the expanded card (default "View live project") */
+  projectLinkLabel?: string;
+  /** Text for projectUrl on the closed card (default: the URL without https://) */
+  projectLinkText?: string;
+  /** Path to a .glb file. Shows a rotatable 3D viewer (lazy-loaded) in the expanded card */
+  model?: string;
   [key: string]: any;
 }
 
@@ -62,6 +69,9 @@ export function ExpandableCard({
   video,
   githubUrl,
   projectUrl,
+  projectLinkLabel,
+  projectLinkText,
+  model,
   ...props
 }: ExpandableCardProps) {
   const showSrc = hasDisplayableSrc(src);
@@ -71,6 +81,7 @@ export function ExpandableCard({
     !(video && video.length > 0) &&
     !(images && images.length > 1);
   const hasHeroMedia =
+    Boolean(model) ||
     Boolean(video?.length) ||
     Boolean(images && images.length > 1) ||
     showSrc ||
@@ -330,7 +341,14 @@ export function ExpandableCard({
                     </div>
                     {hasHeroMedia && (
                       <motion.div layoutId={`image-${title}-${id}`} className="flex-shrink-0">
-                        {video && video.length > 0 ? (
+                        {model ? (
+                          <ModelViewer
+                            src={model}
+                            alt={`${title} 3D model`}
+                            poster={showSrc ? src : undefined}
+                            className="h-[300px] sm:h-[420px]"
+                          />
+                        ) : video && video.length > 0 ? (
                           // Video: show first video in the media area; auto-plays when expanded (muted)
                           <div className="w-full bg-black">
                             <video
@@ -461,7 +479,7 @@ export function ExpandableCard({
                               className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white underline-offset-2 hover:underline"
                               data-cursor-hover
                             >
-                              View live project
+                              {projectLinkLabel ?? "View live project"}
                               <span aria-hidden className="text-zinc-400">↗</span>
                             </a>
                           )}
@@ -564,7 +582,7 @@ export function ExpandableCard({
                   className="text-xs sm:text-sm text-zinc-400 hover:text-white underline-offset-2 hover:underline truncate text-left mt-1 max-w-[calc(100%-2.5rem)]"
                   data-cursor-hover
                 >
-                  {projectUrl.replace(/^https?:\/\//, '')}
+                  {projectLinkText ?? projectUrl.replace(/^https?:\/\//, '')}
                 </a>
               )}
               {githubUrl && (
@@ -583,10 +601,9 @@ export function ExpandableCard({
             <motion.button
               aria-label="Open card"
               layoutId={`button-${title}-${id}`}
-              className={cn(
-                "frosted-pill h-8 w-8 shrink-0 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors duration-300 focus:outline-none",
-                className,
-              )}
+              // Do not pass the card's `className` here: on Major cards it is "w-full" and
+              // stretched this button across the row, squeezing the title and links to 0px.
+              className="frosted-pill h-8 w-8 shrink-0 flex items-center justify-center rounded-full text-white/70 hover:text-white transition-colors duration-300 focus:outline-none"
             >
               <motion.div
                 animate={{ rotate: active ? 45 : 0 }}

@@ -3,3 +3,4 @@ export { musicProjects } from './music';
 export { mechanicsProjects } from './mechanics';
 export { photographyProjects } from './photography';
 export { threeDDesignProjects } from './three-d-design';
+export { makerworldProjects } from './makerworld';
