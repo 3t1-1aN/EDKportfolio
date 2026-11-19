@@ -71,7 +71,7 @@ export function ModelViewer({ src, alt, poster, className }: ModelViewerProps) {
       ) : null}
       {!failed && (
         <p className="pointer-events-none absolute bottom-2 left-0 right-0 text-center text-xs text-zinc-400">
-          Drag to rotate. Preview shape from MakerWorld.
+          Drag to rotate.
         </p>
       )}
     </div>
